@@ -1,0 +1,14 @@
+{
+  "dataset": "IndiaAQI",
+  "model": "DLinear",
+  "pred_len": 96,
+  "retrained": true,
+  "mse": 0.16581299501562502,
+  "mae": 0.2710417532726896,
+  "rmse": 0.4072014182387201,
+  "training_time": -1.0,
+  "inference_time": 0.6219921112060547,
+  "num_epochs": 8,
+  "checkpoint": "./baselines/dlinear_IndiaAQI_pred96.pkl",
+  "note": "Semester 1 checkpoint \u2014 training time not recorded"
+}

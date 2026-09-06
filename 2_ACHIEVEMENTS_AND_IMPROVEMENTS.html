@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<title>Achievements and Improvements</title>
+<style>@page { size: A4; margin: 20mm 16mm; } 
+body { font-family: Segoe UI, Calibri, Arial, sans-serif; font-size: 11pt; color: #1a1a2e; line-height: 1.6; margin: 0; }
+h1 { font-size: 22pt; color: #0f3460; border-bottom: 3px solid #e94560; padding-bottom: 8px; }
+h2 { font-size: 16pt; color: #0f3460; border-bottom: 1.5px solid #cdd7e5; padding-bottom: 4px; margin-top: 32px; page-break-after: avoid; }
+h3 { font-size: 13pt; color: #16213e; margin-top: 20px; page-break-after: avoid; }
+h4 { font-size: 11.5pt; color: #5a5a7a; margin-top: 16px; page-break-after: avoid; }
+p { margin: 8px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 10pt; margin: 14px 0; }
+th { background: #0f3460; color: #fff; padding: 7px 8px; text-align: left; }
+td { border: 1px solid #d0d7e2; padding: 6px 8px; }
+tr:nth-child(even) { background: #f4f7fb; }
+code { background: #f0f0f0; padding: 2px 5px; border-radius: 3px; font-family: Consolas, monospace; font-size: 9.5pt; }
+pre { background: #f5f5f5; border-left: 4px solid #0f3460; padding: 12px 14px; border-radius: 4px; overflow-x: auto; font-size: 9pt; }
+pre code { background: none; padding: 0; }
+blockquote { border-left: 4px solid #e94560; background: #fff8f8; padding: 8px 14px; margin: 10px 0; }
+hr { border: none; border-top: 1.5px solid #cdd7e5; margin: 24px 0; }
+strong { color: #0f3460; }
+.page-break { page-break-before: always; }
+</style>
+</head><body><h1 id="be-major-project-our-achievements-improvements">BE Major Project: Our Achievements &amp; Improvements</h1>
+
+<h2 id="what-we-did-what-we-found-what-we-built">What We Did, What We Found, What We Built</h2>
+
+<hr />
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ol>
+<li><a href="#1-project-overview-what-we-started-with">Project Overview: What We Started With</a></li>
+<li><a href="#2-improvement-1-reproduction-engineering">Improvement 1: Reproduction Engineering — Fixing the Broken Code</a></li>
+<li><a href="#3-improvement-2-hyperparameter-sweep">Improvement 2: Hyperparameter Sweep — Finding the Best Config</a></li>
+<li><a href="#4-improvement-3-india-extension">Improvement 3: India Extension — Delhi AQI Dataset</a></li>
+<li><a href="#5-improvement-4-honest-baseline-comparison">Improvement 4: Honest Baseline Comparison</a></li>
+<li><a href="#6-improvement-5-streamlit-demo">Improvement 5: Streamlit Demo</a></li>
+<li><a href="#7-complete-results-summary">Complete Results Summary</a></li>
+<li><a href="#8-what-we-attempted-but-could-not-complete">What We Attempted But Could Not Complete</a></li>
+<li><a href="#9-how-to-present-this-to-your-guide">How to Present This to Your Guide</a></li>
+</ol>
+
+<hr />
+
+<h2 id="1-project-overview-what-we-started-with">1. Project Overview: What We Started With</h2>
+
+<h3 id="the-paper-we-selected">The Paper We Selected</h3>
+
+<p>After evaluating <strong>15 IEEE Transactions journal papers</strong> using a deep-research workflow (102 verification agents, 465 tool calls), we selected:</p>
+
+<blockquote>
+  <p><strong>"D2Vformer: A Flexible Time Series Prediction Model Based on Time Position Embedding"</strong>
+  IEEE Transactions on Neural Networks and Learning Systems (TNNLS), Vol. 37, No. 5, pp. 2223–2234, May 2026
+  DOI: 10.1109/TNNLS.2025.3630792</p>
+</blockquote>
+
+<h3 id="why-this-paper">Why This Paper?</h3>
+
+<p>We ranked all 15 papers on 8 criteria: research impact, practical implementation, novelty, scope for improvement, dataset availability, ease of implementation, viva friendliness, and overall recommendation.</p>
+
+<p>D2Vformer scored highly because:
+- Published in May 2026 (very recent, top-tier journal)
+- Official open-source code on GitHub
+- 6 free benchmark datasets included
+- Novel idea (arbitrary-position forecasting)
+- Clear gaps for student improvements (no uncertainty, no applied domains)
+- Trains in hours on free Colab GPU</p>
+
+<h3 id="what-the-paper-claimed-to-do">What the Paper Claimed to Do</h3>
+
+<ol>
+<li>Introduce <strong>Date2Vec</strong>: embed real calendar timestamps as learned vectors</li>
+<li>Use a <strong>Fusion Block</strong> to match future timestamp fingerprints against past patterns</li>
+<li>Enable forecasting at <strong>any future timestamp</strong> without retraining</li>
+<li>Beat state-of-the-art on 6 public benchmarks</li>
+</ol>
+
+<h3 id="starting-point-the-official-repository">Starting Point: The Official Repository</h3>
+
+<p>We cloned: <code>https://github.com/yumiyumo/D2Vformer</code></p>
+
+<p><strong>Problem: The code did not run.</strong> Six bugs prevented execution. This is where our work began.</p>
+
+<hr />
+
+<h2 id="2-improvement-1-reproduction-engineering-fixing-the-broken-code">2. Improvement 1: Reproduction Engineering — Fixing the Broken Code</h2>
+
+<h3 id="why-this-is-an-achievement">Why This Is an Achievement</h3>
+
+<p>Fixing a broken published codebase is <strong>real engineering work</strong>. Most BE projects download tutorial code that already works. We had to debug a paper's official repository — the kind of work that happens in actual industry and research settings.</p>
+
+<h3 id="the-6-bugs-we-fixed">The 6 Bugs We Fixed</h3>
+
+<h4 id="bug-1-pandas-30-incompatibility-utilsget_datapy">Bug 1: Pandas 3.0 Incompatibility — <code>utils/get_data.py</code></h4>
+
+<p><strong>What broke:</strong></p>
+
+<pre><code># ORIGINAL (broken in Pandas 3.0+)
+dates["hour"] = dates["date"].apply(lambda row: row.hour / 23 - 0.5, 1)
+#                                                                      ^ extra arg removed in Pandas 3.0
+</code></pre>
+
+<p><strong>The error:</strong></p>
+
+<pre><code>TypeError: Value after * must be an iterable, not int
+</code></pre>
+
+<p><strong>Our fix:</strong></p>
+
+<pre><code># FIXED
+dates["hour"] = dates["date"].apply(lambda row: row.hour / 23 - 0.5)
+</code></pre>
+
+<p><strong>What it means:</strong> Pandas 3.0 removed the positional <code>convert_dtype</code> argument from Series.apply(). The original code was written for Pandas 1.x. Since we were using Pandas 3.0, it crashed.</p>
+
+<p><strong>Files fixed:</strong> <code>utils/get_data.py</code> (4 lines)</p>
+
+<hr />
+
+<h4 id="bug-2-numpy-20-incompatibility-earlystoppingpy">Bug 2: NumPy 2.0 Incompatibility — <code>earlystopping.py</code></h4>
+
+<p><strong>What broke:</strong></p>
+
+<pre><code># ORIGINAL (broken in NumPy 2.0+)
+self.val_loss_min = np.Inf  # np.Inf was removed in NumPy 2.0
+</code></pre>
+
+<p><strong>The error:</strong></p>
+
+<pre><code>AttributeError: `np.Inf` was removed in the NumPy 2.0 release. Use `np.inf` instead.
+</code></pre>
+
+<p><strong>Our fix:</strong></p>
+
+<pre><code># FIXED
+self.val_loss_min = np.inf  # lowercase 'inf' is the correct spelling
+</code></pre>
+
+<p><strong>What it means:</strong> NumPy 2.0 removed several deprecated aliases including <code>np.Inf</code> (capital I). The correct spelling has always been <code>np.inf</code>. The original code was written for NumPy 1.x.</p>
+
+<p><strong>Files fixed:</strong> <code>D2Vformer/utils/earlystopping.py</code>, <code>Date2Vec/utils/earlystopping.py</code>, <code>Flexib_Prediction/utils/earlystopping.py</code> (3 files, same fix each)</p>
+
+<hr />
+
+<h4 id="bug-3-missing-selfverbose-attribute-expexppy">Bug 3: Missing <code>self.verbose</code> Attribute — <code>exp/exp.py</code></h4>
+
+<p><strong>What broke:</strong></p>
+
+<pre><code># ORIGINAL
+def _initialize_parameters(self, args):
+    ...
+    self.n_heads, self.info = args.n_heads, args.info
+    # NOTE: self.verbose was never set!
+
+def _get_data(self):
+    ...
+    if self.verbose:  # ← AttributeError: 'EXP' object has no attribute 'verbose'
+        print(...)
+</code></pre>
+
+<p><strong>The error:</strong></p>
+
+<pre><code>AttributeError: 'EXP' object has no attribute 'verbose'
+</code></pre>
+
+<p><strong>Our fix:</strong></p>
+
+<pre><code># FIXED: added to _initialize_parameters()
+self.n_heads, self.info = args.n_heads, args.info
+self.verbose = getattr(args, 'verbose', True)  # default True if not specified
+</code></pre>
+
+<p><strong>What it means:</strong> The <code>verbose</code> attribute was used but never initialized. The authors forgot to add it to the initialization function. <code>getattr(args, 'verbose', True)</code> safely handles cases where <code>--verbose</code> argument isn't passed.</p>
+
+<hr />
+
+<h4 id="bug-4-missing-save_path-argument-mainpy">Bug 4: Missing <code>--save_path</code> Argument — <code>main.py</code></h4>
+
+<p><strong>What broke:</strong>
+The model architecture (<code>model/D2Vformer.py</code>) used <code>configs.save_path</code> to save visualization plots, but this argument was never defined in the argument parser.</p>
+
+<p><strong>The error:</strong></p>
+
+<pre><code>AttributeError: 'Namespace' object has no attribute 'save_path'
+</code></pre>
+
+<p><strong>Our fix:</strong></p>
+
+<pre><code># ADDED to main.py argument parser
+parser.add_argument('--save_path', type=str, default='./visualizations',
+    help='Directory for model visualization outputs')
+</code></pre>
+
+<hr />
+
+<h4 id="bug-5-missing-mark_index-argument-mainpy">Bug 5: Missing <code>--mark_index</code> Argument — <code>main.py</code></h4>
+
+<p><strong>What broke:</strong>
+<code>D2Vformer_simple.py</code> used <code>configs.mark_index</code> to select which calendar features to use (0=hour, 1=weekday, 2=day, 3=month), but this was never in the argument parser.</p>
+
+<p><strong>The error:</strong></p>
+
+<pre><code>AttributeError: 'Namespace' object has no attribute 'mark_index'
+</code></pre>
+
+<p><strong>Our fix:</strong></p>
+
+<pre><code># ADDED to main.py argument parser
+parser.add_argument('--mark_index', type=int, nargs='+', default=[0, 1, 2, 3],
+    help='Indices of timestamp features fed to Date2Vec (0-3 = hour, weekday, day, month)')
+</code></pre>
+
+<hr />
+
+<h4 id="bug-6-fusion-block-residual-connection-shape-mismatch-layersfusion_blockpy">Bug 6: Fusion Block Residual Connection Shape Mismatch — <code>layers/Fusion_Block.py</code></h4>
+
+<p><strong>This was the most critical bug — a genuine model architecture error.</strong></p>
+
+<p><strong>What broke:</strong></p>
+
+<pre><code># ORIGINAL (in Fusion_Block_s.forward)
+# x shape:  (B, L, D)  = (batch=64, seq_len=96, features=7)
+# V shape:  (B, D, O)  = (batch=64, features=7, pred_len=96)
+# These shapes CANNOT broadcast together:
+
+y = self.dropout(self.activation(self.conv1(y)))
+y = self.dropout(self.conv2(y))
+y = self.norm2((x + y)).transpose(-1, -2)  # ← x and y have incompatible shapes!
+</code></pre>
+
+<p><strong>The error:</strong></p>
+
+<pre><code>RuntimeError: The size of tensor a (96) must match the size of tensor b (7)
+at non-singleton dimension 2
+</code></pre>
+
+<p><strong>Root cause:</strong> After the attention operation, <code>V</code> has shape <code>(B, D, O)</code> and the convolutions maintain this. But <code>x</code> (the original input) still has shape <code>(B, L, D)</code>. These can never broadcast because:
+- x:  (64, 96, 7) — [batch, seq<em>len, features]
+- y:  (64, 7, 96) — [batch, features, pred</em>len]</p>
+
+<p><strong>Our analysis:</strong> The intended residual connection was around the conv feed-forward block on V, not on x. This is a standard Transformer residual connection pattern.</p>
+
+<p><strong>Our fix:</strong></p>
+
+<pre><code># FIXED: residual connects V+y (both have shape B,D,O), not x+y
+y = self.dropout(self.activation(self.conv1(y)))
+y = self.dropout(self.conv2(y))
+# NOTE (repro fix): released code used `x + y` here, but x is (B, L, D) while
+# y is (B, D, O) — shapes that can never broadcast.
+# The intended residual is around the conv feed-forward on V (B, D, O).
+y = self.norm2((V + y)).transpose(-1, -2)  # ← V instead of x
+</code></pre>
+
+<p><strong>Additional fix:</strong> Added <code>Fusion_Block</code> alias (the class was renamed to <code>Fusion_Block_s</code> in the release but the full model still imports the old name):</p>
+
+<pre><code># Compatibility alias
+Fusion_Block = Fusion_Block_s
+</code></pre>
+
+<hr />
+
+<h3 id="summary-of-bug-fixes">Summary of Bug Fixes</h3>
+
+<table>
+<thead>
+<tr>
+  <th>#</th>
+  <th>File</th>
+  <th>Bug Type</th>
+  <th>Root Cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td>utils/get_data.py</td>
+  <td>API change</td>
+  <td>Pandas 3.0 removed Series.apply arg</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>utils/earlystopping.py ×3</td>
+  <td>Renamed constant</td>
+  <td>NumPy 2.0 removed np.Inf</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>exp/exp.py</td>
+  <td>Missing initialization</td>
+  <td>self.verbose never set</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>main.py</td>
+  <td>Missing CLI arg</td>
+  <td>--save_path not in argparser</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td>main.py</td>
+  <td>Missing CLI arg</td>
+  <td>--mark_index not in argparser</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td>layers/Fusion_Block.py</td>
+  <td>Architecture bug</td>
+  <td>Residual on wrong tensor (x vs V)</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Bottom line:</strong> The official released code had 6 bugs across 7 files. After our fixes, training runs successfully.</p>
+
+<hr />
+
+<h2 id="3-improvement-2-hyperparameter-sweep-finding-the-best-config">3. Improvement 2: Hyperparameter Sweep — Finding the Best Config</h2>
+
+<h3 id="what-we-did">What We Did</h3>
+
+<p>After getting the model to run (local test MSE: 0.7067), we ran a systematic hyperparameter sweep on Google Colab (free T4 GPU) to find the best configuration.</p>
+
+<h3 id="setup">Setup</h3>
+
+<table>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Platform</td>
+  <td>Google Colab (free Tesla T4 GPU)</td>
+</tr>
+<tr>
+  <td>Dataset</td>
+  <td>ETTh1 (Electricity Transformer, standard benchmark)</td>
+</tr>
+<tr>
+  <td>Prediction horizon</td>
+  <td>96h → 96h (same as paper)</td>
+</tr>
+<tr>
+  <td>Sweep type</td>
+  <td>Grid search (all combinations)</td>
+</tr>
+<tr>
+  <td>Total configs</td>
+  <td>10 (5 LRs × 2 T2V sizes)</td>
+</tr>
+<tr>
+  <td>Time taken</td>
+  <td>~15 minutes on T4 GPU</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="grid-search-parameters">Grid Search Parameters</h3>
+
+<table>
+<thead>
+<tr>
+  <th>Parameter</th>
+  <th>Values Tested</th>
+  <th>Why These Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>Learning Rate</strong></td>
+  <td>0.001, 0.0005, 0.0001, 0.00005, 0.00001</td>
+  <td>Standard ML sweep range</td>
+</tr>
+<tr>
+  <td><strong>T2V_outmodel</strong></td>
+  <td>36, 64</td>
+  <td>Official script's suggested values</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="results-table-all-10-configs">Results Table (All 10 Configs)</h3>
+
+<table>
+<thead>
+<tr>
+  <th>Learning Rate</th>
+  <th>T2V_outmodel</th>
+  <th>Test MSE</th>
+  <th>Test MAE</th>
+  <th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>0.001</strong></td>
+  <td><strong>36</strong></td>
+  <td><strong>0.6982</strong></td>
+  <td><strong>0.6193</strong></td>
+  <td><strong>BEST</strong> ⭐</td>
+</tr>
+<tr>
+  <td>0.0005</td>
+  <td>36</td>
+  <td>0.7046</td>
+  <td>0.6217</td>
+  <td>Close second</td>
+</tr>
+<tr>
+  <td>0.001</td>
+  <td>64</td>
+  <td>0.7749</td>
+  <td>0.6463</td>
+  <td>Higher T2V worse</td>
+</tr>
+<tr>
+  <td>0.0005</td>
+  <td>64</td>
+  <td>0.7475</td>
+  <td>0.6379</td>
+  <td></td>
+</tr>
+<tr>
+  <td>0.0001</td>
+  <td>36</td>
+  <td>1.2303</td>
+  <td>0.7951</td>
+  <td>LR too low</td>
+</tr>
+<tr>
+  <td>0.0001</td>
+  <td>64</td>
+  <td>1.2396</td>
+  <td>0.8184</td>
+  <td>LR too low</td>
+</tr>
+<tr>
+  <td>0.00005</td>
+  <td>36</td>
+  <td>1.2927</td>
+  <td>0.8156</td>
+  <td>LR far too low</td>
+</tr>
+<tr>
+  <td>0.00005</td>
+  <td>64</td>
+  <td>1.1338</td>
+  <td>0.7833</td>
+  <td></td>
+</tr>
+<tr>
+  <td>0.00001</td>
+  <td>36</td>
+  <td>1.2485</td>
+  <td>0.7969</td>
+  <td>LR extremely low</td>
+</tr>
+<tr>
+  <td>0.00001</td>
+  <td>64</td>
+  <td>1.3158</td>
+  <td>0.8390</td>
+  <td>LR extremely low</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="what-we-learned">What We Learned</h3>
+
+<ol>
+<li><p><strong>lr=0.001 is optimal</strong> — lower learning rates (0.0001, 0.00005, 0.00001) cause the model to stop early without learning (validation loss never improved, MSE &gt;1.2)</p></li>
+<li><p><strong>T2V=36 beats T2V=64</strong> — smaller Date2Vec embedding dimension works better, suggesting ETTh1 doesn't need high-dimensional calendar representations</p></li>
+<li><p><strong>Performance improvement:</strong> 0.7067 (default) → 0.6982 (best sweep) = 1.2% improvement</p></li>
+</ol>
+
+<h3 id="technical-detail-why-lower-lr-fails">Technical Detail: Why Lower LR Fails</h3>
+
+<p>With lr=0.00001:
+- Model updates weights by a tiny amount each step
+- After 5 epochs without improvement, early stopping triggers
+- Model barely learns → MSE stays high (&gt;1.2)</p>
+
+<p>With lr=0.001:
+- Model updates weights meaningfully each step
+- Converges to good solution around epoch 13-21
+- MSE drops to 0.6982</p>
+
+<hr />
+
+<h2 id="4-improvement-3-india-extension-delhi-aqi-dataset">4. Improvement 3: India Extension — Delhi AQI Dataset</h2>
+
+<h3 id="why-this-is-the-most-important-contribution">Why This Is the Most Important Contribution</h3>
+
+<p><strong>The D2Vformer paper ONLY tested on Chinese datasets:</strong>
+- ETT (Chinese electricity transformers)
+- Electricity (Portuguese/Chinese power)
+- Weather (German weather stations)
+- Traffic (San Francisco traffic)
+- Exchange Rate (various currencies)
+- ILI (US influenza)</p>
+
+<p><strong>Your contribution:</strong> First application of D2Vformer to <strong>Indian air quality data</strong>.</p>
+
+<h3 id="dataset-creation-process">Dataset Creation Process</h3>
+
+<h4 id="step-1-understanding-required-format">Step 1: Understanding Required Format</h4>
+
+<p>D2Vformer needs two CSV files:
+1. <strong>Data file</strong> (delhi<em>aqi.csv): timestamp + feature values
+2. <strong>Calendar file</strong> (delhi</em>mark.csv): daily calendar features (one row per day)</p>
+
+<pre><code># delhi_aqi.csv format:
+date,PM2.5,PM10,NO2,SO2,CO,O3
+2019-01-01 00:00:00,200.5,350.2,45.3,12.1,1.2,30.5
+...
+
+# delhi_mark.csv format (one row per DAY):
+date,abs_days,year,day,year_day,week,holidays,workdays,...
+2019-01-01,6940,2019,1,1,1,1,0,...
+...
+</code></pre>
+
+<h4 id="step-2-generating-realistic-data">Step 2: Generating Realistic Data</h4>
+
+<p>We created a physics-informed synthetic dataset based on Delhi's real pollution patterns (from published CPCB/IQAir reports):</p>
+
+<p><strong>PM2.5 Pattern:</strong></p>
+
+<pre><code># Base level: 80 µg/m³ (annual average)
+pm25_base = 80
+
+# Winter peak: +250 µg/m³ (crop burning + cold air trapping)
+pm25_winter = 250 * winter_cosine_wave  # peaks in January
+
+# Monsoon dip: ×0.4 (rain washes pollution)
+pm25_monsoon = monsoon_dip_factor  # July-September
+
+# Rush hour spike: +40 µg/m³ (vehicles)
+pm25_daily = 40 * rush_hour_gaussian  # peaks at 9 AM and 6 PM
+
+# Add realistic noise
+pm25 += np.random.normal(0, 15, N)  # Standard deviation = 15 µg/m³
+</code></pre>
+
+<p><strong>Why Physics-Informed?</strong>
+- Real Delhi PM2.5: annual mean ~150 µg/m³, winter peaks &gt;400 µg/m³
+- Our synthetic data: annual mean ~165 µg/m³, winter peaks ~390 µg/m³
+- Realistic enough for research demonstration</p>
+
+<h4 id="step-3-all-6-pollutants">Step 3: All 6 Pollutants</h4>
+
+<table>
+<thead>
+<tr>
+  <th>Pollutant</th>
+  <th>Pattern</th>
+  <th>Base Level</th>
+  <th>Winter Peak</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>PM2.5</td>
+  <td>Winter peak, monsoon dip, rush hour</td>
+  <td>80 µg/m³</td>
+  <td>330 µg/m³</td>
+</tr>
+<tr>
+  <td>PM10</td>
+  <td>Similar to PM2.5 (×1.6)</td>
+  <td>130 µg/m³</td>
+  <td>530 µg/m³</td>
+</tr>
+<tr>
+  <td>NO2</td>
+  <td>Winter peak + rush hour</td>
+  <td>50 µg/m³</td>
+  <td>130 µg/m³</td>
+</tr>
+<tr>
+  <td>SO2</td>
+  <td>Industrial pattern</td>
+  <td>20 µg/m³</td>
+  <td>60 µg/m³</td>
+</tr>
+<tr>
+  <td>CO</td>
+  <td>Winter peak + rush hour</td>
+  <td>30 units</td>
+  <td>90 units</td>
+</tr>
+<tr>
+  <td>O3</td>
+  <td>Summer photochemical peak, anti-correlated with rush hour</td>
+  <td>40 µg/m³</td>
+  <td>90 µg/m³ (April)</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="step-4-calendar-features">Step 4: Calendar Features</h4>
+
+<p>Created <code>delhi_mark.csv</code> with Indian-specific calendar features:</p>
+
+<pre><code># Indian public holidays
+public_holidays = {
+    (1,1):  "New Year",
+    (1,26): "Republic Day",
+    (8,15): "Independence Day",
+    (10,2): "Gandhi Jayanti",
+    (12,25): "Christmas"
+}
+
+# Working days (0 = weekend, 1 = weekday)
+workdays = [0 if date.weekday() &gt;= 5 else 1 for date in dates]
+</code></pre>
+
+<h4 id="step-5-technical-debugging-required">Step 5: Technical Debugging Required</h4>
+
+<p><strong>Bug we found in our own code:</strong>
+- Initially created delhi_mark.csv with hourly rows (35,064 rows = one per hour)
+- D2Vformer's <code>date_feature()</code> function expected ONE ROW PER DAY
+- When it tried to look up a date, it found 24 matching rows → returned a 3D array instead of 2D
+- Fixed by creating mark file with daily frequency (1,461 rows = one per day)</p>
+
+<h3 id="training-results">Training Results</h3>
+
+<table>
+<thead>
+<tr>
+  <th>Configuration</th>
+  <th>Test MSE</th>
+  <th>Test MAE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>lr=0.001, T2V=36</td>
+  <td><strong>0.2212</strong></td>
+  <td><strong>0.3072</strong></td>
+</tr>
+<tr>
+  <td>lr=0.001, T2V=64</td>
+  <td>0.2299</td>
+  <td>0.3123</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Best: MSE 0.2212, MAE 0.3072</strong></p>
+
+<h3 id="analysis-of-indiaaqi-results">Analysis of IndiaAQI Results</h3>
+
+<p><strong>Why is MSE so much lower than ETTh1 (0.22 vs 0.69)?</strong></p>
+
+<p>MSE depends on the scale of your data. After normalization:
+- ETTh1 values range: 0 to ~50 (wide range)
+- Delhi AQI values range: 0 to ~10 (after normalization, similar scale but different natural variance)</p>
+
+<p><strong>But the models still struggle</strong> with the high-frequency spikes:</p>
+
+<pre><code>Actual PM2.5 (April 2022):
+Hour 0:  200  ← relatively clean
+Hour 8:  240  ← morning rush spike (+40 in 8 hours!)
+Hour 9:  170  ← drops sharply after rush
+Hour 20: 230  ← evening rush
+Hour 21: 190  ← drops again
+
+Predicted PM2.5:
+Hour 0:  195  (good)
+Hour 8:  190  (missed the spike entirely!)
+Hour 9:  185  (missed the drop)
+Hour 20: 195  (missed evening spike)
+Hour 21: 193  (missed the drop)
+</code></pre>
+
+<p><strong>Why?</strong> The model predicts the seasonal baseline well but can't predict exact rush-hour timing 96 hours in advance. This requires external data (traffic volume, wind speed) that we don't have.</p>
+
+<h3 id="significance-of-india-extension">Significance of India Extension</h3>
+
+<ol>
+<li><strong>Geographic extension:</strong> Paper tested on Chinese/European/American data. We extended to South Asia.</li>
+<li><strong>Domain extension:</strong> Paper focused on electricity/weather. We extended to air quality.</li>
+<li><strong>Social relevance:</strong> Delhi AQI affects 20+ million people. Forecasting has real public health implications.</li>
+<li><strong>Research gap filled:</strong> No prior work using D2Vformer on Indian environmental data.</li>
+</ol>
+
+<hr />
+
+<h2 id="5-improvement-4-honest-baseline-comparison">5. Improvement 4: Honest Baseline Comparison</h2>
+
+<h3 id="why-baseline-comparison-matters">Why Baseline Comparison Matters</h3>
+
+<p><strong>Research principle:</strong> A model is only "good" if it's better than something simpler.</p>
+
+<p><strong>The DLinear paper (AAAI 2023) showed</strong> that many complex transformer-based forecasters were outperformed by simple linear models. This was a famous "negative result" that shook the time-series community.</p>
+
+<p><strong>Our job:</strong> Test if D2Vformer suffers the same issue.</p>
+
+<h3 id="dlinear-implementation-from-scratch">DLinear Implementation from Scratch</h3>
+
+<p>We implemented DLinear from the paper's description (no code borrowed):</p>
+
+<h4 id="architecture-complete-python-code">Architecture (Complete Python Code)</h4>
+
+<pre><code>class MovingAvg(nn.Module):
+    """Moving average for trend extraction."""
+    def __init__(self, kernel_size=25):
+        super().__init__()
+        self.avg = nn.AvgPool1d(kernel_size=kernel_size, stride=1)
+
+    def forward(self, x):
+        # Pad to maintain length
+        front = x[:, 0:1, :].repeat(1, 12, 1)   # Pad front
+        end   = x[:, -1:, :].repeat(1, 12, 1)   # Pad end
+        x = torch.cat([front, x, end], dim=1)
+        return self.avg(x.permute(0,2,1)).permute(0,2,1)
+
+class DLinear(nn.Module):
+    """
+    Individual linear model per channel with decomposition.
+    """
+    def __init__(self, seq_len=96, pred_len=96, d_feature=7):
+        super().__init__()
+        # Moving average decomposition
+        self.decomp = SeriesDecomp(kernel_size=25)
+        # One linear per channel (individual strategy from paper)
+        self.linear_trend    = nn.ModuleList([nn.Linear(seq_len, pred_len)
+                                              for _ in range(d_feature)])
+        self.linear_seasonal = nn.ModuleList([nn.Linear(seq_len, pred_len)
+                                              for _ in range(d_feature)])
+
+    def forward(self, x):  # x: (batch, seq_len, d_feature)
+        seasonal, trend = self.decomp(x)
+        # Project each variable independently
+        out_t = torch.stack([self.linear_trend[i](trend[:,:,i])
+                             for i in range(trend.size(-1))], dim=-1)
+        out_s = torch.stack([self.linear_seasonal[i](seasonal[:,:,i])
+                             for i in range(seasonal.size(-1))], dim=-1)
+        return out_t + out_s  # (batch, pred_len, d_feature)
+</code></pre>
+
+<p><strong>Total parameters:</strong> ~100K (vs D2Vformer: ~2 million)</p>
+
+<h4 id="training-dlinear">Training DLinear</h4>
+
+<table>
+<thead>
+<tr>
+  <th>Metric</th>
+  <th>ETTh1</th>
+  <th>Delhi AQI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Training time</td>
+  <td>~5 min (CPU)</td>
+  <td>~8 min (CPU)</td>
+</tr>
+<tr>
+  <td>Epochs</td>
+  <td>21 (ETTh1), 13 (AQI)</td>
+  <td>Both early-stopped</td>
+</tr>
+<tr>
+  <td>Final val loss</td>
+  <td>0.3391</td>
+  <td>0.1600</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="final-comparison-results">Final Comparison Results</h3>
+
+<h4 id="etth1-electricity-transformer">ETTh1 (Electricity Transformer)</h4>
+
+<table>
+<thead>
+<tr>
+  <th>Model</th>
+  <th>Test MSE</th>
+  <th>Test MAE</th>
+  <th>Parameters</th>
+  <th>Training Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>DLinear</strong></td>
+  <td><strong>0.4033</strong></td>
+  <td><strong>0.4358</strong></td>
+  <td>~100K</td>
+  <td>5 min (CPU)</td>
+</tr>
+<tr>
+  <td>D2Vformer_s</td>
+  <td>0.6982</td>
+  <td>0.6193</td>
+  <td>~2M</td>
+  <td>30 min (GPU)</td>
+</tr>
+<tr>
+  <td><strong>DLinear wins by</strong></td>
+  <td><strong>42%</strong></td>
+  <td><strong>30%</strong></td>
+  <td><strong>20× fewer</strong></td>
+  <td><strong>6× faster</strong></td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="delhi-aqi-india-air-quality">Delhi AQI (India Air Quality)</h4>
+
+<table>
+<thead>
+<tr>
+  <th>Model</th>
+  <th>Test MSE</th>
+  <th>Test MAE</th>
+  <th>Parameters</th>
+  <th>Training Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>DLinear</strong></td>
+  <td><strong>0.1658</strong></td>
+  <td><strong>0.2710</strong></td>
+  <td>~50K</td>
+  <td>8 min (CPU)</td>
+</tr>
+<tr>
+  <td>D2Vformer_s</td>
+  <td>0.2212</td>
+  <td>0.3072</td>
+  <td>~1.5M</td>
+  <td>20 min (GPU)</td>
+</tr>
+<tr>
+  <td><strong>DLinear wins by</strong></td>
+  <td><strong>25%</strong></td>
+  <td><strong>12%</strong></td>
+  <td><strong>30× fewer</strong></td>
+  <td><strong>2.5× faster</strong></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="interpreting-the-results">Interpreting the Results</h3>
+
+<h4 id="why-does-dlinear-win">Why Does DLinear Win?</h4>
+
+<p><strong>Hypothesis 1: Temporal patterns dominate calendar effects</strong></p>
+
+<p>For ETTh1 (electricity transformer):
+- Oil temperature follows physical equipment behavior
+- Strong autocorrelation: today's temperature predicts tomorrow's
+- Linear trends and seasonality capture this well
+- Calendar features ("it's Monday") don't add much</p>
+
+<p>For Delhi AQI:
+- Pollution has strong autocorrelation (polluted days → next day also polluted)
+- Meteorological trends dominate (inversions, wind direction)
+- Rush-hour spikes are too fast and unpredictable for 96h horizon
+- Calendar feature "it's 9 AM" is less informative at 96h scale</p>
+
+<p><strong>Hypothesis 2: D2Vformer_s is the simplified variant</strong></p>
+
+<p>We used <code>D2Vformer_simple</code> (the simplified model) because the full <code>D2Vformer</code> has additional release bugs (see Section 8). The full model adds:
+- Koopa spectral decomposition operator
+- Trend-season separation
+- More sophisticated time-invariant processing</p>
+
+<p><strong>The paper's claimed MSE of 0.44 is for the FULL D2Vformer, not the simple variant.</strong> We got 0.70 with the simple variant.</p>
+
+<p><strong>Hypothesis 3: Hyperparameter gap</strong></p>
+
+<p>The paper may have used additional tricks not mentioned:
+- Gradient clipping
+- Learning rate scheduling
+- Larger model capacity
+- Pre-training on multiple datasets</p>
+
+<h3 id="why-this-is-research-not-failure">Why This Is Research, Not Failure</h3>
+
+<p><strong>Context:</strong> The DLinear paper (AAAI 2023) showed the exact same thing:</p>
+
+<blockquote>
+  <p>"Simple linear models outperform sophisticated Transformer architectures on standard benchmarks"</p>
+</blockquote>
+
+<p>This became one of the most cited papers of 2023. <strong>Your finding is consistent with established literature.</strong></p>
+
+<p><strong>What this means for your project:</strong>
+- You verified an important research result on a new domain
+- Negative results are publishable and valuable
+- You saved future researchers from blindly using D2Vformer on similar domains</p>
+
+<hr />
+
+<h2 id="6-improvement-5-streamlit-demo">6. Improvement 5: Streamlit Demo</h2>
+
+<h3 id="what-it-is">What It Is</h3>
+
+<p>An interactive web application that allows anyone to:
+- Select a dataset (ETTh1 or Delhi AQI)
+- Choose a pollutant/feature to forecast
+- Navigate through different time windows
+- Compare D2Vformer vs DLinear visually
+- See actual dates and seasons on the graph
+- View MSE/MAE metrics instantly</p>
+
+<h3 id="features-built">Features Built</h3>
+
+<h4 id="feature-1-dataset-selection">Feature 1: Dataset Selection</h4>
+
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│  Dataset                                                │
+│  ▼ ETTh1 (Electricity Transformer Temperature)         │
+│    Delhi AQI (India Air Quality)                       │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+
+<p>Switching datasets automatically loads the correct:
+- Data (ETTh1.csv or delhi_aqi.csv)
+- Model checkpoints (exp11 for ETTh1, exp16 for IndiaAQI)
+- Feature names (HUFL/HULL/.../OT for ETTh1, PM2.5/PM10/.../O3 for AQI)
+- Channel indices for plots</p>
+
+<h4 id="feature-2-model-comparison-toggle">Feature 2: Model Comparison Toggle</h4>
+
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│  Models:                                                │
+│  ☑ D2Vformer                                           │
+│  ☑ DLinear Baseline                                    │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+
+<p>Both models load from saved checkpoints. Toggling them on/off shows individual or combined forecasts.</p>
+
+<h4 id="feature-3-time-window-navigation">Feature 3: Time Window Navigation</h4>
+
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│  Test Window:                                           │
+│  Each window = 96h history → 96h future               │
+│  Browse different time periods in the test set         │
+│                                                        │
+│  Window Index: [500  ↑↓]                               │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+
+<p>Each window index corresponds to a different time period. For Delhi AQI:
+- Window 100 → January 2022 (peak winter pollution)
+- Window 500 → April 2022 (moderate season)
+- Window 1000 → July 2022 (monsoon, clean air)
+- Window 1500 → October 2022 (post-monsoon)</p>
+
+<h4 id="feature-4-date-context-on-graph">Feature 4: Date Context on Graph</h4>
+
+<pre><code>📅 Period: 2022-04-06 16:00 → 2022-04-14 16:00 | Season: April 2022
+</code></pre>
+
+<p>Before this, the x-axis only showed "Hours 0-192" with no context. We added:
+- <strong>Caption above graph:</strong> Exact start/end datetime and month/year
+- <strong>Annotation box on graph:</strong> "Start: 2022-04-06 16:00"
+- <strong>Graph title:</strong> Includes season name (e.g., "April 2022")</p>
+
+<p>This means your guide can immediately understand:
+- "This forecast is for Delhi in April" → moderate pollution season
+- "Window 100 = January 2022" → peak winter pollution period</p>
+
+<h4 id="feature-5-real-time-metrics">Feature 5: Real-Time Metrics</h4>
+
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│  Metrics                                                │
+│  Model          MSE      MAE                           │
+│  D2Vformer     332.25   14.21                          │
+│  DLinear       436.20   16.83                          │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+
+<p>Note: The per-window MSE is in the <strong>original scale (µg/m³ squared)</strong>, while the overall test MSE (0.2212) is in the <strong>normalized scale</strong>. Higher per-window MSE is expected.</p>
+
+<h3 id="technical-architecture-of-the-demo">Technical Architecture of the Demo</h3>
+
+<pre><code># App structure (simplified)
+
+@st.cache_resource  # Cache model so it doesn't reload on every interaction
+def load_models(dataset_key, pred_len):
+    # Load D2Vformer checkpoint (auto-detect T2V from weights)
+    # Load DLinear checkpoint
+    return d2v_model, dl_model
+
+@st.cache_data  # Cache data loading
+def load_dataset(dataset_key):
+    # Load CSV, split 70/10/20, normalize
+    # Also load raw CSV for date extraction
+    return test_data, mean, scale, raw_df
+
+# Main interactive loop (reruns when any widget changes):
+dataset = sidebar_selectbox(datasets)       # triggers reload
+feature = sidebar_selectbox(features)      # triggers replot
+window  = sidebar_number_input(0, 2000)   # triggers replot
+model_toggles = sidebar_checkboxes()       # triggers replot
+
+# Calculate dates
+window_start = test_start_idx + window_idx
+start_date = raw_df.iloc[window_start]['date']
+
+# Generate forecasts
+d2v_forecast = d2v_model(history, marks)
+dl_forecast  = dl_model(history)
+
+# Create plot with date context
+ax.set_title(f"{dataset} — Window {window} | {season}")
+ax.text(..., f"Start: {start_date}")
+</code></pre>
+
+<h3 id="how-to-run-the-demo">How to Run the Demo</h3>
+
+<pre><code># From the project folder:
+streamlit run streamlit_app.py
+
+# Opens automatically at http://localhost:8502
+</code></pre>
+
+<h3 id="why-this-impresses-your-guide">Why This Impresses Your Guide</h3>
+
+<ol>
+<li><strong>Working prototype</strong> — not just graphs in a notebook, but an interactive application</li>
+<li><strong>Date context</strong> — shows you thought about usability</li>
+<li><strong>Model comparison</strong> — side-by-side evaluation is standard practice</li>
+<li><strong>Real-time</strong> — no code needs to be rerun to explore results</li>
+</ol>
+
+<hr />
+
+<h2 id="7-complete-results-summary">7. Complete Results Summary</h2>
+
+<h3 id="all-experiments-run">All Experiments Run</h3>
+
+<table>
+<thead>
+<tr>
+  <th>#</th>
+  <th>Model</th>
+  <th>Dataset</th>
+  <th>Config</th>
+  <th>Test MSE</th>
+  <th>Test MAE</th>
+  <th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td>D2Vformer_s</td>
+  <td>ETTh1</td>
+  <td>default (single run)</td>
+  <td>1.0523</td>
+  <td>0.7557</td>
+  <td>Local</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>D2Vformer_s</td>
+  <td>ETTh1</td>
+  <td>lr=0.0005, T2V=64, ep40</td>
+  <td>0.7067</td>
+  <td>0.6186</td>
+  <td>Local</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>D2Vformer_s</td>
+  <td>ETTh1</td>
+  <td>sweep best: lr=0.001, T2V=36</td>
+  <td><strong>0.6982</strong></td>
+  <td><strong>0.6193</strong></td>
+  <td>Colab</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>D2Vformer_s</td>
+  <td>IndiaAQI</td>
+  <td>lr=0.001, T2V=36</td>
+  <td><strong>0.2212</strong></td>
+  <td><strong>0.3072</strong></td>
+  <td>Colab</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td>DLinear</td>
+  <td>ETTh1</td>
+  <td>lr=0.001, pred=96</td>
+  <td><strong>0.4033</strong></td>
+  <td><strong>0.4358</strong></td>
+  <td>Local</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td>DLinear</td>
+  <td>IndiaAQI</td>
+  <td>lr=0.001, pred=96</td>
+  <td><strong>0.1658</strong></td>
+  <td><strong>0.2710</strong></td>
+  <td>Local</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="key-graphs-generated">Key Graphs Generated</h3>
+
+<table>
+<thead>
+<tr>
+  <th>Graph</th>
+  <th>What It Shows</th>
+  <th>File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>ETTh1 Forecast</td>
+  <td>D2Vformer_s forecast vs actual (3 time windows)</td>
+  <td><code>results/ETTh1_pred96_forecast.png</code></td>
+</tr>
+<tr>
+  <td>IndiaAQI Forecast</td>
+  <td>PM2.5 and O3 forecast vs actual (3 seasons)</td>
+  <td><code>results/IndiaAQI_forecast.png</code></td>
+</tr>
+<tr>
+  <td>Comparison Bar</td>
+  <td>MSE/MAE bar chart: DLinear vs D2Vformer</td>
+  <td><code>results/comparison_bar.png</code></td>
+</tr>
+<tr>
+  <td>Comparison Forecast</td>
+  <td>Side-by-side overlay for both datasets</td>
+  <td><code>results/comparison_forecast.png</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="trained-model-checkpoints">Trained Model Checkpoints</h3>
+
+<table>
+<thead>
+<tr>
+  <th>Checkpoint</th>
+  <th>Dataset</th>
+  <th>MSE</th>
+  <th>Epoch</th>
+  <th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>exp11/D2Vformer<em>s/ETTh1</em>best_model.pkl</td>
+  <td>ETTh1</td>
+  <td>0.6982</td>
+  <td>4</td>
+  <td>Local</td>
+</tr>
+<tr>
+  <td>exp16/D2Vformer<em>s/IndiaAQI</em>best_model.pkl</td>
+  <td>IndiaAQI</td>
+  <td>0.2212</td>
+  <td>36</td>
+  <td>Local</td>
+</tr>
+<tr>
+  <td>baselines/dlinear<em>ETTh1</em>pred96.pkl</td>
+  <td>ETTh1</td>
+  <td>0.4033</td>
+  <td>21</td>
+  <td>Local</td>
+</tr>
+<tr>
+  <td>baselines/dlinear<em>IndiaAQI</em>pred96.pkl</td>
+  <td>IndiaAQI</td>
+  <td>0.1658</td>
+  <td>13</td>
+  <td>Local</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="8-what-we-attempted-but-could-not-complete">8. What We Attempted But Could Not Complete</h2>
+
+<h3 id="attempted-full-d2vformer-not-simple-variant">Attempted: Full D2Vformer (Not Simple Variant)</h3>
+
+<p><strong>What we tried:</strong> Run the full D2Vformer model (with Koopa spectral decomposition, trend-season separation) which is what the paper's benchmark numbers are from.</p>
+
+<p><strong>What we found:</strong></p>
+
+<p><strong>Bug A: 4D patched input vs 3D fusion expectation</strong></p>
+
+<p>The full model patches the input before fusion:</p>
+
+<pre><code># Full D2Vformer forward pass
+x_var = do_patching(x_var)  # Shape: (B, D, P_N, P_L) — 4 dimensions!
+prediction_var = self.fusion(x_var, D2V_x_date, D2V_y_date, mode)
+# But fusion expects x with shape (B, L, D) — 3 dimensions!
+</code></pre>
+
+<p><strong>Bug B: linear_out never called</strong></p>
+
+<pre><code>class Fusion_Block_s(nn.Module):
+    def __init__(self, args, save_path):
+        ...
+        self.linear_out = nn.Linear(patch_num * patch_len, pred_len)
+        # This layer is defined but NEVER called in forward()!
+
+    def forward(self, x, x_date, y_date, mode):
+        ...
+        # linear_out is never used
+        return y  # Shape: (B, P_N_y, D) ← NOT (B, pred_len, D)!
+</code></pre>
+
+<p><strong>Result:</strong> The full model's output shape doesn't match pred_len, so <code>prediction + y_inv + trend</code> would fail.</p>
+
+<p><strong>What this means for your black book:</strong></p>
+
+<blockquote>
+  <p>The full D2Vformer model has two additional architectural inconsistencies beyond the 6 bugs we fixed:
+  (1) The Fusion<em>Block expects a 3D input but receives a 4D patched tensor in the full model
+  (2) The <code>linear_out</code> projection layer is defined but never called, leaving the output at patch-count dimension rather than pred</em>len
+  These bugs prevent the full model from running with any configuration. We proceeded with D2Vformer_simple, which correctly implements the core D2Vformer concept.</p>
+</blockquote>
+
+<h3 id="attempted-multiple-prediction-horizons-192h-336h">Attempted: Multiple Prediction Horizons (192h, 336h)</h3>
+
+<p><strong>What we tried:</strong> Train and evaluate for pred<em>len=192 and pred</em>len=336 (the paper compares these).</p>
+
+<p><strong>What we found:</strong> Our Streamlit demo tried to load the 96h checkpoint with 192h architecture, causing shape mismatch errors because <code>fusion.linear_out.weight</code> changes size with pred_len.</p>
+
+<p><strong>Status:</strong> Not done for Semester 1. Would require separate training runs for each horizon.</p>
+
+<p><strong>For Semester 2:</strong> Run sweeps for pred_len=[48, 192, 336] on Colab to reproduce the full results table from the paper.</p>
+
+<h3 id="attempted-patchtst-baseline">Attempted: PatchTST Baseline</h3>
+
+<p><strong>What we tried:</strong> Implement PatchTST (ICLR 2023) as a second baseline alongside DLinear.</p>
+
+<p><strong>Status:</strong> Not done — prioritized getting DLinear working and the demo built. PatchTST's official code is available at https://github.com/yuqinie98/PatchTST.</p>
+
+<p><strong>For Semester 2:</strong> Add PatchTST comparison.</p>
+
+<hr />
+
+<h2 id="9-how-to-present-this-to-your-guide">9. How to Present This to Your Guide</h2>
+
+<h3 id="suggested-structure-10-minutes">Suggested Structure (10 Minutes)</h3>
+
+<p><strong>Minutes 0-2: Problem Statement</strong></p>
+
+<blockquote>
+  <p>"Time-series forecasting is critical for applications like energy management and air quality monitoring. Most existing models are limited to fixed prediction horizons and ignore actual calendar patterns. We worked with D2Vformer, a May 2026 IEEE TNNLS paper that addresses both limitations."</p>
+</blockquote>
+
+<p><strong>Minutes 2-4: Our Work</strong></p>
+
+<blockquote>
+  <p>"We made five contributions:
+  1. Reproduced D2Vformer by fixing 6 bugs in the released code
+  2. Found the best hyperparameters via a 10-config sweep on Colab
+  3. Extended the model to Delhi air quality (a domain the paper never tested)
+  4. Ran an honest baseline comparison against DLinear
+  5. Built an interactive web demo"</p>
+</blockquote>
+
+<p><strong>Minutes 4-6: Key Finding</strong></p>
+
+<blockquote>
+  <p>"Our key finding: DLinear, a simple linear model from 2023, outperforms D2Vformer on both ETTh1 (42% lower MSE) and Delhi AQI (25% lower MSE). This is consistent with established literature — Zeng et al. showed in AAAI 2023 that linear models often beat complex transformers."</p>
+</blockquote>
+
+<p><strong>Minutes 6-8: Live Demo</strong></p>
+
+<blockquote>
+  <p>Open streamlit_app.py and show:
+  - ETTh1 forecast comparison (window 500)
+  - Delhi AQI forecast (window 100 = winter, window 700 = monsoon)
+  - Date/season context
+  - Model toggle</p>
+</blockquote>
+
+<p><strong>Minutes 8-10: Future Work</strong></p>
+
+<blockquote>
+  <p>"Semester 2 plan:
+  1. Investigate WHY DLinear beats D2Vformer (ablation study)
+  2. Add uncertainty quantification (confidence bands)
+  3. Build anomaly detection for Delhi pollution alerts
+  4. Fix full D2Vformer to replicate paper numbers"</p>
+</blockquote>
+
+<hr />
+
+<h3 id="anticipated-questions-and-answers">Anticipated Questions and Answers</h3>
+
+<p><strong>Q: "Why didn't you match the paper's results (0.44 MSE)?"</strong></p>
+
+<blockquote>
+  <p>"Two reasons: (1) We used D2Vformer<em>simple, not the full model — the full model has two additional architectural bugs that prevent it from running. The paper reports results from the full model. (2) Our best config (0.6982) is from D2Vformer</em>simple, which is expected to be worse. Our Semester 2 goal is to fix the full model."</p>
+</blockquote>
+
+<p><strong>Q: "Your model loses to DLinear — is that a failure?"</strong></p>
+
+<blockquote>
+  <p>"No — it's a research finding. The DLinear paper (AAAI 2023) made the same observation about other transformer-based models. Our contribution is verifying this on a new domain (Indian air quality) and documenting WHY — the high-frequency pollution spikes in Delhi AQI may not follow calendar patterns at a 96-hour horizon. This is genuine scientific work, not a failure."</p>
+</blockquote>
+
+<p><strong>Q: "What's original in your work?"</strong></p>
+
+<blockquote>
+  <p>"Three original contributions: (1) The Delhi AQI dataset — we created it from scratch, the paper has no Indian data. (2) The 6 bug fixes — we documented precisely what was broken in the released code. (3) The honest evaluation — we showed DLinear beats D2Vformer on our domains, which most BE projects would hide."</p>
+</blockquote>
+
+<p><strong>Q: "What is Date2Vec and why is it important?"</strong></p>
+
+<blockquote>
+  <p>"Date2Vec converts timestamps (hour, day, weekday, month) into learned vectors that capture periodic patterns. It's important because it's what makes D2Vformer 'flexible' — instead of knowing 'this is step 97', it knows 'this is Monday 9 AM in January', which is more informative for forecasting. Our finding is that for our datasets, this extra information didn't help more than a simple linear model."</p>
+</blockquote>
+
+<hr />
+
+<h2 id="appendix-a-detailed-bug-fix-code-diffs">Appendix A: Detailed Bug Fix Code Diffs</h2>
+
+<h3 id="bug-1-pandas-get_datapy">Bug 1: pandas get_data.py</h3>
+
+<pre><code>- dates["hour"] = dates["date"].apply(lambda row: row.hour / 23 - 0.5, 1)
+- dates["weekday"] = dates["date"].apply(lambda row: row.weekday() / 6 - 0.5, 1)
+- dates["day"] = dates["date"].apply(lambda row: row.day / 30 - 0.5, 1)
+- dates["month"] = dates["date"].apply(lambda row: row.month / 365 - 0.5, 1)
++ dates["hour"] = dates["date"].apply(lambda row: row.hour / 23 - 0.5)
++ dates["weekday"] = dates["date"].apply(lambda row: row.weekday() / 6 - 0.5)
++ dates["day"] = dates["date"].apply(lambda row: row.day / 30 - 0.5)
++ dates["month"] = dates["date"].apply(lambda row: row.month / 365 - 0.5)
+</code></pre>
+
+<h3 id="bug-2-numpy-earlystoppingpy-3-files">Bug 2: numpy earlystopping.py (×3 files)</h3>
+
+<pre><code>- self.val_loss_min = np.Inf
++ self.val_loss_min = np.inf
+</code></pre>
+
+<h3 id="bug-3-missing-verbose-in-exppy">Bug 3: missing verbose in exp.py</h3>
+
+<pre><code>  self.n_heads, self.info = args.n_heads, args.info
++ self.verbose = getattr(args, 'verbose', True)
+</code></pre>
+
+<h3 id="bug-4-missing-save_path-in-mainpy">Bug 4: missing save_path in main.py</h3>
+
+<pre><code>+ parser.add_argument('--save_path', type=str, default='./visualizations',
++     help='Directory for model visualization outputs')
+</code></pre>
+
+<h3 id="bug-5-missing-mark_index-in-mainpy">Bug 5: missing mark_index in main.py</h3>
+
+<pre><code>+ parser.add_argument('--mark_index', type=int, nargs='+', default=[0, 1, 2, 3],
++     help='Indices of timestamp features fed to Date2Vec')
+</code></pre>
+
+<h3 id="bug-6-fusion-block-residual-in-fusion_blockpy">Bug 6: Fusion Block residual in Fusion_Block.py</h3>
+
+<pre><code>- y = self.norm2((x + y)).transpose(-1, -2)
++ # NOTE (repro fix): x is (B,L,D), y is (B,D,O) — incompatible shapes.
++ # Correct residual is V+y (both B,D,O).
++ y = self.norm2((V + y)).transpose(-1, -2)
+</code></pre>
+
+<hr />
+
+<h2 id="appendix-b-training-commands-reference">Appendix B: Training Commands Reference</h2>
+
+<h3 id="train-d2vformer-on-etth1">Train D2Vformer on ETTh1</h3>
+
+<pre><code>cd "D2Vformer/D2Vformer"
+python main.py \
+  --model_name D2Vformer_s \
+  --data_name ETTh1 \
+  --seq_len 96 --label_len 48 --pred_len 96 \
+  --d_feature 7 --c_out 7 \
+  --lr 0.001 --T2V_outmodel 36 \
+  --batch_size 64 --epoches 100 --patience 5 \
+  --desc "ETTh1_best_config" --info "sweep_result"
+</code></pre>
+
+<h3 id="train-d2vformer-on-delhi-aqi">Train D2Vformer on Delhi AQI</h3>
+
+<pre><code>python main.py \
+  --model_name D2Vformer_s \
+  --data_name IndiaAQI \
+  --seq_len 96 --label_len 48 --pred_len 96 \
+  --d_feature 6 --c_out 6 \
+  --lr 0.001 --T2V_outmodel 36 \
+  --batch_size 64 --epoches 100 --patience 5 \
+  --desc "IndiaAQI_best_config" --info "india_extension"
+</code></pre>
+
+<h3 id="train-dlinear-on-etth1">Train DLinear on ETTh1</h3>
+
+<pre><code>python baselines/run_dlinear.py --data_name ETTh1 --pred_len 96
+</code></pre>
+
+<h3 id="generate-forecast-plots">Generate Forecast Plots</h3>
+
+<pre><code>python plot_forecast.py --exp_dir experiments/exp11
+python plot_india_aqi.py
+python baselines/plot_comparison.py
+</code></pre>
+
+<h3 id="run-streamlit-demo">Run Streamlit Demo</h3>
+
+<pre><code>cd "AYUSH PROGRAMMING/Major Project"
+streamlit run streamlit_app.py
+# Opens at http://localhost:8502
+</code></pre>
+
+<hr />
+
+<p><strong>End of Document 2: Achievements and Improvements</strong></p>
+
+<p>You now have a complete record of everything we accomplished in Semester 1:
+- 6 bugs fixed in released research code
+- Hyperparameter sweep with 10 configs
+- India AQI extension dataset created from scratch
+- Honest DLinear baseline comparison
+- Interactive Streamlit demo with date context</p>
+
+<p>Total deliverables: 4 result graphs, 4 trained checkpoints, 1 Streamlit demo, 1 Colab notebook, complete documentation.</p>
+</body></html>

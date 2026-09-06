@@ -1,0 +1,4 @@
+dataset,model,time,LR,epoches,batch_size,seed,best_mae,mse,mape,seq_len,label_len,pred_len,test_cost_time,output_path,info
+ETTh1,D2Vformer_s,20260807-194443,0.0005,1,64,1,0.7556595756088149,1.0523058747655547,0.08694908064156352,96,48,96,2.644017,experiments\exp8\D2Vformer_s,smoke_test
+ETTh1,D2Vformer_s,20260807-194529,0.0005,1,64,1,0.7556595756088149,1.0523058747655547,0.08694908064156352,96,48,96,2.393541,experiments\exp9\D2Vformer_s,smoke_test
+ETTh1,D2Vformer_s,20260807-200558,0.0005,100,64,1,0.6185506344700529,0.7067204737290179,0.06530470130458187,96,48,96,5.731796,experiments\exp10\D2Vformer_s,full_run

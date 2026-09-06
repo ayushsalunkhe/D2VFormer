@@ -1,0 +1,14 @@
+{
+  "dataset": "ETTh1",
+  "model": "DLinear",
+  "pred_len": 96,
+  "retrained": true,
+  "mse": 0.40329579825917733,
+  "mae": 0.4357660615208898,
+  "rmse": 0.6350557442139843,
+  "training_time": -1.0,
+  "inference_time": 0.4167814254760742,
+  "num_epochs": 16,
+  "checkpoint": "./baselines/dlinear_ETTh1_pred96.pkl",
+  "note": "Semester 1 checkpoint \u2014 training time not recorded"
+}

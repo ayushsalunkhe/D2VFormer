@@ -1,0 +1,13 @@
+{
+  "dataset": "ETTh1",
+  "model": "DLinear",
+  "pred_len": 72,
+  "retrained": true,
+  "mse": 0.38626120109532364,
+  "mae": 0.4233056465029854,
+  "rmse": 0.62149915615013,
+  "training_time": 24.598509073257446,
+  "inference_time": 0.2223975658416748,
+  "num_epochs": 11,
+  "checkpoint": "./baselines/dlinear_ETTh1_pred72.pkl"
+}

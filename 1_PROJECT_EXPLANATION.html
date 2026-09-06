@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<title>D2Vformer Project Explanation</title>
+<style>@page { size: A4; margin: 20mm 16mm; } 
+body { font-family: Segoe UI, Calibri, Arial, sans-serif; font-size: 11pt; color: #1a1a2e; line-height: 1.6; margin: 0; }
+h1 { font-size: 22pt; color: #0f3460; border-bottom: 3px solid #e94560; padding-bottom: 8px; }
+h2 { font-size: 16pt; color: #0f3460; border-bottom: 1.5px solid #cdd7e5; padding-bottom: 4px; margin-top: 32px; page-break-after: avoid; }
+h3 { font-size: 13pt; color: #16213e; margin-top: 20px; page-break-after: avoid; }
+h4 { font-size: 11.5pt; color: #5a5a7a; margin-top: 16px; page-break-after: avoid; }
+p { margin: 8px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 10pt; margin: 14px 0; }
+th { background: #0f3460; color: #fff; padding: 7px 8px; text-align: left; }
+td { border: 1px solid #d0d7e2; padding: 6px 8px; }
+tr:nth-child(even) { background: #f4f7fb; }
+code { background: #f0f0f0; padding: 2px 5px; border-radius: 3px; font-family: Consolas, monospace; font-size: 9.5pt; }
+pre { background: #f5f5f5; border-left: 4px solid #0f3460; padding: 12px 14px; border-radius: 4px; overflow-x: auto; font-size: 9pt; }
+pre code { background: none; padding: 0; }
+blockquote { border-left: 4px solid #e94560; background: #fff8f8; padding: 8px 14px; margin: 10px 0; }
+hr { border: none; border-top: 1.5px solid #cdd7e5; margin: 24px 0; }
+strong { color: #0f3460; }
+.page-break { page-break-before: always; }
+</style>
+</head><body><h1 id="understanding-your-be-major-project-d2vformer-time-series-forecasting">Understanding Your BE Major Project: D2Vformer Time-Series Forecasting</h1>
+
+<h2 id="complete-beginners-guide-from-zero-to-expert">Complete Beginner's Guide — From Zero to Expert</h2>
+
+<hr />
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ol>
+<li><a href="#1-what-is-time-series-forecasting">What is Time-Series Forecasting?</a></li>
+<li><a href="#2-why-do-we-need-it">Why Do We Need It?</a></li>
+<li><a href="#3-the-problem-d2vformer-solves">The Problem D2Vformer Solves</a></li>
+<li><a href="#4-understanding-the-d2vformer-paper">Understanding the D2Vformer Paper</a></li>
+<li><a href="#5-key-concepts-explained">Key Concepts Explained</a></li>
+<li><a href="#6-the-d2vformer-architecture">The D2Vformer Architecture</a></li>
+<li><a href="#7-your-datasets-explained">Your Datasets Explained</a></li>
+<li><a href="#8-how-training-works">How Training Works</a></li>
+<li><a href="#9-how-evaluation-works">How Evaluation Works</a></li>
+<li><a href="#10-the-baseline-dlinear">The Baseline: DLinear</a></li>
+<li><a href="#11-what-your-code-actually-does">What Your Code Actually Does</a></li>
+<li><a href="#12-the-complete-workflow">The Complete Workflow</a></li>
+</ol>
+
+<hr />
+
+<h2 id="1-what-is-time-series-forecasting">1. What is Time-Series Forecasting?</h2>
+
+<h3 id="the-simplest-explanation">The Simplest Explanation</h3>
+
+<p>Imagine you have temperature readings for the last 4 days:
+- Day 1: 25°C
+- Day 2: 27°C
+- Day 3: 26°C
+- Day 4: 28°C</p>
+
+<p><strong>Time-series forecasting asks:</strong> "What will the temperature be on Day 5?"</p>
+
+<h3 id="definition">Definition</h3>
+
+<p><strong>Time-series data</strong> = measurements taken at regular intervals over time
+- Stock prices every minute
+- Temperature every hour
+- Sales every day
+- Website traffic every second</p>
+
+<p><strong>Forecasting</strong> = using past data to predict future values</p>
+
+<h3 id="real-example-from-your-project">Real Example from Your Project</h3>
+
+<p><strong>Delhi Air Quality (PM2.5 pollution):</strong></p>
+
+<pre><code>2022-04-06 00:00 → PM2.5 = 200 µg/m³
+2022-04-06 01:00 → PM2.5 = 210 µg/m³
+2022-04-06 02:00 → PM2.5 = 195 µg/m³
+...
+2022-04-10 00:00 → PM2.5 = ???  ← THIS is what we want to predict
+</code></pre>
+
+<hr />
+
+<h2 id="2-why-do-we-need-it">2. Why Do We Need It?</h2>
+
+<h3 id="real-world-applications">Real-World Applications</h3>
+
+<table>
+<thead>
+<tr>
+  <th>Domain</th>
+  <th>Use Case</th>
+  <th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>Healthcare</strong></td>
+  <td>Predict hospital patient arrivals</td>
+  <td>Staff scheduling, resource allocation</td>
+</tr>
+<tr>
+  <td><strong>Energy</strong></td>
+  <td>Predict electricity demand</td>
+  <td>Prevent blackouts, optimize generation</td>
+</tr>
+<tr>
+  <td><strong>Finance</strong></td>
+  <td>Predict stock prices</td>
+  <td>Investment decisions, risk management</td>
+</tr>
+<tr>
+  <td><strong>Environment</strong></td>
+  <td>Predict air pollution</td>
+  <td>Public health alerts, traffic control</td>
+</tr>
+<tr>
+  <td><strong>Retail</strong></td>
+  <td>Predict product demand</td>
+  <td>Inventory management, reduce waste</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="your-projects-use-case-delhi-air-quality">Your Project's Use Case: Delhi Air Quality</h3>
+
+<p><strong>Problem:</strong> Delhi has severe air pollution. PM2.5 (fine particulate matter) causes:
+- Respiratory diseases
+- School closures
+- Flight cancellations
+- Economic losses</p>
+
+<p><strong>Solution:</strong> If we can predict pollution 96 hours (4 days) ahead:
+- Government can issue health advisories
+- People can plan outdoor activities
+- Traffic management can reduce vehicle emissions
+- Construction can be paused during peak pollution</p>
+
+<hr />
+
+<h2 id="3-the-problem-d2vformer-solves">3. The Problem D2Vformer Solves</h2>
+
+<h3 id="traditional-forecasting-models-had-limitations">Traditional Forecasting Models Had Limitations</h3>
+
+<h4 id="problem-1-fixed-prediction-horizons">Problem 1: Fixed Prediction Horizons</h4>
+
+<p><strong>Old models</strong> like LSTM, Transformer said:</p>
+
+<blockquote>
+  <p>"I can only predict the next 96 hours. If you want to predict 48 hours or 192 hours, you need to retrain me from scratch."</p>
+</blockquote>
+
+<p><strong>D2Vformer says:</strong></p>
+
+<blockquote>
+  <p>"I use calendar timestamps (hour, day, weekday, month). I can predict ANY future time without retraining."</p>
+</blockquote>
+
+<h4 id="example-to-understand-this">Example to Understand This</h4>
+
+<p><strong>Traditional Model:</strong>
+- Trained to predict "next 96 steps"
+- Input: [step 1, step 2, ..., step 96] → Output: [step 97, step 98, ..., step 192]
+- If you want step 150 specifically → TOO BAD, retrain the model</p>
+
+<p><strong>D2Vformer:</strong>
+- Input: [timestamp 2022-04-01 00:00, ..., 2022-04-05 00:00] + "I want 2022-04-09 12:00"
+- Output: Prediction for exactly 2022-04-09 12:00
+- Want 2022-04-10 06:00? Just change the query timestamp!</p>
+
+<h4 id="problem-2-ignoring-calendar-patterns">Problem 2: Ignoring Calendar Patterns</h4>
+
+<p><strong>Example:</strong> Electricity demand has patterns:
+- <strong>Hour of day:</strong> Peak at 8 PM (dinner time), low at 4 AM (sleep)
+- <strong>Day of week:</strong> Higher on weekdays (offices open), lower on Sunday
+- <strong>Month:</strong> Higher in July (AC usage), lower in October</p>
+
+<p><strong>Old models</strong> saw these as just "step 1, step 2, step 3..." They didn't know "step 1" is Monday 9 AM vs Sunday 3 AM.</p>
+
+<p><strong>D2Vformer</strong> embeds calendar information:
+- Learns "Monday mornings have X pattern"
+- Learns "January has Y baseline"
+- Learns "Hour 20 (8 PM) has Z spike"</p>
+
+<hr />
+
+<h2 id="4-understanding-the-d2vformer-paper">4. Understanding the D2Vformer Paper</h2>
+
+<h3 id="paper-details">Paper Details</h3>
+
+<ul>
+<li><strong>Title:</strong> D2Vformer: A Flexible Time Series Prediction Model Based on Time Position Embedding</li>
+<li><strong>Published:</strong> IEEE Transactions on Neural Networks and Learning Systems (TNNLS), May 2026</li>
+<li><strong>Impact:</strong> Top-tier AI journal (Impact Factor ~14)</li>
+<li><strong>Authors:</strong> Yumi et al., Chinese research team</li>
+<li><strong>Code:</strong> https://github.com/yumiyumo/D2Vformer</li>
+</ul>
+
+<h3 id="what-the-paper-claims">What the Paper Claims</h3>
+
+<ol>
+<li><strong>Date2Vec module</strong> encodes calendar timestamps as vectors (embeddings)</li>
+<li><strong>Fusion Block</strong> matches future timestamps against past data using attention</li>
+<li><strong>Flexible forecasting</strong> at arbitrary future times without retraining</li>
+<li><strong>State-of-art results</strong> on 6 benchmark datasets</li>
+</ol>
+
+<h3 id="the-innovation-date2vec">The Innovation: Date2Vec</h3>
+
+<p><strong>Problem:</strong> How do you tell a neural network "this datapoint is from Monday 9 AM in January"?</p>
+
+<p><strong>Solution:</strong> Date2Vec converts timestamps into numerical vectors:</p>
+
+<pre><code>Input timestamp: 2022-01-03 09:00 (Monday, 9 AM, January)
+
+Date2Vec output: [0.23, -0.45, 0.67, ..., 0.12]  ← 36-dimensional vector
+                  ↑        ↑       ↑           ↑
+                  hour   weekday  day      month
+                 pattern pattern pattern  pattern
+</code></pre>
+
+<p><strong>How it works:</strong>
+- Uses sine/cosine functions (Fourier series) for periodicity
+- Hour: sin(2π × hour/24), cos(2π × hour/24) → captures 24-hour cycle
+- Weekday: sin(2π × day/7), cos(2π × day/7) → captures weekly cycle
+- Similar for day-of-month (monthly cycle) and month (yearly cycle)</p>
+
+<hr />
+
+<h2 id="5-key-concepts-explained">5. Key Concepts Explained</h2>
+
+<h3 id="concept-1-multivariate-time-series">Concept 1: Multivariate Time-Series</h3>
+
+<p><strong>Univariate</strong> = one variable over time</p>
+
+<pre><code>Time    Temperature
+00:00   25°C
+01:00   24°C
+02:00   23°C
+</code></pre>
+
+<p><strong>Multivariate</strong> = multiple related variables over time</p>
+
+<pre><code>Time    PM2.5   PM10    NO2    SO2    CO     O3
+00:00   200     350     45     12     1.2    30
+01:00   210     360     48     13     1.3    28
+02:00   195     340     42     11     1.1    32
+</code></pre>
+
+<p>Your Delhi AQI dataset has <strong>6 variables</strong> (pollutants), so it's multivariate.</p>
+
+<h3 id="concept-2-sequence-length-seq_len">Concept 2: Sequence Length (seq_len)</h3>
+
+<p>How much history do we look at?</p>
+
+<pre><code>seq_len = 96 means:
+- Look at last 96 hours (4 days) of data
+- Use this to predict the future
+</code></pre>
+
+<h3 id="concept-3-prediction-length-pred_len">Concept 3: Prediction Length (pred_len)</h3>
+
+<p>How far ahead do we predict?</p>
+
+<pre><code>pred_len = 96 means:
+- Predict next 96 hours (4 days)
+</code></pre>
+
+<h3 id="concept-4-label-length-label_len">Concept 4: Label Length (label_len)</h3>
+
+<p>Overlap between history and prediction (used in Transformer-based models for better context).</p>
+
+<pre><code>label_len = 48 means:
+- Last 48 hours of history are also used as "decoder input"
+- Helps the model transition from past to future smoothly
+</code></pre>
+
+<h3 id="visual-example">Visual Example</h3>
+
+<pre><code>Timeline: [-------- History --------][--- Future ---]
+          Hour 0 ............... Hour 96  ...  Hour 192
+
+seq_len=96:    [================]
+                                  ↑
+label_len=48:                 [====]====]  (overlap)
+                                  ↑
+pred_len=96:                      [================]
+</code></pre>
+
+<h3 id="concept-5-batch-size">Concept 5: Batch Size</h3>
+
+<p>How many examples we train on at once.</p>
+
+<pre><code>batch_size = 64 means:
+- Take 64 different time windows
+- Train on all 64 simultaneously (parallel processing on GPU)
+- Faster training than doing one at a time
+</code></pre>
+
+<h3 id="concept-6-normalization">Concept 6: Normalization</h3>
+
+<p><strong>Problem:</strong> Different variables have different scales:
+- PM2.5: 50-500 µg/m³
+- CO: 0.5-3.0 mg/m³</p>
+
+<p><strong>Solution:</strong> Normalize to mean=0, std=1:</p>
+
+<pre><code>normalized_value = (original_value - mean) / std
+
+# Example for PM2.5:
+mean_pm25 = 150
+std_pm25 = 50
+original = 200
+normalized = (200 - 150) / 50 = 1.0
+</code></pre>
+
+<p><strong>Why?</strong> Neural networks train better when all inputs are on similar scales.</p>
+
+<h3 id="concept-7-trainvalidationtest-split">Concept 7: Train/Validation/Test Split</h3>
+
+<p><strong>Training set (70%):</strong> Used to learn patterns
+<strong>Validation set (10%):</strong> Used to tune hyperparameters and prevent overfitting
+<strong>Test set (20%):</strong> Used ONLY for final evaluation (model has never seen this data)</p>
+
+<pre><code>Total data: 35,064 hours (Delhi AQI)
+├── Train:      24,545 hours (70%)  → model learns from this
+├── Validation:  3,506 hours (10%)  → check if learning is good
+└── Test:        7,013 hours (20%)  → final exam for the model
+</code></pre>
+
+<h3 id="concept-8-mse-and-mae-evaluation-metrics">Concept 8: MSE and MAE (Evaluation Metrics)</h3>
+
+<p><strong>MSE (Mean Squared Error):</strong></p>
+
+<pre><code>MSE = average of (prediction - actual)²
+
+Example:
+Actual:     [100, 120, 110]
+Predicted:  [105, 115, 112]
+Errors:     [5, -5, 2]
+Squared:    [25, 25, 4]
+MSE = (25 + 25 + 4) / 3 = 18
+</code></pre>
+
+<p><strong>MAE (Mean Absolute Error):</strong></p>
+
+<pre><code>MAE = average of |prediction - actual|
+
+Same example:
+Errors:     [5, -5, 2]
+Absolute:   [5, 5, 2]
+MAE = (5 + 5 + 2) / 3 = 4
+</code></pre>
+
+<p><strong>Which is better?</strong>
+- Lower MSE/MAE = better predictions
+- MSE penalizes large errors more (squared)
+- MAE is more interpretable (same units as original data)</p>
+
+<hr />
+
+<h2 id="6-the-d2vformer-architecture">6. The D2Vformer Architecture</h2>
+
+<h3 id="high-level-overview">High-Level Overview</h3>
+
+<pre><code>Input: 
+  - Historical data: [96 hours × 6 pollutants]
+  - Historical timestamps: [hour, weekday, day, month] for each hour
+  - Future timestamps: [hour, weekday, day, month] for next 96 hours
+
+Processing:
+  1. Patch the historical data into chunks
+  2. Encode timestamps using Date2Vec
+  3. Fusion Block: match future dates against past data
+  4. Output: Predictions for next 96 hours
+
+Output:
+  - Predicted values: [96 hours × 6 pollutants]
+</code></pre>
+
+<h3 id="step-by-step-breakdown">Step-by-Step Breakdown</h3>
+
+<h4 id="step-1-patching">Step 1: Patching</h4>
+
+<p>Instead of processing 96 hours one-by-one, group them:</p>
+
+<pre><code>Original: [h1, h2, h3, h4, h5, h6, h7, h8, ...]  (96 values)
+
+Patched (patch_len=16, stride=8):
+  Patch 1: [h1-h16]
+  Patch 2: [h9-h24]   (overlaps with patch 1)
+  Patch 3: [h17-h32]
+  ...
+
+Result: 12 patches instead of 96 individual points
+</code></pre>
+
+<p><strong>Why?</strong> More efficient, captures local patterns.</p>
+
+<h4 id="step-2-date2vec-embedding">Step 2: Date2Vec Embedding</h4>
+
+<p>For each hour in history and future:</p>
+
+<pre><code>timestamp = (hour=9, weekday=1, day=3, month=1)  # Monday 9 AM, Jan 3
+
+# Fourier encoding
+hour_sin = sin(2π × 9/24)    = 0.707
+hour_cos = cos(2π × 9/24)    = 0.707
+day_sin  = sin(2π × 1/7)     = 0.782
+day_cos  = cos(2π × 1/7)     = 0.623
+...
+
+# Concatenate all features
+fourier_vec = [0.707, 0.707, 0.782, 0.623, ...]  # 20 dimensions
+
+# Upsample to higher dimension (T2V_outmodel=36)
+date_embedding = Linear(fourier_vec)  # [36 dimensions]
+</code></pre>
+
+<h4 id="step-3-feature-fusion">Step 3: Feature Fusion</h4>
+
+<p>Combine the patched data with date embeddings:</p>
+
+<pre><code>Patched data:       [12 patches × d_model]
+Date embeddings:    [12 patches × 36]
+
+Concatenate:        [12 patches × (d_model + 36)]
+</code></pre>
+
+<h4 id="step-4-transformer-encoder">Step 4: Transformer Encoder</h4>
+
+<p>Process the fused features through 2 layers of self-attention:</p>
+
+<pre><code>Each patch "talks" to every other patch to understand:
+- Dependencies (e.g., hour 8 affects hour 12)
+- Patterns (e.g., morning rush repeats daily)
+</code></pre>
+
+<h4 id="step-5-fusion-block-the-key-innovation">Step 5: Fusion Block (The Key Innovation)</h4>
+
+<p><strong>Goal:</strong> Predict future values by matching future timestamps against learned past patterns.</p>
+
+<pre><code># Simplified pseudocode
+past_features = encoder_output       # [12 patches × d_model]
+future_dates = Date2Vec(future_times) # [96 hours × 36]
+
+# Cross-attention: each future date queries the past
+for each future_hour in range(96):
+    # "Which past patterns match this future timestamp?"
+    attention_weights = softmax(future_dates[future_hour] @ past_features.T)
+    prediction[future_hour] = attention_weights @ past_features
+</code></pre>
+
+<p><strong>Intuition:</strong> If predicting "next Monday 9 AM", the model looks for "previous Monday 9 AM" patterns in history.</p>
+
+<h4 id="step-6-output-projection">Step 6: Output Projection</h4>
+
+<pre><code>Fused future features: [96 hours × d_model]
+↓
+Linear layer: [96 hours × 6 pollutants]
+↓
+Final predictions: [96 hours × 6 pollutants]
+</code></pre>
+
+<hr />
+
+<h2 id="7-your-datasets-explained">7. Your Datasets Explained</h2>
+
+<h3 id="dataset-1-etth1-electricity-transformer-temperature">Dataset 1: ETTh1 (Electricity Transformer Temperature)</h3>
+
+<p><strong>What it is:</strong>
+- Temperature readings from an electricity transformer in China
+- Recorded hourly from July 2016 to July 2018
+- 7 variables: 6 temperature sensors + 1 oil temperature</p>
+
+<p><strong>Why it's used:</strong>
+- Standard benchmark in time-series forecasting research
+- Represents industrial monitoring use case
+- Has clear daily and seasonal patterns</p>
+
+<p><strong>Data format:</strong></p>
+
+<pre><code>date,HUFL,HULL,MUFL,MULL,LUFL,LULL,OT
+2016-07-01 00:00:00,5.827,2.009,1.599,0.462,5.677,3.491,50.57
+2016-07-01 01:00:00,5.726,1.964,1.492,0.426,5.577,3.356,50.25
+...
+</code></pre>
+
+<p><strong>Statistics:</strong>
+- Total samples: 17,420 hours (~2 years)
+- Train: 12,194 hours (70%)
+- Val: 1,742 hours (10%)
+- Test: 3,484 hours (20%)</p>
+
+<h3 id="dataset-2-delhi-aqi-your-original-contribution">Dataset 2: Delhi AQI (Your Original Contribution)</h3>
+
+<p><strong>What it is:</strong>
+- Air quality measurements from Delhi, India
+- Recorded hourly from 2019 to 2022
+- 6 pollutants: PM2.5, PM10, NO2, SO2, CO, O3</p>
+
+<p><strong>Why you created it:</strong>
+- The D2Vformer paper never tested on Indian data
+- Air quality forecasting is crucial for Delhi (world's most polluted capital)
+- Shows your model can generalize to new domains</p>
+
+<p><strong>Data format:</strong></p>
+
+<pre><code>date,PM2.5,PM10,NO2,SO2,CO,O3
+2019-01-01 00:00:00,200.5,350.2,45.3,12.1,1.2,30.5
+2019-01-01 01:00:00,210.3,360.1,48.2,13.0,1.3,28.3
+...
+</code></pre>
+
+<p><strong>Statistics:</strong>
+- Total samples: 35,064 hours (~4 years)
+- Train: 24,545 hours (70%)
+- Val: 3,506 hours (10%)
+- Test: 7,013 hours (20%)</p>
+
+<p><strong>Challenges with Delhi AQI:</strong>
+- <strong>High volatility:</strong> PM2.5 can jump 100 µg/m³ in one hour (traffic, weather)
+- <strong>Seasonal extremes:</strong> Winter (Nov-Feb) has 3× higher pollution than monsoon (Jul-Sep)
+- <strong>Rush hour spikes:</strong> 8-10 AM and 7-9 PM show dramatic increases
+- <strong>Unpredictable events:</strong> Construction, festivals (Diwali crackers), stubble burning</p>
+
+<hr />
+
+<h2 id="8-how-training-works">8. How Training Works</h2>
+
+<h3 id="the-training-loop-simplified">The Training Loop (Simplified)</h3>
+
+<pre><code>for epoch in range(50):  # Train for 50 passes through data
+    for batch in training_data:
+        # 1. Get a batch of examples
+        history_x, future_y, history_marks, future_marks = batch
+        # history_x: [64 samples × 96 hours × 6 pollutants]
+        # future_y: [64 samples × 96 hours × 6 pollutants]
+
+        # 2. Forward pass: model makes predictions
+        predictions = model(history_x, history_marks, future_y, future_marks)
+        # predictions: [64 samples × 96 hours × 6 pollutants]
+
+        # 3. Calculate loss: how wrong were the predictions?
+        actual = future_y[:, -96:, :]  # Last 96 hours of ground truth
+        loss = MSE(predictions, actual)
+        # loss: single number, e.g., 0.352
+
+        # 4. Backward pass: calculate gradients
+        loss.backward()
+        # Gradients: how should we adjust each weight to reduce loss?
+
+        # 5. Update model weights
+        optimizer.step()
+        # Weights adjusted slightly to make better predictions next time
+
+        # 6. Reset gradients for next batch
+        optimizer.zero_grad()
+
+    # After each epoch, check validation performance
+    val_loss = evaluate(model, validation_data)
+
+    # Early stopping: if validation loss stops improving, stop training
+    if val_loss hasn't improved in 5 epochs:
+        print("Early stopping at epoch", epoch)
+        break
+</code></pre>
+
+<h3 id="hyperparameters-you-tuned">Hyperparameters You Tuned</h3>
+
+<table>
+<thead>
+<tr>
+  <th>Hyperparameter</th>
+  <th>Values Tested</th>
+  <th>Best Value</th>
+  <th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>Learning Rate (lr)</strong></td>
+  <td>0.001, 0.0005, 0.0001, 0.00005, 0.00001</td>
+  <td>0.001</td>
+  <td>How big a step to take when updating weights</td>
+</tr>
+<tr>
+  <td><strong>T2V_outmodel</strong></td>
+  <td>36, 64</td>
+  <td>36 (IndiaAQI), 64 (ETTh1)</td>
+  <td>Dimension of Date2Vec embeddings</td>
+</tr>
+<tr>
+  <td><strong>Batch Size</strong></td>
+  <td>64, 128</td>
+  <td>64</td>
+  <td>How many examples per training step</td>
+</tr>
+<tr>
+  <td><strong>Epochs</strong></td>
+  <td>Up to 100</td>
+  <td>~13-21 (early stopped)</td>
+  <td>How many passes through training data</td>
+</tr>
+<tr>
+  <td><strong>Patience</strong></td>
+  <td>5</td>
+  <td>5</td>
+  <td>Stop if no improvement after 5 epochs</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="what-happens-on-google-colab">What Happens on Google Colab</h3>
+
+<pre><code>1. Upload D2Vformer folder to Google Drive
+2. Mount Drive in Colab notebook
+3. Install dependencies (torch, pandas, etc.)
+4. Run training script:
+   - For each (lr, T2V) combination:
+     * Train model for up to 100 epochs
+     * Save best checkpoint (lowest validation loss)
+     * Print final test MSE
+5. Find best config across all 10 runs
+6. Download best checkpoint to local machine
+</code></pre>
+
+<p><strong>Why Colab?</strong>
+- Free GPU (Tesla T4) → 10× faster than your laptop CPU
+- Training 10 configs takes ~2-3 hours on GPU vs ~30 hours on CPU</p>
+
+<hr />
+
+<h2 id="9-how-evaluation-works">9. How Evaluation Works</h2>
+
+<h3 id="test-set-evaluation">Test Set Evaluation</h3>
+
+<pre><code># Load best model
+model.load_state_dict(torch.load('best_model.pkl'))
+model.eval()  # Turn off training mode (no gradient calculation)
+
+all_predictions = []
+all_actuals = []
+
+for batch in test_data:
+    history_x, future_y, history_marks, future_marks = batch
+
+    # Make predictions (no gradient calculation, faster)
+    with torch.no_grad():
+        predictions = model(history_x, history_marks, future_y, future_marks)
+
+    all_predictions.append(predictions)
+    all_actuals.append(future_y[:, -96:, :])
+
+# Concatenate all batches
+all_predictions = np.concatenate(all_predictions)  # [~110 batches × 96 hours × 6]
+all_actuals = np.concatenate(all_actuals)
+
+# Calculate metrics
+test_mse = np.mean((all_predictions - all_actuals) ** 2)
+test_mae = np.mean(np.abs(all_predictions - all_actuals))
+
+print(f"Test MSE: {test_mse:.4f}")
+print(f"Test MAE: {test_mae:.4f}")
+</code></pre>
+
+<h3 id="window-by-window-visualization">Window-by-Window Visualization</h3>
+
+<pre><code># Pick a specific test window (e.g., window 550)
+test_window = testset[550]
+history_x, future_y, history_marks, future_marks = test_window
+
+# Make prediction for this window
+prediction = model(history_x, history_marks, future_y, future_marks)
+
+# Plot
+plt.plot(range(96), history_x[:, 0], label='History (PM2.5)')
+plt.plot(range(96, 192), future_y[-96:, 0], label='Actual')
+plt.plot(range(96, 192), prediction[:, 0], label='Predicted')
+plt.legend()
+plt.show()
+</code></pre>
+
+<hr />
+
+<h2 id="10-the-baseline-dlinear">10. The Baseline: DLinear</h2>
+
+<h3 id="why-we-need-a-baseline">Why We Need a Baseline</h3>
+
+<p><strong>Research principle:</strong> Always compare against a simple model.</p>
+
+<p><strong>Question:</strong> Is D2Vformer's complexity (Date2Vec, attention, transformers) justified?</p>
+
+<p><strong>Answer:</strong> Only if it beats a simple baseline.</p>
+
+<h3 id="what-is-dlinear">What is DLinear?</h3>
+
+<p><strong>DLinear</strong> (Zeng et al., AAAI 2023) = Dead simple linear model:</p>
+
+<pre><code>1. Decompose time series into trend + seasonal
+2. Apply one linear layer to each component
+3. Add them back together
+</code></pre>
+
+<h3 id="dlinear-architecture-simplified">DLinear Architecture (Simplified)</h3>
+
+<pre><code># Step 1: Decomposition
+trend = moving_average(history_x)      # [96 hours × 6]
+seasonal = history_x - trend           # [96 hours × 6]
+
+# Step 2: Linear projection (separate for each pollutant)
+for i in range(6):  # For each pollutant
+    trend_pred[i] = Linear_trend[i](trend[:, i])       # [96] → [96]
+    seasonal_pred[i] = Linear_seasonal[i](seasonal[:, i])  # [96] → [96]
+
+# Step 3: Add them
+prediction = trend_pred + seasonal_pred  # [96 hours × 6]
+</code></pre>
+
+<p><strong>Total parameters:</strong> ~100K (vs D2Vformer's ~2M)</p>
+
+<h3 id="why-dlinear-is-a-good-baseline">Why DLinear is a Good Baseline</h3>
+
+<ol>
+<li><strong>Simple:</strong> No attention, no transformers, just linear layers</li>
+<li><strong>Fast:</strong> Trains in ~5 minutes vs D2Vformer's ~30 minutes</li>
+<li><strong>Interpretable:</strong> Easy to understand what it's learning</li>
+<li><strong>Strong:</strong> Despite simplicity, often beats complex models</li>
+</ol>
+
+<h3 id="your-results">Your Results</h3>
+
+<table>
+<thead>
+<tr>
+  <th>Dataset</th>
+  <th>Model</th>
+  <th>Test MSE</th>
+  <th>Test MAE</th>
+  <th>Winner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>ETTh1</td>
+  <td>DLinear</td>
+  <td>0.4033</td>
+  <td>0.4358</td>
+  <td>✓</td>
+</tr>
+<tr>
+  <td>ETTh1</td>
+  <td>D2Vformer</td>
+  <td>0.6982</td>
+  <td>0.6193</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Delhi AQI</td>
+  <td>DLinear</td>
+  <td>0.1658</td>
+  <td>0.2710</td>
+  <td>✓</td>
+</tr>
+<tr>
+  <td>Delhi AQI</td>
+  <td>D2Vformer</td>
+  <td>0.2212</td>
+  <td>0.3072</td>
+  <td></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Finding:</strong> DLinear wins on both datasets.</p>
+
+<p><strong>Interpretation:</strong>
+- ETTh1 and Delhi AQI may not have strong calendar effects
+- Simple linear trends + seasonality capture most patterns
+- D2Vformer's Date2Vec overhead doesn't help here</p>
+
+<hr />
+
+<h2 id="11-what-your-code-actually-does">11. What Your Code Actually Does</h2>
+
+<h3 id="file-structure">File Structure</h3>
+
+<pre><code>Major Project/
+├── D2Vformer/
+│   └── D2Vformer/
+│       ├── main.py                    # Training entry point
+│       ├── model/
+│       │   ├── D2Vformer_simple.py   # Model architecture
+│       │   ├── Date2Vec.py            # Calendar embedding
+│       │   └── layers/
+│       │       ├── Fusion_Block.py    # Future-past attention
+│       │       └── Patch_embedding.py # Patching module
+│       ├── data/
+│       │   └── dataset.py             # Data loading
+│       ├── utils/
+│       │   ├── get_data.py            # CSV → normalized arrays
+│       │   └── earlystopping.py       # Training control
+│       ├── baselines/
+│       │   ├── run_dlinear.py         # DLinear training
+│       │   └── plot_comparison.py     # Comparison graphs
+│       ├── datasets/
+│       │   ├── ETT-small/
+│       │   │   ├── ETTh1.csv          # Electricity data
+│       │   │   └── china.csv          # Timestamps
+│       │   └── india_aqi/
+│       │       ├── delhi_aqi.csv      # Air quality data
+│       │       └── delhi_mark.csv     # Timestamps
+│       └── experiments/
+│           ├── exp11/                 # ETTh1 best run
+│           │   └── D2Vformer_s/
+│           │       └── ETTh1_best_model.pkl
+│           └── exp16/                 # IndiaAQI best run
+│               └── D2Vformer_s/
+│                   └── IndiaAQI_best_model.pkl
+├── streamlit_app.py                   # Interactive demo
+├── results/
+│   ├── comparison_bar.png
+│   ├── comparison_forecast.png
+│   ├── ETTh1_pred96_forecast.png
+│   └── IndiaAQI_forecast.png
+└── D2Vformer_Colab.ipynb              # Google Colab notebook
+</code></pre>
+
+<h3 id="key-scripts">Key Scripts</h3>
+
+<h4 id="1-training-mainpy">1. Training: <code>main.py</code></h4>
+
+<pre><code>python main.py \
+  --model_name D2Vformer_s \
+  --data_name IndiaAQI \
+  --seq_len 96 \
+  --pred_len 96 \
+  --lr 0.001 \
+  --T2V_outmodel 36 \
+  --epoches 50 \
+  --batch_size 64
+</code></pre>
+
+<p><strong>What it does:</strong>
+1. Load delhi<em>aqi.csv and delhi</em>mark.csv
+2. Split into train/val/test (70/10/20)
+3. Normalize data
+4. Create D2Vformer_simple model
+5. Train for up to 50 epochs
+6. Save best checkpoint to experiments/expXX/
+7. Print final test MSE/MAE</p>
+
+<h4 id="2-plotting-plot_forecastpy">2. Plotting: <code>plot_forecast.py</code></h4>
+
+<pre><code>python plot_forecast.py --exp_dir experiments/exp11
+</code></pre>
+
+<p><strong>What it does:</strong>
+1. Load checkpoint from exp11
+2. Load test data
+3. Pick a test window
+4. Generate prediction
+5. Plot history vs actual vs predicted
+6. Save to results/ETTh1<em>pred96</em>forecast.png</p>
+
+<h4 id="3-baseline-baselinesrun_dlinearpy">3. Baseline: <code>baselines/run_dlinear.py</code></h4>
+
+<pre><code>python baselines/run_dlinear.py --data_name IndiaAQI --pred_len 96
+</code></pre>
+
+<p><strong>What it does:</strong>
+1. Load same data as D2Vformer
+2. Create DLinear model (much simpler)
+3. Train for up to 50 epochs
+4. Save checkpoint
+5. Print test MSE/MAE</p>
+
+<h4 id="4-demo-streamlit_apppy">4. Demo: <code>streamlit_app.py</code></h4>
+
+<pre><code>streamlit run streamlit_app.py
+</code></pre>
+
+<p><strong>What it does:</strong>
+1. Create web interface at localhost:8502
+2. Load both D2Vformer and DLinear checkpoints
+3. Allow user to:
+   - Select dataset (ETTh1/Delhi AQI)
+   - Select feature (PM2.5, OT, etc.)
+   - Select test window (0-2000)
+   - Toggle models on/off
+4. Generate interactive forecast plot
+5. Show MSE/MAE metrics</p>
+
+<hr />
+
+<h2 id="12-the-complete-workflow">12. The Complete Workflow</h2>
+
+<h3 id="phase-1-local-setup-week-1-2">Phase 1: Local Setup (Week 1-2)</h3>
+
+<pre><code>1. Clone D2Vformer repo from GitHub
+2. Fix 6 bugs to make it run
+   - Pandas 3.0 compatibility
+   - NumPy 2.0 compatibility
+   - Missing arguments
+   - Fusion_Block residual bug
+   - Early stopping scheduler
+3. Run single ETTh1 training locally
+   → Get MSE 0.7067 (baseline)
+</code></pre>
+
+<h3 id="phase-2-hyperparameter-sweep-on-colab-week-3">Phase 2: Hyperparameter Sweep on Colab (Week 3)</h3>
+
+<pre><code>1. Upload D2Vformer to Google Drive
+2. Create Colab notebook with sweep script
+3. Run 10 configs (5 LRs × 2 T2V sizes) on ETTh1
+   → Takes ~2 hours on T4 GPU
+4. Best config: lr=0.001, T2V=36, MSE=0.6982
+5. Download best checkpoint
+6. Generate forecast graph locally
+</code></pre>
+
+<h3 id="phase-3-india-extension-week-4-5">Phase 3: India Extension (Week 4-5)</h3>
+
+<pre><code>1. Download Delhi AQI data from government portal
+2. Preprocess into same format as ETTh1
+   - Hourly samples, 6 pollutants
+   - Create delhi_aqi.csv + delhi_mark.csv
+3. Register in exp.py as 'IndiaAQI' dataset
+4. Upload to Google Drive
+5. Add IndiaAQI training to Colab notebook
+6. Run same 10-config sweep
+   → Best: lr=0.001, T2V=36, MSE=0.2212
+7. Download checkpoint and generate graph
+</code></pre>
+
+<h3 id="phase-4-baseline-comparison-week-6">Phase 4: Baseline Comparison (Week 6)</h3>
+
+<pre><code>1. Implement DLinear from scratch
+   - Read paper, understand architecture
+   - Write run_dlinear.py
+2. Train DLinear on ETTh1 (pred=96)
+   → MSE 0.4033 (beats D2Vformer's 0.6982!)
+3. Train DLinear on IndiaAQI (pred=96)
+   → MSE 0.1658 (beats D2Vformer's 0.2212)
+4. Write plot_comparison.py
+   - Bar chart comparing MSE/MAE
+   - Forecast overlay for both models
+5. Generate 4 comparison graphs
+</code></pre>
+
+<h3 id="phase-5-demo-week-7">Phase 5: Demo (Week 7)</h3>
+
+<pre><code>1. Install Streamlit
+2. Write streamlit_app.py
+   - Load both model checkpoints
+   - Create interactive UI
+   - Add date/season context
+3. Test locally at localhost:8502
+4. Create requirements.txt for deployment
+5. Write DEMO_README.md
+</code></pre>
+
+<h3 id="current-status-end-of-semester-1">Current Status (End of Semester 1)</h3>
+
+<p>✅ <strong>Phase 1-5 Complete</strong>
+- Working reproduction with bug fixes documented
+- India AQI extension dataset created
+- Honest baseline comparison done
+- Interactive demo running</p>
+
+<p>📊 <strong>Deliverables Ready:</strong>
+- 4 result graphs (comparison<em>bar, comparison</em>forecast, ETTh1, IndiaAQI)
+- Streamlit web demo
+- Trained checkpoints for both datasets
+- Google Colab notebook for reproduction</p>
+
+<p>📝 <strong>Documentation Ready:</strong>
+- CLAUDE.md: Project tracking
+- DEMO_README.md: How to run the demo
+- Bug fixes documented as "reproduction engineering"</p>
+
+<hr />
+
+<h2 id="summary-the-big-picture">Summary: The Big Picture</h2>
+
+<h3 id="what-problem-are-you-solving">What Problem Are You Solving?</h3>
+
+<p>Predicting future values of time-series data (electricity, pollution) 96 hours ahead.</p>
+
+<h3 id="what-model-are-you-using">What Model Are You Using?</h3>
+
+<p>D2Vformer: A transformer-based model that uses calendar timestamps (Date2Vec) to enable flexible forecasting.</p>
+
+<h3 id="what-did-you-do">What Did You Do?</h3>
+
+<ol>
+<li>Reproduced D2Vformer (fixed 6 bugs)</li>
+<li>Extended to Indian air quality data (your contribution)</li>
+<li>Compared against DLinear baseline (honest evaluation)</li>
+<li>Built interactive demo</li>
+</ol>
+
+<h3 id="what-did-you-find">What Did You Find?</h3>
+
+<p>DLinear (simple linear model) beats D2Vformer on both datasets, suggesting:
+- These time series may not have strong calendar effects, OR
+- D2Vformer needs more tuning, OR
+- The datasets are too small/noisy</p>
+
+<p>This is a valid research finding → honest evaluation &gt; cherry-picked results.</p>
+
+<h3 id="what-can-you-say-when-asked-whats-new">What Can You Say When Asked "What's New?"</h3>
+
+<p>"We extended D2Vformer to Indian air quality data and ran honest baseline comparisons. Our key finding: simpler models (DLinear) outperform complex calendar-aware architectures on these domains, suggesting that Date2Vec's inductive bias may not be universally beneficial."</p>
+
+<hr />
+
+<h2 id="next-steps-semester-2">Next Steps (Semester 2)</h2>
+
+<p>If your guide asks what's next:</p>
+
+<ol>
+<li><p><strong>Investigate why DLinear wins</strong></p>
+
+<ul>
+<li>Ablation study: remove Date2Vec, compare</li>
+<li>Try datasets with stronger calendar patterns (e.g., retail sales)</li>
+</ul></li>
+<li><p><strong>Uncertainty quantification</strong></p>
+
+<ul>
+<li>Add prediction intervals (not just point forecasts)</li>
+<li>Probabilistic forecasting for risk-aware decisions</li>
+</ul></li>
+<li><p><strong>Anomaly detection</strong></p>
+
+<ul>
+<li>Use D2Vformer residuals to detect pollution spikes</li>
+<li>Real-time alerting system for Delhi</li>
+</ul></li>
+<li><p><strong>Ensemble methods</strong></p>
+
+<ul>
+<li>Combine DLinear + D2Vformer</li>
+<li>Simple for baseline, complex for calendar effects</li>
+</ul></li>
+</ol>
+
+<hr />
+
+<h2 id="glossary-of-terms">Glossary of Terms</h2>
+
+<table>
+<thead>
+<tr>
+  <th>Term</th>
+  <th>Simple Definition</th>
+  <th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>Time-series</strong></td>
+  <td>Data points measured over time</td>
+  <td>Stock prices, temperature</td>
+</tr>
+<tr>
+  <td><strong>Forecasting</strong></td>
+  <td>Predicting future values</td>
+  <td>Tomorrow's weather</td>
+</tr>
+<tr>
+  <td><strong>Multivariate</strong></td>
+  <td>Multiple variables tracked together</td>
+  <td>PM2.5 + PM10 + NO2</td>
+</tr>
+<tr>
+  <td><strong>Seq_len</strong></td>
+  <td>How much history to look at</td>
+  <td>Last 96 hours</td>
+</tr>
+<tr>
+  <td><strong>Pred_len</strong></td>
+  <td>How far ahead to predict</td>
+  <td>Next 96 hours</td>
+</tr>
+<tr>
+  <td><strong>Batch</strong></td>
+  <td>Group of examples trained together</td>
+  <td>64 windows at once</td>
+</tr>
+<tr>
+  <td><strong>Epoch</strong></td>
+  <td>One pass through all training data</td>
+  <td>50 epochs = 50 loops</td>
+</tr>
+<tr>
+  <td><strong>MSE</strong></td>
+  <td>Mean squared error (loss metric)</td>
+  <td>0.2212 (lower = better)</td>
+</tr>
+<tr>
+  <td><strong>MAE</strong></td>
+  <td>Mean absolute error</td>
+  <td>0.3072 (lower = better)</td>
+</tr>
+<tr>
+  <td><strong>Normalization</strong></td>
+  <td>Scaling data to mean=0, std=1</td>
+  <td>Make all features comparable</td>
+</tr>
+<tr>
+  <td><strong>Embedding</strong></td>
+  <td>Converting categorical/temporal data to vectors</td>
+  <td>Date → [0.23, -0.45, ...]</td>
+</tr>
+<tr>
+  <td><strong>Attention</strong></td>
+  <td>Mechanism to focus on relevant past data</td>
+  <td>"Which past Monday matters?"</td>
+</tr>
+<tr>
+  <td><strong>Transformer</strong></td>
+  <td>Neural network using attention</td>
+  <td>BERT, GPT, D2Vformer</td>
+</tr>
+<tr>
+  <td><strong>Baseline</strong></td>
+  <td>Simple model for comparison</td>
+  <td>DLinear</td>
+</tr>
+<tr>
+  <td><strong>Hyperparameter</strong></td>
+  <td>Settings you choose before training</td>
+  <td>Learning rate, batch size</td>
+</tr>
+<tr>
+  <td><strong>Checkpoint</strong></td>
+  <td>Saved model weights</td>
+  <td>best_model.pkl</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<p><strong>End of Document 1: Project Explanation</strong></p>
+
+<p>This document explained the project from absolute scratch. You should now understand:
+- What time-series forecasting is
+- Why D2Vformer was created
+- How the model works (Date2Vec, Fusion Block)
+- Your two datasets (ETTh1, Delhi AQI)
+- How training and evaluation work
+- What DLinear is and why it's a baseline
+- Your complete workflow from Week 1 to Week 7</p>
+
+<p><strong>Next:</strong> Read Document 2 for detailed improvements and achievements.</p>
+</body></html>

@@ -1,0 +1,72 @@
+[
+  {
+    "mse": 0.11279164999723434,
+    "mae": 0.2656771242618561,
+    "rmse": 0.3358446955680847,
+    "mse_denorm": 308.1444686352198,
+    "mae_denorm": 11.339041213400064,
+    "rmse_denorm": 17.554044224486272,
+    "num_samples": 1600,
+    "inference_time": 1.951728343963623,
+    "samples_per_sec": 819.7862191982499,
+    "pred_len": 48,
+    "retrained": false,
+    "checkpoint": "./experiments/exp16/D2Vformer_s/IndiaAQI_best_model.pkl"
+  },
+  {
+    "mse": 0.11520584672689438,
+    "mae": 0.26879769563674927,
+    "rmse": 0.3394198715686798,
+    "mse_denorm": 319.41348507306515,
+    "mae_denorm": 11.519929732071967,
+    "rmse_denorm": 17.87214271074023,
+    "num_samples": 1600,
+    "inference_time": 2.0050394535064697,
+    "samples_per_sec": 797.9892850496656,
+    "pred_len": 72,
+    "retrained": false,
+    "checkpoint": "./experiments/exp16/D2Vformer_s/IndiaAQI_best_model.pkl"
+  },
+  {
+    "mse": 0.1179235652089119,
+    "mae": 0.27228718996047974,
+    "rmse": 0.3434000015258789,
+    "mse_denorm": 332.97641063704054,
+    "mae_denorm": 11.736057573800036,
+    "rmse_denorm": 18.247641234884046,
+    "num_samples": 1600,
+    "inference_time": 2.6739230155944824,
+    "samples_per_sec": 598.3717521666489,
+    "pred_len": 96,
+    "retrained": false,
+    "checkpoint": "./experiments/exp16/D2Vformer_s/IndiaAQI_best_model.pkl"
+  },
+  {
+    "mse": 0.1321585774421692,
+    "mae": 0.2901579737663269,
+    "rmse": 0.36353620886802673,
+    "mse_denorm": 404.6745989308703,
+    "mae_denorm": 12.841869566757996,
+    "rmse_denorm": 20.116525518361023,
+    "num_samples": 1600,
+    "inference_time": 3.9329922199249268,
+    "samples_per_sec": 406.81494153338065,
+    "pred_len": 192,
+    "retrained": false,
+    "checkpoint": "./experiments/exp16/D2Vformer_s/IndiaAQI_best_model.pkl"
+  },
+  {
+    "mse": 0.16465304791927338,
+    "mae": 0.3272867202758789,
+    "rmse": 0.40577462315559387,
+    "mse_denorm": 563.0608430353041,
+    "mae_denorm": 15.053035361526414,
+    "rmse_denorm": 23.728903114878783,
+    "num_samples": 1600,
+    "inference_time": 5.699985027313232,
+    "samples_per_sec": 280.70249173166377,
+    "pred_len": 336,
+    "retrained": false,
+    "checkpoint": "./experiments/exp16/D2Vformer_s/IndiaAQI_best_model.pkl"
+  }
+]

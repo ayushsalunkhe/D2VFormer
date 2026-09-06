@@ -1,0 +1,21 @@
+dataset,model,horizon,retrained,training_time,inference_time,mse,mae,rmse,checkpoint
+ETTh1,D2Vformer,48,NO (single checkpoint),N/A (one model),,1.198167085647583,0.7731134295463562,1.094608187675476,experiments/exp11/D2Vformer_s/ETTh1_best_model.pkl
+ETTh1,DLinear,48,YES (per horizon),25.1s,0.3184342384338379,0.3537524094725074,0.4007038708824046,0.5947708882187387,baselines/dlinear_ETTh1_pred48.pkl
+ETTh1,D2Vformer,72,NO (single checkpoint),N/A (one model),,1.219864845275879,0.785221517086029,1.1044749021530151,experiments/exp11/D2Vformer_s/ETTh1_best_model.pkl
+ETTh1,DLinear,72,YES (per horizon),24.6s,0.2223975658416748,0.38626120109532364,0.4233056465029854,0.62149915615013,baselines/dlinear_ETTh1_pred72.pkl
+ETTh1,D2Vformer,96,NO (single checkpoint),N/A (one model),,1.233279824256897,0.7919396162033081,1.1105313301086426,experiments/exp11/D2Vformer_s/ETTh1_best_model.pkl
+ETTh1,DLinear,96,YES (per horizon),N/A (Sem1),0.4167814254760742,0.40329579825917733,0.4357660615208898,0.6350557442139843,baselines/dlinear_ETTh1_pred96.pkl
+ETTh1,D2Vformer,192,NO (single checkpoint),N/A (one model),,1.2972512245178223,0.8142795562744141,1.1389694213867188,experiments/exp11/D2Vformer_s/ETTh1_best_model.pkl
+ETTh1,DLinear,192,YES (per horizon),38.0s,0.2534821033477783,0.4677157546152021,0.48115794444228877,0.6838974737599212,baselines/dlinear_ETTh1_pred192.pkl
+ETTh1,D2Vformer,336,NO (single checkpoint),N/A (one model),,1.3891645669937134,0.8480958342552185,1.1786282062530518,experiments/exp11/D2Vformer_s/ETTh1_best_model.pkl
+ETTh1,DLinear,336,YES (per horizon),37.6s,0.32305288314819336,0.5183789011545374,0.5190065198103838,0.7199853478748977,baselines/dlinear_ETTh1_pred336.pkl
+IndiaAQI,D2Vformer,48,NO (single checkpoint),N/A (one model),1.951728343963623,0.11279164999723434,0.2656771242618561,0.3358446955680847,experiments/exp16/D2Vformer_s/IndiaAQI_best_model.pkl
+IndiaAQI,DLinear,48,YES (per horizon),24.9s,0.3676624298095703,0.1308938258996455,0.2506877905402992,0.3617925177496703,baselines/dlinear_IndiaAQI_pred48.pkl
+IndiaAQI,D2Vformer,72,NO (single checkpoint),N/A (one model),2.0050394535064697,0.11520584672689438,0.26879769563674927,0.3394198715686798,experiments/exp16/D2Vformer_s/IndiaAQI_best_model.pkl
+IndiaAQI,DLinear,72,YES (per horizon),24.4s,0.40831780433654785,0.1489609989699474,0.26270182080256355,0.385954659215234,baselines/dlinear_IndiaAQI_pred72.pkl
+IndiaAQI,D2Vformer,96,NO (single checkpoint),N/A (one model),2.6739230155944824,0.1179235652089119,0.27228718996047974,0.3434000015258789,experiments/exp16/D2Vformer_s/IndiaAQI_best_model.pkl
+IndiaAQI,DLinear,96,YES (per horizon),N/A (Sem1),0.6219921112060547,0.16581299501562502,0.2710417532726896,0.4072014182387201,baselines/dlinear_IndiaAQI_pred96.pkl
+IndiaAQI,D2Vformer,192,NO (single checkpoint),N/A (one model),3.9329922199249268,0.1321585774421692,0.2901579737663269,0.36353620886802673,experiments/exp16/D2Vformer_s/IndiaAQI_best_model.pkl
+IndiaAQI,DLinear,192,YES (per horizon),47.0s,0.4971959590911865,0.23268599474286328,0.31225655703947486,0.4823753670564691,baselines/dlinear_IndiaAQI_pred192.pkl
+IndiaAQI,D2Vformer,336,NO (single checkpoint),N/A (one model),5.699985027313232,0.16465304791927338,0.3272867202758789,0.40577462315559387,experiments/exp16/D2Vformer_s/IndiaAQI_best_model.pkl
+IndiaAQI,DLinear,336,YES (per horizon),77.7s,0.6419398784637451,0.33005495740718777,0.38237296606805726,0.5745040969455203,baselines/dlinear_IndiaAQI_pred336.pkl

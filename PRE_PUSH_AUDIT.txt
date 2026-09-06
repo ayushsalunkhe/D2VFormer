@@ -1,0 +1,613 @@
+================================================================================
+GITHUB PUBLICATION PRE-PUSH AUDIT REPORT
+================================================================================
+Repository: ayushsalunkhe/D2VFormer
+Date: $(date)
+Status: AWAITING APPROVAL BEFORE PUSH
+
+================================================================================
+1. GIT IDENTITY VERIFICATION
+================================================================================
+ayushsalunkhe
+ayush.salunkhe7371@gmail.com
+
+✓ Verified: Using ayushsalunkhe identity (NOT AI agent)
+
+
+================================================================================
+2. CURRENT GIT STATUS
+================================================================================
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   .agents/skills/developing-with-streamlit
+	new file:   .claude/skills/developing-with-streamlit
+	new file:   .gitignore
+	new file:   1_PROJECT_EXPLANATION.html
+	new file:   1_PROJECT_EXPLANATION.md
+	new file:   2_ACHIEVEMENTS_AND_IMPROVEMENTS.html
+	new file:   2_ACHIEVEMENTS_AND_IMPROVEMENTS.md
+	new file:   Abstract_template.doc
+	new file:   CLAUDE.md
+	new file:   D2Vformer/D2Vformer/FINAL_FLEXIBLE_COMPARISON.md
+	new file:   D2Vformer/D2Vformer/baselines/dlinear_ETTh1_pred192.pkl
+	new file:   D2Vformer/D2Vformer/baselines/dlinear_ETTh1_pred336.pkl
+	new file:   D2Vformer/D2Vformer/baselines/dlinear_ETTh1_pred48.pkl
+	new file:   D2Vformer/D2Vformer/baselines/dlinear_ETTh1_pred72.pkl
+	new file:   D2Vformer/D2Vformer/baselines/dlinear_ETTh1_pred96.pkl
+	new file:   D2Vformer/D2Vformer/baselines/dlinear_IndiaAQI_pred192.pkl
+	new file:   D2Vformer/D2Vformer/baselines/dlinear_IndiaAQI_pred336.pkl
+	new file:   D2Vformer/D2Vformer/baselines/dlinear_IndiaAQI_pred48.pkl
+	new file:   D2Vformer/D2Vformer/baselines/dlinear_IndiaAQI_pred72.pkl
+	new file:   D2Vformer/D2Vformer/baselines/dlinear_IndiaAQI_pred96.pkl
+	new file:   D2Vformer/D2Vformer/baselines/plot_comparison.py
+	new file:   D2Vformer/D2Vformer/baselines/run_dlinear.py
+	new file:   D2Vformer/D2Vformer/baselines/run_dlinear_multihorizon.py
+	new file:   D2Vformer/D2Vformer/consolidate_dlinear_results.py
+	new file:   D2Vformer/D2Vformer/data/__init__.py
+	new file:   D2Vformer/D2Vformer/data/dataset.py
+	new file:   D2Vformer/D2Vformer/data/make_india_aqi.py
+	new file:   D2Vformer/D2Vformer/datasets/ETT-small/ETTh1.csv
+	new file:   D2Vformer/D2Vformer/datasets/ETT-small/ETTh2.csv
+	new file:   D2Vformer/D2Vformer/datasets/ETT-small/ETTm1.csv
+	new file:   D2Vformer/D2Vformer/datasets/ETT-small/ETTm2.csv
+	new file:   D2Vformer/D2Vformer/datasets/ETT-small/china.csv
+	new file:   D2Vformer/D2Vformer/datasets/exchange_rate/australia.csv
+	new file:   D2Vformer/D2Vformer/datasets/exchange_rate/british.csv
+	new file:   D2Vformer/D2Vformer/datasets/exchange_rate/canada.csv
+	new file:   D2Vformer/D2Vformer/datasets/exchange_rate/china.csv
+	new file:   D2Vformer/D2Vformer/datasets/exchange_rate/exchange_rate.csv
+	new file:   D2Vformer/D2Vformer/datasets/exchange_rate/japan.csv
+	new file:   D2Vformer/D2Vformer/datasets/exchange_rate/newzealand.csv
+	new file:   D2Vformer/D2Vformer/datasets/exchange_rate/singapore.csv
+	new file:   D2Vformer/D2Vformer/datasets/exchange_rate/switzerland.csv
+	new file:   D2Vformer/D2Vformer/datasets/exchange_rate/usa.csv
+	new file:   D2Vformer/D2Vformer/datasets/illness/national_illness.csv
+	new file:   D2Vformer/D2Vformer/datasets/india_aqi/delhi_aqi.csv
+	new file:   D2Vformer/D2Vformer/datasets/india_aqi/delhi_mark.csv
+	new file:   D2Vformer/D2Vformer/exp/exp.py
+	new file:   D2Vformer/D2Vformer/experiments/exp0/2026-08-07_19-36-16.time
+	new file:   D2Vformer/D2Vformer/experiments/exp0/README
+	new file:   D2Vformer/D2Vformer/experiments/exp1/2026-08-07_19-36-44.time
+	new file:   D2Vformer/D2Vformer/experiments/exp1/README
+	new file:   D2Vformer/D2Vformer/experiments/exp10/2026-08-07_19-45-59.time
+	new file:   D2Vformer/D2Vformer/experiments/exp10/D2Vformer_s/ETTh1_best_model.pkl
+	new file:   D2Vformer/D2Vformer/experiments/exp10/D2Vformer_s/ETTh1_preds.npy
+	new file:   D2Vformer/D2Vformer/experiments/exp10/D2Vformer_s/ETTh1_trues.npy
+	new file:   D2Vformer/D2Vformer/experiments/exp10/D2Vformer_s/_Attention_Score.png
+	new file:   D2Vformer/D2Vformer/experiments/exp10/D2Vformer_s_multi_cos_vision.png
+	new file:   D2Vformer/D2Vformer/experiments/exp10/README
+	new file:   D2Vformer/D2Vformer/experiments/exp10/hparam.yaml
+	new file:   D2Vformer/D2Vformer/experiments/exp11/2026-08-09_12-13-07.time
+	new file:   D2Vformer/D2Vformer/experiments/exp11/D2Vformer_s/ETTh1_best_model.pkl
+	new file:   D2Vformer/D2Vformer/experiments/exp11/README
+	new file:   D2Vformer/D2Vformer/experiments/exp11/hparam.yaml
+	new file:   D2Vformer/D2Vformer/experiments/exp12/2026-08-09_16-26-36.time
+	new file:   D2Vformer/D2Vformer/experiments/exp12/README
+	new file:   D2Vformer/D2Vformer/experiments/exp13/2026-08-09_16-27-51.time
+	new file:   D2Vformer/D2Vformer/experiments/exp13/README
+	new file:   D2Vformer/D2Vformer/experiments/exp14/2026-08-09_16-28-26.time
+	new file:   D2Vformer/D2Vformer/experiments/exp14/README
+	new file:   D2Vformer/D2Vformer/experiments/exp15/2026-08-09_16-29-43.time
+	new file:   D2Vformer/D2Vformer/experiments/exp15/D2Vformer_s/IndiaAQI_best_model.pkl
+	new file:   D2Vformer/D2Vformer/experiments/exp15/README
+	new file:   D2Vformer/D2Vformer/experiments/exp15/hparam.yaml
+	new file:   D2Vformer/D2Vformer/experiments/exp16/2026-08-10_18-32-14.time
+	new file:   D2Vformer/D2Vformer/experiments/exp16/D2Vformer_s/IndiaAQI_best_model.pkl
+	new file:   D2Vformer/D2Vformer/experiments/exp16/README
+	new file:   D2Vformer/D2Vformer/experiments/exp16/hparam.yaml
+	new file:   D2Vformer/D2Vformer/experiments/exp2/2026-08-07_19-37-53.time
+	new file:   D2Vformer/D2Vformer/experiments/exp2/README
+	new file:   D2Vformer/D2Vformer/experiments/exp3/2026-08-07_19-38-33.time
+	new file:   D2Vformer/D2Vformer/experiments/exp3/README
+	new file:   D2Vformer/D2Vformer/experiments/exp4/2026-08-07_19-39-18.time
+	new file:   D2Vformer/D2Vformer/experiments/exp4/README
+	new file:   D2Vformer/D2Vformer/experiments/exp5/2026-08-07_19-40-29.time
+	new file:   D2Vformer/D2Vformer/experiments/exp5/README
+	new file:   D2Vformer/D2Vformer/experiments/exp6/2026-08-07_19-41-02.time
+	new file:   D2Vformer/D2Vformer/experiments/exp6/README
+	new file:   D2Vformer/D2Vformer/experiments/exp6/hparam.yaml
+	new file:   D2Vformer/D2Vformer/experiments/exp7/2026-08-07_19-43-09.time
+	new file:   D2Vformer/D2Vformer/experiments/exp7/README
+	new file:   D2Vformer/D2Vformer/experiments/exp8/2026-08-07_19-44-16.time
+	new file:   D2Vformer/D2Vformer/experiments/exp8/D2Vformer_s/ETTh1_best_model.pkl
+	new file:   D2Vformer/D2Vformer/experiments/exp8/D2Vformer_s/ETTh1_preds.npy
+	new file:   D2Vformer/D2Vformer/experiments/exp8/D2Vformer_s/ETTh1_trues.npy
+	new file:   D2Vformer/D2Vformer/experiments/exp8/D2Vformer_s/_Attention_Score.png
+	new file:   D2Vformer/D2Vformer/experiments/exp8/D2Vformer_s_multi_cos_vision.png
+	new file:   D2Vformer/D2Vformer/experiments/exp8/README
+	new file:   D2Vformer/D2Vformer/experiments/exp8/hparam.yaml
+	new file:   D2Vformer/D2Vformer/experiments/exp9/2026-08-07_19-45-02.time
+	new file:   D2Vformer/D2Vformer/experiments/exp9/D2Vformer_s/ETTh1_best_model.pkl
+	new file:   D2Vformer/D2Vformer/experiments/exp9/D2Vformer_s/ETTh1_preds.npy
+	new file:   D2Vformer/D2Vformer/experiments/exp9/D2Vformer_s/ETTh1_trues.npy
+	new file:   D2Vformer/D2Vformer/experiments/exp9/D2Vformer_s/_Attention_Score.png
+	new file:   D2Vformer/D2Vformer/experiments/exp9/D2Vformer_s_multi_cos_vision.png
+	new file:   D2Vformer/D2Vformer/experiments/exp9/README
+	new file:   D2Vformer/D2Vformer/experiments/exp9/hparam.yaml
+	new file:   D2Vformer/D2Vformer/experiments_flexible/dlinear_ETTh1_pred192_result.json
+	new file:   D2Vformer/D2Vformer/experiments_flexible/dlinear_ETTh1_pred336_result.json
+	new file:   D2Vformer/D2Vformer/experiments_flexible/dlinear_ETTh1_pred48_result.json
+	new file:   D2Vformer/D2Vformer/experiments_flexible/dlinear_ETTh1_pred72_result.json
+	new file:   D2Vformer/D2Vformer/experiments_flexible/dlinear_ETTh1_pred96_result.json
+	new file:   D2Vformer/D2Vformer/experiments_flexible/dlinear_IndiaAQI_pred192_result.json
+	new file:   D2Vformer/D2Vformer/experiments_flexible/dlinear_IndiaAQI_pred336_result.json
+	new file:   D2Vformer/D2Vformer/experiments_flexible/dlinear_IndiaAQI_pred48_result.json
+	new file:   D2Vformer/D2Vformer/experiments_flexible/dlinear_IndiaAQI_pred72_result.json
+	new file:   D2Vformer/D2Vformer/experiments_flexible/dlinear_IndiaAQI_pred96_result.json
+	new file:   D2Vformer/D2Vformer/experiments_flexible/dlinear_all_results_consolidated.json
+	new file:   D2Vformer/D2Vformer/experiments_flexible/etth1_flexible_results.json
+	new file:   D2Vformer/D2Vformer/experiments_flexible/final_flexible_comparison.csv
+	new file:   D2Vformer/D2Vformer/experiments_flexible/indiaaqi_flexible_results.json
+	new file:   D2Vformer/D2Vformer/generate_final_comparison.py
+	new file:   D2Vformer/D2Vformer/layers/Date2Vec.py
+	new file:   D2Vformer/D2Vformer/layers/Fusion_Block.py
+	new file:   D2Vformer/D2Vformer/layers/Quantile_loss.py
+	new file:   D2Vformer/D2Vformer/layers/Revin.py
+	new file:   D2Vformer/D2Vformer/layers/__init__.py
+	new file:   D2Vformer/D2Vformer/layers/koopa_AR_related.py
+	new file:   D2Vformer/D2Vformer/layers/koopa_related.py
+	new file:   D2Vformer/D2Vformer/layers/mlp.py
+	new file:   D2Vformer/D2Vformer/main.py
+	new file:   D2Vformer/D2Vformer/model/D2Vformer.py
+	new file:   D2Vformer/D2Vformer/model/D2Vformer_simple.py
+	new file:   D2Vformer/D2Vformer/model/D2Vformer_simple_flexible.py
+	new file:   D2Vformer/D2Vformer/model/__init__.py
+	new file:   D2Vformer/D2Vformer/plot_forecast.py
+	new file:   D2Vformer/D2Vformer/plot_india_aqi.py
+	new file:   D2Vformer/D2Vformer/results/new_experimental_logs.csv
+	new file:   D2Vformer/D2Vformer/run_dlinear96_inference.py
+	new file:   D2Vformer/D2Vformer/scripts/D2Vformer_s_train.sh
+	new file:   D2Vformer/D2Vformer/scripts/D2Vformer_train.sh
+	new file:   D2Vformer/D2Vformer/test_flexible_checkpoint.py
+	new file:   D2Vformer/D2Vformer/test_flexible_checkpoint_indiaaqi.py
+	new file:   D2Vformer/D2Vformer/test_flexible_shapes.py
+	new file:   D2Vformer/D2Vformer/test_output_multi_cos_vision.png
+	new file:   D2Vformer/D2Vformer/utils/Write_csv.py
+	new file:   D2Vformer/D2Vformer/utils/__init__.py
+	new file:   D2Vformer/D2Vformer/utils/config.py
+	new file:   D2Vformer/D2Vformer/utils/earlystopping.py
+	new file:   D2Vformer/D2Vformer/utils/get_data.py
+	new file:   D2Vformer/D2Vformer/utils/masking.py
+	new file:   D2Vformer/D2Vformer/utils/model_tool.py
+	new file:   D2Vformer/D2Vformer/utils/save.py
+	new file:   D2Vformer/D2Vformer/utils/setseed.py
+	new file:   D2Vformer/D2Vformer/utils/tools.py
+	new file:   D2Vformer/D2Vformer/visualizations/_Attention_Score.png
+	new file:   D2Vformer/D2Vformer/visualizations_multi_cos_vision.png
+	new file:   D2Vformer/Date2Vec/data/__init__.py
+	new file:   D2Vformer/Date2Vec/data/dataset.py
+	new file:   D2Vformer/Date2Vec/exp/exp.py
+	new file:   D2Vformer/Date2Vec/layers/AutoCorrelation.py
+	new file:   D2Vformer/Date2Vec/layers/Autoformer_EncDec.py
+	new file:   D2Vformer/Date2Vec/layers/Date2Vec.py
+	new file:   D2Vformer/Date2Vec/layers/Embed.py
+	new file:   D2Vformer/Date2Vec/layers/FourierCorrelation.py
+	new file:   D2Vformer/Date2Vec/layers/MultiWaveletCorrelation.py
+	new file:   D2Vformer/Date2Vec/layers/PatchTST_backbone.py
+	new file:   D2Vformer/Date2Vec/layers/PatchTST_layers.py
+	new file:   D2Vformer/Date2Vec/layers/Quantile_loss.py
+	new file:   D2Vformer/Date2Vec/layers/RevIN.py
+	new file:   D2Vformer/Date2Vec/layers/SelfAttention_Family.py
+	new file:   D2Vformer/Date2Vec/layers/Transformer_EncDec.py
+	new file:   D2Vformer/Date2Vec/layers/__init__.py
+	new file:   D2Vformer/Date2Vec/layers/iTransformer_EncDec.py
+	new file:   D2Vformer/Date2Vec/layers/iTransformer_SelfAtt_Famliy.py
+	new file:   D2Vformer/Date2Vec/main.py
+	new file:   D2Vformer/Date2Vec/model/D2V_Fourier_Autoformer.py
+	new file:   D2Vformer/Date2Vec/model/D2V_Fourier_Fedformer.py
+	new file:   D2Vformer/Date2Vec/model/D2V_Fourier_ITransformer.py
+	new file:   D2Vformer/Date2Vec/model/D2V_Fourier_PatchTST.py
+	new file:   D2Vformer/Date2Vec/model/D2V_Fourier_PatchTST2.py
+	new file:   D2Vformer/Date2Vec/model/D2V_Fourier_Transformer.py
+	new file:   D2Vformer/Date2Vec/model/GLAFF_ITransformer.py
+	new file:   D2Vformer/Date2Vec/model/GLAFF_PatchTST.py
+	new file:   D2Vformer/Date2Vec/model/GLAFF_Transformer.py
+	new file:   D2Vformer/Date2Vec/model/ITransformer.py
+	new file:   D2Vformer/Date2Vec/model/PatchTST.py
+	new file:   D2Vformer/Date2Vec/model/Position_Transformer.py
+	new file:   D2Vformer/Date2Vec/model/T2V_ITransformer.py
+	new file:   D2Vformer/Date2Vec/model/T2V_PatchTST.py
+	new file:   D2Vformer/Date2Vec/model/T2V_Transformer.py
+	new file:   D2Vformer/Date2Vec/model/Transformer.py
+	new file:   D2Vformer/Date2Vec/model/__init__.py
+	new file:   D2Vformer/Date2Vec/plugin/Plugin/__init__.py
+	new file:   D2Vformer/Date2Vec/plugin/Plugin/model.py
+	new file:   D2Vformer/Date2Vec/plugin/__init__.py
+	new file:   D2Vformer/Date2Vec/scripts/D2V_ITransformer_train.sh
+	new file:   D2Vformer/Date2Vec/scripts/D2V_PatchTST_train.sh
+	new file:   D2Vformer/Date2Vec/scripts/D2V_Transformer_train.sh
+	new file:   D2Vformer/Date2Vec/scripts/GLAFF_ITransformer_train.sh
+	new file:   D2Vformer/Date2Vec/scripts/GLAFF_PatchTST_train.sh
+	new file:   D2Vformer/Date2Vec/scripts/GLAFF_Transformer_train.sh
+	new file:   D2Vformer/Date2Vec/scripts/ITransformer_train.sh
+	new file:   D2Vformer/Date2Vec/scripts/PatchTST_train.sh
+	new file:   D2Vformer/Date2Vec/scripts/T2V_ITransformer_train.sh
+	new file:   D2Vformer/Date2Vec/scripts/T2V_PatchTST_train.sh
+	new file:   D2Vformer/Date2Vec/scripts/T2V_Transformer_train.sh
+	new file:   D2Vformer/Date2Vec/scripts/Transformer_train.sh
+	new file:   D2Vformer/Date2Vec/utils/Write_csv.py
+	new file:   D2Vformer/Date2Vec/utils/__init__.py
+	new file:   D2Vformer/Date2Vec/utils/config.py
+	new file:   D2Vformer/Date2Vec/utils/earlystopping.py
+	new file:   D2Vformer/Date2Vec/utils/get_data.py
+	new file:   D2Vformer/Date2Vec/utils/masking.py
+	new file:   D2Vformer/Date2Vec/utils/model_tool.py
+	new file:   D2Vformer/Date2Vec/utils/save.py
+	new file:   D2Vformer/Date2Vec/utils/setseed.py
+	new file:   D2Vformer/Date2Vec/utils/tools.py
+	new file:   D2Vformer/Flexib_Prediction/data/__init__.py
+	new file:   D2Vformer/Flexib_Prediction/data/dataset.py
+	new file:   D2Vformer/Flexib_Prediction/data/dataset_skip.py
+	new file:   D2Vformer/Flexib_Prediction/exp/exp.py
+	new file:   D2Vformer/Flexib_Prediction/exp/exp_flexiable.py
+	new file:   D2Vformer/Flexib_Prediction/exp/exp_skip_v1.py
+	new file:   D2Vformer/Flexib_Prediction/exp/exp_skip_v2.py
+	new file:   D2Vformer/Flexib_Prediction/layers/AutoCorrelation.py
+	new file:   D2Vformer/Flexib_Prediction/layers/Autoformer_EncDec.py
+	new file:   D2Vformer/Flexib_Prediction/layers/Date2Vec.py
+	new file:   D2Vformer/Flexib_Prediction/layers/Embed.py
+	new file:   D2Vformer/Flexib_Prediction/layers/FourierCorrelation.py
+	new file:   D2Vformer/Flexib_Prediction/layers/Fusion_Block.py
+	new file:   D2Vformer/Flexib_Prediction/layers/MultiWaveletCorrelation.py
+	new file:   D2Vformer/Flexib_Prediction/layers/PatchTST_backbone.py
+	new file:   D2Vformer/Flexib_Prediction/layers/PatchTST_layers.py
+	new file:   D2Vformer/Flexib_Prediction/layers/Quantile_loss.py
+	new file:   D2Vformer/Flexib_Prediction/layers/RevIN.py
+	new file:   D2Vformer/Flexib_Prediction/layers/StandardNorm.py
+	new file:   D2Vformer/Flexib_Prediction/layers/__init__.py
+	new file:   D2Vformer/Flexib_Prediction/layers/koopa_related.py
+	new file:   D2Vformer/Flexib_Prediction/layers/utils.py
+	new file:   D2Vformer/Flexib_Prediction/main.py
+	new file:   D2Vformer/Flexib_Prediction/scripts/D2Vformer.sh
+	new file:   D2Vformer/Flexib_Prediction/utils/Write_csv.py
+	new file:   D2Vformer/Flexib_Prediction/utils/__init__.py
+	new file:   D2Vformer/Flexib_Prediction/utils/config.py
+	new file:   D2Vformer/Flexib_Prediction/utils/earlystopping.py
+	new file:   D2Vformer/Flexib_Prediction/utils/get_data.py
+	new file:   D2Vformer/Flexib_Prediction/utils/masking.py
+	new file:   D2Vformer/Flexib_Prediction/utils/model_tool.py
+	new file:   D2Vformer/Flexib_Prediction/utils/save.py
+	new file:   D2Vformer/Flexib_Prediction/utils/setseed.py
+	new file:   D2Vformer/Flexib_Prediction/utils/tools.py
+	new file:   D2Vformer/README.md
+	new file:   D2Vformer/datasets/ETT-small/ETTh1.csv
+	new file:   D2Vformer/datasets/ETT-small/ETTh2.csv
+	new file:   D2Vformer/datasets/ETT-small/ETTm1.csv
+	new file:   D2Vformer/datasets/ETT-small/ETTm2.csv
+	new file:   D2Vformer/datasets/ETT-small/china.csv
+	new file:   D2Vformer/datasets/exchange_rate/australia.csv
+	new file:   D2Vformer/datasets/exchange_rate/british.csv
+	new file:   D2Vformer/datasets/exchange_rate/canada.csv
+	new file:   D2Vformer/datasets/exchange_rate/china.csv
+	new file:   D2Vformer/datasets/exchange_rate/exchange_rate.csv
+	new file:   D2Vformer/datasets/exchange_rate/japan.csv
+	new file:   D2Vformer/datasets/exchange_rate/newzealand.csv
+	new file:   D2Vformer/datasets/exchange_rate/singapore.csv
+	new file:   D2Vformer/datasets/exchange_rate/switzerland.csv
+	new file:   D2Vformer/datasets/exchange_rate/usa.csv
+	new file:   D2Vformer/datasets/illness/national_illness.csv
+	new file:   D2Vformer/datasets/india_aqi/delhi_aqi.csv
+	new file:   D2Vformer/datasets/india_aqi/delhi_mark.csv
+	new file:   D2Vformer/imgs/D2V.png
+	new file:   D2Vformer/imgs/D2Vformer.png
+	new file:   D2Vformer/imgs/D2Vformer_results.png
+	new file:   D2Vformer/imgs/DateVec_results.png
+	new file:   D2Vformer/imgs/Flexible_prediction_results.png
+	new file:   D2Vformer/main.py
+	new file:   D2Vformer/requirements.txt
+	new file:   D2Vformer_BE_Major_Project_Master_Guide.html
+	new file:   D2Vformer_BE_Major_Project_Master_Guide.pdf
+	new file:   D2Vformer_Colab.ipynb
+	new file:   DEMO_README.md
+	new file:   DLINEAR_TRAINING_PLAN.md
+	new file:   DLinear_MultiHorizon_Training.ipynb
+	new file:   FINAL_FLEXIBLE_COMPARISON.md
+	new file:   FINAL_IMPLEMENTATION_AUDIT.md
+	new file:   FLEXIBLE_FORECASTING_AUDIT.md
+	new file:   FLEXIBLE_FORECASTING_RESULTS.md
+	new file:   G44 Pill Identification.docx
+	new file:   GITHUB_PUBLICATION_PLAN.md
+	new file:   PROJECT_REVIEW_STATUS.md
+	new file:   README.md
+	new file:   SEMESTER_1_FINAL_STATUS.md
+	new file:   build_textbook/assemble.py
+	new file:   build_textbook/helpers.py
+	new file:   build_textbook/part1.py
+	new file:   build_textbook/part2.py
+	new file:   build_textbook/part3.py
+	new file:   build_textbook/part4.py
+	new file:   build_textbook/part5.py
+	new file:   build_textbook/part6.py
+	new file:   build_textbook/part7.py
+	new file:   final c44 ppt.BACKUP.pptx
+	new file:   final c44 ppt.pptx
+	new file:   presentation_script.html
+	new file:   requirements.txt
+	new file:   results/ETTh1_pred96_forecast.png
+	new file:   results/ETTh1_window1500.png
+	new file:   results/ETTh1_window2000.png
+	new file:   results/ETTh1_window500.png
+	new file:   results/ETTh1_window800.png
+	new file:   results/IndiaAQI_forecast.png
+	new file:   results/comparison_bar.png
+	new file:   results/comparison_forecast.png
+	new file:   results/flexible/mae_vs_horizon_ETTh1.png
+	new file:   results/flexible/mae_vs_horizon_IndiaAQI.png
+	new file:   results/flexible/mse_vs_horizon_ETTh1.png
+	new file:   results/flexible/mse_vs_horizon_IndiaAQI.png
+	new file:   results/flexible/training_cost_comparison.png
+	new file:   streamlit_app.py
+	new file:   visualizations_multi_cos_vision.png
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	PRE_PUSH_AUDIT.txt
+
+
+
+================================================================================
+3. BRANCH & REMOTE INFORMATION
+================================================================================
+Current branch:
+
+Current remotes:
+
+Proposed new remote to add:
+  origin  https://github.com/ayushsalunkhe/D2VFormer.git
+
+================================================================================
+4. FILES TO BE COMMITTED
+================================================================================
+A	.agents/skills/developing-with-streamlit
+A	.claude/skills/developing-with-streamlit
+A	.gitignore
+A	1_PROJECT_EXPLANATION.html
+A	1_PROJECT_EXPLANATION.md
+A	2_ACHIEVEMENTS_AND_IMPROVEMENTS.html
+A	2_ACHIEVEMENTS_AND_IMPROVEMENTS.md
+A	Abstract_template.doc
+A	CLAUDE.md
+A	D2Vformer/D2Vformer/FINAL_FLEXIBLE_COMPARISON.md
+A	D2Vformer/D2Vformer/baselines/dlinear_ETTh1_pred192.pkl
+A	D2Vformer/D2Vformer/baselines/dlinear_ETTh1_pred336.pkl
+A	D2Vformer/D2Vformer/baselines/dlinear_ETTh1_pred48.pkl
+A	D2Vformer/D2Vformer/baselines/dlinear_ETTh1_pred72.pkl
+A	D2Vformer/D2Vformer/baselines/dlinear_ETTh1_pred96.pkl
+A	D2Vformer/D2Vformer/baselines/dlinear_IndiaAQI_pred192.pkl
+A	D2Vformer/D2Vformer/baselines/dlinear_IndiaAQI_pred336.pkl
+A	D2Vformer/D2Vformer/baselines/dlinear_IndiaAQI_pred48.pkl
+A	D2Vformer/D2Vformer/baselines/dlinear_IndiaAQI_pred72.pkl
+A	D2Vformer/D2Vformer/baselines/dlinear_IndiaAQI_pred96.pkl
+A	D2Vformer/D2Vformer/baselines/plot_comparison.py
+A	D2Vformer/D2Vformer/baselines/run_dlinear.py
+A	D2Vformer/D2Vformer/baselines/run_dlinear_multihorizon.py
+A	D2Vformer/D2Vformer/consolidate_dlinear_results.py
+A	D2Vformer/D2Vformer/data/__init__.py
+A	D2Vformer/D2Vformer/data/dataset.py
+A	D2Vformer/D2Vformer/data/make_india_aqi.py
+A	D2Vformer/D2Vformer/datasets/ETT-small/ETTh1.csv
+A	D2Vformer/D2Vformer/datasets/ETT-small/ETTh2.csv
+A	D2Vformer/D2Vformer/datasets/ETT-small/ETTm1.csv
+A	D2Vformer/D2Vformer/datasets/ETT-small/ETTm2.csv
+A	D2Vformer/D2Vformer/datasets/ETT-small/china.csv
+A	D2Vformer/D2Vformer/datasets/exchange_rate/australia.csv
+A	D2Vformer/D2Vformer/datasets/exchange_rate/british.csv
+A	D2Vformer/D2Vformer/datasets/exchange_rate/canada.csv
+A	D2Vformer/D2Vformer/datasets/exchange_rate/china.csv
+A	D2Vformer/D2Vformer/datasets/exchange_rate/exchange_rate.csv
+A	D2Vformer/D2Vformer/datasets/exchange_rate/japan.csv
+A	D2Vformer/D2Vformer/datasets/exchange_rate/newzealand.csv
+A	D2Vformer/D2Vformer/datasets/exchange_rate/singapore.csv
+A	D2Vformer/D2Vformer/datasets/exchange_rate/switzerland.csv
+A	D2Vformer/D2Vformer/datasets/exchange_rate/usa.csv
+A	D2Vformer/D2Vformer/datasets/illness/national_illness.csv
+A	D2Vformer/D2Vformer/datasets/india_aqi/delhi_aqi.csv
+A	D2Vformer/D2Vformer/datasets/india_aqi/delhi_mark.csv
+A	D2Vformer/D2Vformer/exp/exp.py
+A	D2Vformer/D2Vformer/experiments/exp0/2026-08-07_19-36-16.time
+A	D2Vformer/D2Vformer/experiments/exp0/README
+A	D2Vformer/D2Vformer/experiments/exp1/2026-08-07_19-36-44.time
+A	D2Vformer/D2Vformer/experiments/exp1/README
+A	D2Vformer/D2Vformer/experiments/exp10/2026-08-07_19-45-59.time
+A	D2Vformer/D2Vformer/experiments/exp10/D2Vformer_s/ETTh1_best_model.pkl
+A	D2Vformer/D2Vformer/experiments/exp10/D2Vformer_s/ETTh1_preds.npy
+A	D2Vformer/D2Vformer/experiments/exp10/D2Vformer_s/ETTh1_trues.npy
+A	D2Vformer/D2Vformer/experiments/exp10/D2Vformer_s/_Attention_Score.png
+A	D2Vformer/D2Vformer/experiments/exp10/D2Vformer_s_multi_cos_vision.png
+A	D2Vformer/D2Vformer/experiments/exp10/README
+A	D2Vformer/D2Vformer/experiments/exp10/hparam.yaml
+A	D2Vformer/D2Vformer/experiments/exp11/2026-08-09_12-13-07.time
+A	D2Vformer/D2Vformer/experiments/exp11/D2Vformer_s/ETTh1_best_model.pkl
+A	D2Vformer/D2Vformer/experiments/exp11/README
+A	D2Vformer/D2Vformer/experiments/exp11/hparam.yaml
+A	D2Vformer/D2Vformer/experiments/exp12/2026-08-09_16-26-36.time
+A	D2Vformer/D2Vformer/experiments/exp12/README
+A	D2Vformer/D2Vformer/experiments/exp13/2026-08-09_16-27-51.time
+A	D2Vformer/D2Vformer/experiments/exp13/README
+A	D2Vformer/D2Vformer/experiments/exp14/2026-08-09_16-28-26.time
+A	D2Vformer/D2Vformer/experiments/exp14/README
+A	D2Vformer/D2Vformer/experiments/exp15/2026-08-09_16-29-43.time
+A	D2Vformer/D2Vformer/experiments/exp15/D2Vformer_s/IndiaAQI_best_model.pkl
+A	D2Vformer/D2Vformer/experiments/exp15/README
+A	D2Vformer/D2Vformer/experiments/exp15/hparam.yaml
+A	D2Vformer/D2Vformer/experiments/exp16/2026-08-10_18-32-14.time
+A	D2Vformer/D2Vformer/experiments/exp16/D2Vformer_s/IndiaAQI_best_model.pkl
+A	D2Vformer/D2Vformer/experiments/exp16/README
+A	D2Vformer/D2Vformer/experiments/exp16/hparam.yaml
+A	D2Vformer/D2Vformer/experiments/exp2/2026-08-07_19-37-53.time
+A	D2Vformer/D2Vformer/experiments/exp2/README
+A	D2Vformer/D2Vformer/experiments/exp3/2026-08-07_19-38-33.time
+A	D2Vformer/D2Vformer/experiments/exp3/README
+A	D2Vformer/D2Vformer/experiments/exp4/2026-08-07_19-39-18.time
+A	D2Vformer/D2Vformer/experiments/exp4/README
+A	D2Vformer/D2Vformer/experiments/exp5/2026-08-07_19-40-29.time
+A	D2Vformer/D2Vformer/experiments/exp5/README
+A	D2Vformer/D2Vformer/experiments/exp6/2026-08-07_19-41-02.time
+A	D2Vformer/D2Vformer/experiments/exp6/README
+A	D2Vformer/D2Vformer/experiments/exp6/hparam.yaml
+A	D2Vformer/D2Vformer/experiments/exp7/2026-08-07_19-43-09.time
+A	D2Vformer/D2Vformer/experiments/exp7/README
+A	D2Vformer/D2Vformer/experiments/exp8/2026-08-07_19-44-16.time
+A	D2Vformer/D2Vformer/experiments/exp8/D2Vformer_s/ETTh1_best_model.pkl
+A	D2Vformer/D2Vformer/experiments/exp8/D2Vformer_s/ETTh1_preds.npy
+A	D2Vformer/D2Vformer/experiments/exp8/D2Vformer_s/ETTh1_trues.npy
+A	D2Vformer/D2Vformer/experiments/exp8/D2Vformer_s/_Attention_Score.png
+A	D2Vformer/D2Vformer/experiments/exp8/D2Vformer_s_multi_cos_vision.png
+A	D2Vformer/D2Vformer/experiments/exp8/README
+A	D2Vformer/D2Vformer/experiments/exp8/hparam.yaml
+A	D2Vformer/D2Vformer/experiments/exp9/2026-08-07_19-45-02.time
+A	D2Vformer/D2Vformer/experiments/exp9/D2Vformer_s/ETTh1_best_model.pkl
+A	D2Vformer/D2Vformer/experiments/exp9/D2Vformer_s/ETTh1_preds.npy
+
+Total files staged:
+319
+
+================================================================================
+5. REPOSITORY SIZE CHECK
+================================================================================
+1.5G	.
+
+Largest files (>1MB):
+291M	./venv/Lib/site-packages/torch/lib/torch_cpu.dll
+28M	./venv/Lib/site-packages/torch/lib/torch_cpu.lib
+22M	./venv/Lib/site-packages/pyarrow/arrow.dll
+20M	./venv/Lib/site-packages/scipy.libs/libscipy_openblas-197ee2fc9b4d071f7e048078cac74115.dll
+20M	./venv/Lib/site-packages/numpy.libs/libscipy_openblas64_-b788215d9d47792bcba3a2e2a7114320.dll
+19M	./venv/share/jupyter/nbextensions/pydeck/index.js.map
+19M	./venv/Lib/site-packages/torch/lib/torch_python.dll
+19M	./venv/Lib/site-packages/pydeck/nbextension/static/index.js.map
+17M	./D2Vformer/D2Vformer/experiments/exp9/D2Vformer_s/ETTh1_trues.npy
+17M	./D2Vformer/D2Vformer/experiments/exp8/D2Vformer_s/ETTh1_trues.npy
+17M	./D2Vformer/D2Vformer/experiments/exp10/D2Vformer_s/ETTh1_trues.npy
+13M	./venv/Lib/site-packages/pyarrow/arrow_flight.dll
+11M	./venv/Lib/site-packages/grpc/_cython/cygrpc.cp312-win_amd64.pyd
+10M	./D2Vformer/datasets/ETT-small/ETTm1.csv
+9.3M	./D2Vformer/datasets/ETT-small/ETTm2.csv
+9.1M	./venv/Lib/site-packages/pyarrow/arrow_compute.dll
+8.5M	./venv/Lib/site-packages/torch/lib/sleef.lib
+8.4M	./D2Vformer/D2Vformer/experiments/exp9/D2Vformer_s/ETTh1_preds.npy
+8.4M	./D2Vformer/D2Vformer/experiments/exp8/D2Vformer_s/ETTh1_preds.npy
+8.4M	./D2Vformer/D2Vformer/experiments/exp10/D2Vformer_s/ETTh1_preds.npy
+
+================================================================================
+6. AI CONTRIBUTOR CHECK
+================================================================================
+Checking for AI co-author references...
+✓ No AI co-authors found (repository is clean)
+
+================================================================================
+7. FILES BEING IGNORED (.gitignore)
+================================================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Project specific
+*LOCAL_SMOKETEST*
+test_output/
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Large temporary outputs (keep checkpoints and results)
+# But exclude generated visualizations that can be regenerated
+visualizations/*.png
+!visualizations/.gitkeep
+
+================================================================================
+8. PROPOSED COMMIT MESSAGE
+================================================================================
+Initial commit: D2Vformer Flexible Forecasting - BE Major Project
+
+Semester 1 implementation including:
+- D2Vformer reproduction with 6 bug fixes
+- Delhi AQI extension (Indian air quality forecasting)
+- DLinear baseline implementation
+- Flexible multi-horizon forecasting evaluation
+- Interactive Streamlit demonstration
+- Comprehensive documentation
+
+Key contribution: Demonstrated that one trained D2Vformer checkpoint
+can forecast multiple horizons (48h-336h) without retraining.
+
+Datasets: ETTh1 benchmark, Delhi AQI synthetic data
+Models: D2Vformer_simple_flexible, DLinear baseline
+Results: Complete evaluation across 5 horizons × 2 datasets
+
+================================================================================
+9. CHECKLIST - VERIFY BEFORE APPROVAL
+================================================================================
+[ ] Git identity is ayushsalunkhe (NOT AI agent)
+[ ] No AI co-authors in commit history
+[ ] No embedded git repositories
+[ ] No secrets/credentials in code
+[ ] Repository size reasonable (<100MB files)
+[ ] Remote will be https://github.com/ayushsalunkhe/D2VFormer.git
+[ ] README clearly states "based on official D2Vformer"
+[ ] Bug fixes and extensions documented
+[ ] .gitignore excludes unnecessary files
+[ ] All Semester 1 work included
+
+================================================================================
+10. NEXT STEPS (AFTER YOUR APPROVAL)
+================================================================================
+1. Add remote: git remote add origin https://github.com/ayushsalunkhe/D2VFormer.git
+2. Commit staged files with message above
+3. Push to main branch: git push -u origin main
+4. Verify repository on GitHub
+5. Report final status
+
+================================================================================
+END OF PRE-PUSH AUDIT REPORT
+================================================================================

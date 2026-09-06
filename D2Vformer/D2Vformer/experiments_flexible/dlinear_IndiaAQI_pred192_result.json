@@ -1,0 +1,13 @@
+{
+  "dataset": "IndiaAQI",
+  "model": "DLinear",
+  "pred_len": 192,
+  "retrained": true,
+  "mse": 0.23268599474286328,
+  "mae": 0.31225655703947486,
+  "rmse": 0.4823753670564691,
+  "training_time": 46.992480993270874,
+  "inference_time": 0.4971959590911865,
+  "num_epochs": 8,
+  "checkpoint": "./baselines/dlinear_IndiaAQI_pred192.pkl"
+}
