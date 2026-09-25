@@ -1,0 +1,193 @@
+\begin{thebibliography}{10}
+
+\bibitem{energy_forecasting}
+Qiang Wang, Shuyu Li, and Rongrong Li.
+\newblock Forecasting energy demand in china and india: Using single-linear, hybrid-linear, and non-linear time series forecast techniques.
+\newblock {\em Energy}, 161:821--831, 2018.
+
+\bibitem{solar_forecasting}
+Hussein Sharadga, Shima Hajimirza, and Robert~S Balog.
+\newblock Time series forecasting of solar power generation for large-scale photovoltaic plants.
+\newblock {\em Renewable Energy}, 150:797--807, 2020.
+
+\bibitem{traffic_congestion}
+Carolina Garcia-Ascanio and Carlos Mat{\'e}.
+\newblock Electric power demand forecasting using interval time series: A comparison between var and imlp.
+\newblock {\em Energy policy}, 38(2):715--725, 2010.
+
+\bibitem{traffic_forecasting_1}
+Bidisha Ghosh, Biswajit Basu, and Margaret O'Mahony.
+\newblock Multivariate short-term traffic flow forecasting using time-series analysis.
+\newblock {\em IEEE transactions on intelligent transportation systems}, 10(2):246--254, 2009.
+
+\bibitem{traffic_forecasting_2}
+Shashank Shekhar and Billy~M Williams.
+\newblock Adaptive seasonal time series models for forecasting short-term traffic flow.
+\newblock {\em Transportation Research Record}, 2024(1):116--125, 2007.
+
+\bibitem{wind_forecasting_1}
+Jing Shi, Jinmei Guo, and Songtao Zheng.
+\newblock Evaluation of hybrid forecasting approaches for wind speed and power generation time series.
+\newblock {\em Renewable and Sustainable Energy Reviews}, 16(5):3471--3480, 2012.
+
+\bibitem{wind_forecasting_2}
+Jianming Hu, Jianzhou Wang, and Guowei Zeng.
+\newblock A hybrid forecasting approach applied to wind speed time series.
+\newblock {\em Renewable Energy}, 60:185--194, 2013.
+
+\bibitem{ex_smoothing}
+Holt~C Carbone.
+\newblock Forecasting trends and seasonal by exponentially weighted moving averages.
+\newblock {\em Carnegie Institute of Technology}, 2(52), 1957.
+
+\bibitem{arima_1}
+G~Peter Zhang.
+\newblock Time series forecasting using a hybrid arima and neural network model.
+\newblock {\em Neurocomputing}, 50:159--175, 2003.
+
+\bibitem{tcn}
+Shaojie Bai, J~Zico Kolter, and Vladlen Koltun.
+\newblock An empirical evaluation of generic convolutional and recurrent networks for sequence modeling.
+\newblock {\em arXiv preprint arXiv:1803.01271}, 2018.
+
+\bibitem{deepar}
+David Salinas, Valentin Flunkert, Jan Gasthaus, and Tim Januschowski.
+\newblock Deepar: Probabilistic forecasting with autoregressive recurrent networks.
+\newblock {\em International journal of forecasting}, 36(3):1181--1191, 2020.
+
+\bibitem{lstnet}
+Guokun Lai, Wei-Cheng Chang, Yiming Yang, and Hanxiao Liu.
+\newblock Modeling long-and short-term temporal patterns with deep neural networks.
+\newblock In {\em The 41st international ACM SIGIR conference on research \& development in information retrieval}, pages 95--104, 2018.
+
+\bibitem{informer}
+Haoyi Zhou, Shanghang Zhang, Jieqi Peng, Shuai Zhang, Jianxin Li, Hui Xiong, and Wancai Zhang.
+\newblock Informer: Beyond efficient transformer for long sequence time-series forecasting.
+\newblock In {\em Proceedings of the AAAI conference on artificial intelligence}, volume~35, pages 11106--11115, 2021.
+
+\bibitem{tdformer}
+Xiyuan Zhang, Xiaoyong Jin, Karthick Gopalswamy, Gaurav Gupta, Youngsuk Park, Xingjian Shi, Hao Wang, Danielle~C Maddix, and Yuyang Wang.
+\newblock First de-trend then attend: Rethinking attention for time-series forecasting.
+\newblock {\em arXiv preprint arXiv:2212.08151}, 2022.
+
+\bibitem{dlinear}
+Chulhee Yun, Srinadh Bhojanapalli, Ankit~Singh Rawat, Sashank~J Reddi, and Sanjiv Kumar.
+\newblock Are transformers universal approximators of sequence-to-sequence functions?
+\newblock {\em arXiv preprint arXiv:1912.10077}, 2019.
+
+\bibitem{ns_transformer}
+Yong Liu, Haixu Wu, Jianmin Wang, and Mingsheng Long.
+\newblock Non-stationary transformers: Exploring the stationarity in time series forecasting.
+\newblock {\em Advances in Neural Information Processing Systems}, 35:9881--9893, 2022.
+
+\bibitem{patchtst}
+Yuqi Nie, Nam~H Nguyen, Phanwadee Sinthong, and Jayant Kalagnanam.
+\newblock A time series is worth 64 words: Long-term forecasting with transformers.
+\newblock {\em arXiv preprint arXiv:2211.14730}, 2022.
+
+\bibitem{time2vec}
+Seyed~Mehran Kazemi, Rishab Goel, Sepehr Eghbali, Janahan Ramanan, Jaspreet Sahota, Sanjay Thakur, Stella Wu, Cathal Smyth, Pascal Poupart, and Marcus Brubaker.
+\newblock Time2vec: Learning a vector representation of time.
+\newblock {\em arXiv preprint arXiv:1907.05321}, 2019.
+
+\bibitem{time2vec_app_1}
+Satya~Narayan Shukla and Benjamin~M Marlin.
+\newblock Multi-time attention networks for irregularly sampled time series.
+\newblock {\em arXiv preprint arXiv:2101.10318}, 2021.
+
+\bibitem{time2vec_app_2}
+Arpan Nandi, Arkadeep De, Arjun Mallick, Asif~Iqbal Middya, and Sarbani Roy.
+\newblock Attention based long-term air temperature forecasting network: Altf net.
+\newblock {\em Knowledge-Based Systems}, 252:109442, 2022.
+
+\bibitem{time2vec_app_3}
+Jake Grigsby, Zhe Wang, Nam Nguyen, and Yanjun Qi.
+\newblock Long-range transformers for dynamic spatiotemporal forecasting.
+\newblock {\em arXiv preprint arXiv:2109.12218}, 2021.
+
+\bibitem{autoformer}
+Haixu Wu, Jiehui Xu, Jianmin Wang, and Mingsheng Long.
+\newblock Autoformer: Decomposition transformers with auto-correlation for long-term series forecasting.
+\newblock {\em Advances in neural information processing systems}, 34:22419--22430, 2021.
+
+\bibitem{fedformer}
+Tian Zhou, Ziqing Ma, Qingsong Wen, Xue Wang, Liang Sun, and Rong Jin.
+\newblock Fedformer: Frequency enhanced decomposed transformer for long-term series forecasting.
+\newblock In {\em International conference on machine learning}, pages 27268--27286. PMLR, 2022.
+
+\bibitem{gru}
+Rahul Dey and Fathi~M Salem.
+\newblock Gate-variants of gated recurrent unit (gru) neural networks.
+\newblock In {\em 2017 IEEE 60th international midwest symposium on circuits and systems (MWSCAS)}, pages 1597--1600. IEEE, 2017.
+
+\bibitem{lstm_1}
+Xingjian Shi, Zhourong Chen, Hao Wang, Dit-Yan Yeung, Wai-Kin Wong, and Wang-chun Woo.
+\newblock Convolutional lstm network: A machine learning approach for precipitation nowcasting.
+\newblock {\em Advances in neural information processing systems}, 28, 2015.
+
+\bibitem{lstm_2}
+Thomas Fischer and Christopher Krauss.
+\newblock Deep learning with long short-term memory networks for financial market predictions.
+\newblock {\em European journal of operational research}, 270(2):654--669, 2018.
+
+\bibitem{lstm_3}
+Shuai Zheng, Kosta Ristovski, Ahmed Farahat, and Chetan Gupta.
+\newblock Long short-term memory network for remaining useful life estimation.
+\newblock In {\em 2017 IEEE international conference on prognostics and health management (ICPHM)}, pages 88--95. IEEE, 2017.
+
+\bibitem{error_accumulation_1}
+Yuqing Tang, Fusheng Yu, Witold Pedrycz, Xiyang Yang, Jiayin Wang, and Shihu Liu.
+\newblock Building trend fuzzy granulation-based lstm recurrent neural network for long-term time-series forecasting.
+\newblock {\em IEEE transactions on fuzzy systems}, 30(6):1599--1613, 2021.
+
+\bibitem{error_accumulation_2}
+Cheng Fan, Jiayuan Wang, Wenjie Gang, and Shenghan Li.
+\newblock Assessment of deep recurrent neural network-based strategies for short-term building energy predictions.
+\newblock {\em Applied energy}, 236:700--710, 2019.
+
+\bibitem{revin}
+Taesung Kim, Jinhee Kim, Yunwon Tae, Cheonbok Park, Jang-Ho Choi, and Jaegul Choo.
+\newblock Reversible instance normalization for accurate time-series forecasting against distribution shift.
+\newblock In {\em International Conference on Learning Representations}, 2021.
+
+\bibitem{t2v_position_1}
+Rajni Bala, Ram~Pal Singh, et~al.
+\newblock A dual-stage advanced deep learning algorithm for long-term and long-sequence prediction for multivariate financial time series.
+\newblock {\em Applied Soft Computing}, 126:109317, 2022.
+
+\bibitem{t2v_position_2}
+Donghan Geng, Bo~Wang, and Qi~Gao.
+\newblock A hybrid photovoltaic/wind power prediction model based on time2vec, wdcnn and bilstm.
+\newblock {\em Energy Conversion and Management}, 291:117342, 2023.
+
+\bibitem{t2v_position_3}
+Jia Song, Xindi Tong, Xiaowei Xu, and Kai Zhao.
+\newblock A real-time reentry guidance method for hypersonic vehicles based on a time2vec and transformer network.
+\newblock {\em Aerospace}, 9(8):427, 2022.
+
+\bibitem{t2v_position_4}
+Arpan Nandi, Arkadeep De, Arjun Mallick, Asif~Iqbal Middya, and Sarbani Roy.
+\newblock Attention based long-term air temperature forecasting network: Altf net.
+\newblock {\em Knowledge-Based Systems}, 252:109442, 2022.
+
+\bibitem{transformer}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan~N Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock {\em Advances in neural information processing systems}, 30, 2017.
+
+\bibitem{dateformer}
+Julong Young, Junhui Chen, Feihu Huang, and Jian Peng.
+\newblock Dateformer: Time-modeling transformer for longer-term series forecasting.
+\newblock {\em arXiv preprint arXiv:2207.05397}, 2022.
+
+\bibitem{pytorch}
+Adam Paszke, Sam Gross, Francisco Massa, Adam Lerer, James Bradbury, Gregory Chanan, Trevor Killeen, Zeming Lin, Natalia Gimelshein, Luca Antiga, Alban Desmaison, Andreas Kopf, EdwardZ. Yang, Zachary DeVito, Martin Raison, Alykhan Tejani, Sasank Chilamkurthy, Benoit Steiner, Lu~Fang, Junjie Bai, and Soumith Chintala.
+\newblock Pytorch: An imperative style, high-performance deep learning library.
+\newblock {\em Neural Information Processing Systems,Neural Information Processing Systems}, Jan 2019.
+
+\bibitem{adam}
+DiederikP. Kingma and Jimmy Ba.
+\newblock Adam: A method for stochastic optimization.
+\newblock {\em arXiv: Learning,arXiv: Learning}, Dec 2014.
+
+\end{thebibliography}

@@ -1,0 +1,55 @@
+
+{\small
+\begin{table}[tb]
+\centering
+\footnotesize
+\caption{The results of interval-based flexible prediction}
+\label{flexible_prediction2}
+% \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\resizebox{0.95\textwidth}{!}{
+\begin{tabular}{p{10mm}p{6mm}p{6mm}p{6mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}}
+\toprule
+\multirow{2}{*}{model}    & \multicolumn{3}{c}{Configs}                                                  & \multicolumn{2}{c}{D2Vformer} & \multicolumn{2}{c}{D2Vformer-FT} &\multicolumn{2}{c}{PatchTST} & \multicolumn{2}{c}{DLinear} & \multicolumn{2}{c}{Fedformer} & \multicolumn{2}{c}{Autoformer} \\
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10} \cmidrule(lr){11-12}  \cmidrule(lr){13-14} \cmidrule(lr){15-16}
+                          & \multicolumn{1}{l}{Seq} & \multicolumn{1}{l}{Pred} & \multicolumn{1}{l}{Gap} & MAE           & MSE           & MAE           & MSE  & MAE           & MSE        & MAE          & MSE          & MAE           & MSE           & MAE            & MSE           \\
+                          \midrule
+\multirow{4}{*}{ILI}  & \multirow{4}{*}{36}     & \multirow{4}{*}{24}      & 2                       & 0.8064 &	1.4661    &\underline{0.8057} & \textbf{1.4598}  & \textbf{0.7406}        & 1.4818       & 0.8772       & \underline{1.4778}       & 0.8878        & 1.6014        & 1.0478         & 1.9957        \\
+                          &                         &                          & 4                       & 0.8479 &	1.6245  &\underline{0.8486} & \underline{1.5984}    & \textbf{0.8082}        & 1.6227       & 0.9171       & \textbf{1.5750}       & 0.9058        & 1.6332        & 1.0497         & 2.0477        \\
+                          &                         &                          & 6                       &0.8755	&1.6800 &\textbf{0.8672}
+                        &  \textbf{1.6259}      & \underline{0.8721}        & 1.8544       & 0.9457       & \underline{1.6667}       & 0.9905        & 1.8251        & 1.0596         & 2.1308        \\
+                          &                         &                          & 8                       &0.9492	&2.0675  &0.9081 & 1.8887    &\textbf{0.6967}        & \textbf{1.0693}       & 0.8958       & \underline{1.5102}       & \underline{0.8647}        & 1.5702        & 1.0317         & 2.2175        \\
+                          \midrule
+\multirow{4}{*}{Exchange} & \multirow{4}{*}{96}     & \multirow{4}{*}{96}      & 2                       & 0.1671& 	0.0547   &0.1663 & \underline{0.0542}    & \underline{0.1651}        & 0.0545       & \textbf{0.1604}       &\textbf{0.0500}       & 0.2103        & 0.0817        & 0.2345         & 0.1027        \\
+                          &                         &                          & 4                       & 0.1713 	&0.0568 &0.1698 &\underline{0.0560} 
+      & \underline{0.1681}        & 0.0568       & \textbf{0.1643}       & \textbf{0.0519}       & 0.2299        & 0.0998        & 0.2341         & 0.1034        \\
+                          &                         &                          & 6                       & 0.1759	&0.0594   & \underline{0.1731}&  \underline{0.0577}   & 0.1741        & 0.0603       & \textbf{0.1684}       & \textbf{0.0538}       & 0.2075        & 0.0800        & 0.2353         & 0.1022        \\
+                          &                         &                          & 8                       & 0.1783	&0.0612  & 0.1783&  0.0609 & \underline{0.1758}        & \underline{0.0598}       & \textbf{0.1716}       & \textbf{0.0556}       & 0.2377        & 0.1027        & 0.2377         & 0.1027        \\
+                          \midrule
+% \multirow{4}{*}{ETTm2}    & \multirow{4}{*}{96}     & \multirow{4}{*}{96}      & 2                       & 0.2589        & 0.1359        & \textbf{0.2254}        & \textbf{0.1152}       & \underline{0.2280}       & \underline{0.1167}       & 0.2345        & 0.1168        & 0.2675         & 0.1449        \\
+%                           &                         &                          & 4                       & 0.2610        & 0.1385        & \textbf{0.2260}        & \textbf{0.1158}       & \underline{0.2305}       & \underline{0.1187}       & 0.2432        & 0.1243        & 0.2675         & 0.1450        \\
+%                           &                         &                          & 6                       & 0.2627        & 0.1391        & \textbf{0.2295}        & \textbf{0.1185}       & \underline{0.2328}       & 0.1207       & 0.2389        & \underline{0.1206}        & 0.2689         & 0.1463        \\
+%                           &                         &                          & 8                       & \underline{0.2636}	&0.1409     & \textbf{0.2329}        & \textbf{0.1215}       & {0.2346}       & \underline{0.1223}       & 0.2451        & 0.1270        & 0.2789         & 0.1563      \\
+                          % \midrule
+
+
+% \multirow{4}{*}{ILI\_ft\_10}  & \multirow{4}{*}{36}     & \multirow{4}{*}{24}      & 2                       & \underline{0.8057} &	\textbf{1.4598}       & \textbf{0.7406}        & 1.4818       & 0.8772       & \underline{1.4778}       & 0.8878        & 1.6014        & 1.0478         & 1.9957        \\
+%                           &                         &                          & 4                       & \underline{0.8479} &	\underline{1.6245}     & \textbf{0.8082}        & 1.6227       & 0.9171       & \textbf{1.5750}       & 0.9058        & 1.6332        & 1.0497         & 2.0477        \\
+%                           &                         &                          & 6                       &\textbf{0.8672}	&\textbf{1.6259}        & \underline{0.8721}        & 1.8544       & 0.9457       & \underline{1.6667}       & 0.9905        & 1.8251        & 1.0596         & 2.1308        \\
+%                           &                         &                          & 8                       &0.9081	&1.8887      &\textbf{0.6967}        & \textbf{1.0693}       & 0.8958       & \underline{1.5102}       & \underline{0.8647}        & 1.5702        & 1.0317         & 2.2175        \\
+%                           \midrule
+% \multirow{4}{*}{Ex\_ft\_10} & \multirow{4}{*}{96}     & \multirow{4}{*}{96}      & 2                       & 0.1663 & 	\underline{0.0542}       & \underline{0.1651}        & 0.0545       & \textbf{0.1604}       &\textbf{0.0500}       & 0.2103        & 0.0817        & 0.2345         & 0.1027        \\
+%                           &                         &                           & 4                       & 0.1698	&\underline{0.0560}      & \underline{0.1681}        & 0.0568       & \textbf{0.1643}       & \textbf{0.0519}       & 0.2299        & 0.0998        & 0.2341         & 0.1034        \\
+%                           &                         &                          & 6                       & \underline{0.1731}	&\underline{0.0577}       & 0.1741        & 0.0603       & \textbf{0.1684}       & \textbf{0.0538}       & 0.2075        & 0.0800        & 0.2353         & 0.1022        \\
+%                           &                         &                          & 8                       & 0.1783	&0.0609     & \underline{0.1758}        & \underline{0.0598}       & \textbf{0.1716}       & \textbf{0.0556}       & 0.2377        & 0.1027        & 0.2377         & 0.1027           \\
+%                           \midrule
+                          
+\end{tabular}
+}
+\end{table}
+}
+
+
+
+
+

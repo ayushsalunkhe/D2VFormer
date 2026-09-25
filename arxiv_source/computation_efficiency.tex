@@ -1,0 +1,146 @@
+\begin{wraptable}{r}{0.55\textwidth}
+%\begin{table}[h]
+    \footnotesize
+    \caption{Evaluation of model complexity in regular and flexible prediction tasks. 'Numb. of Param.' refers to the number of learnable parameters in the model, 'Inference' indicates the average time taken to make predictions for a batch of data, and 'Training' denotes the average time taken to train the model one epoch.}
+    \label{computation_efficiency}
+    \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+    % 调整大小，设置subtable后面的参数
+    \begin{subtable}{0.47\textwidth}
+        \centering
+        \resizebox{1\textwidth}{!}{
+        \begin{tabular}
+            {ccccccc}  
+            \toprule
+            \multirow{2}{*}{Model}    & \multicolumn{2}{c}{Configs}     & \multirow{2}{*}{\tabincell{c}{Numb. of\\ Param.}}        & \multirow{2}{*}{\tabincell{c}{Inference \\(ms/batch)}}      & \multirow{2}{*}{\tabincell{c}{Training \\(s/epoch)}}            \\ 
+            \cmidrule{2-3}
+            & Seq  & Pred \\
+            \midrule
+            D2Vformer
+            & 96     & 96 	 & 146038          & 7.4910           & 2.4687     \\
+            PatchTST  
+            & 96     & 96 	 & 6310336          & 5.9510          & 6.1480      \\
+            DLinear 
+            & 96     & 96 	 & 19012         & 3.6151         & 0.6950    \\
+            Autoformer  
+            & 96     & 96 	 & 7330252        & 78.9015          & 13.3086      \\
+            Fedformer 
+            & 96     & 96 	 & 22589454        & 79.9172        & 29.6838  \\
+            \bottomrule
+        \end{tabular}}
+        \caption{On regular prediction}
+        \label{computation_mul}
+    \end{subtable}\\
+    \begin{subtable}{0.47\textwidth}
+        \centering
+        \resizebox{1.1\textwidth}{!}{
+            \begin{tabular}
+                {ccccccc} 
+                \toprule
+                \multirow{2}{*}{Model}   & \multicolumn{3}{c}{Configs}     & \multirow{2}{*}{\tabincell{c}{Numb. of\\ Param.}}        & \multirow{2}{*}{\tabincell{c}{Inference \\(ms/batch)}}      & \multirow{2}{*}{\tabincell{c}{Training \\(s/epoch)}}        \\ 
+                \cmidrule{2-4}
+                &Gap & Seq  & $\text{Pred}^*$\\
+                \midrule
+                \multirow{3}{*}{D2Vformer}   &\multirow{3}{*}{6} & \multirow{3}{*}{96}     & 4 & 146038       & 5.5140 & 1.5818               \\
+                & & &8 & -       & 6.8280 & -              \\
+                & &  &10 & -       & 7.0502 & -               \\
+                \midrule
+                \multirow{3}{*}{PatchTST}  &\multirow{3}{*}{6} & \multirow{3}{*}{96}     & 4  & 4425288      & 3.8227  & 6.0567              \\
+                 & &   &8  & 4510972      & 3.9979  & 6.0660               \\
+                  & &    &10  & 4553814      & 4.1038 &6.0786                \\
+                  \midrule
+                \multirow{3}{*}{DLinear}  &\multirow{3}{*}{6} & \multirow{3}{*}{96}     & 4  & 1940      & 3.0557 & 0.6509          \\
+                 & &   & 8  & 2716      & 3.1221 & 0.6557          \\
+                  & &   & 10  & 3104      & 3.1863 & 0.6631          \\
+                  \midrule
+                \multirow{3}{*}{Autoformer}  &\multirow{3}{*}{6} & \multirow{3}{*}{96}    & 4  & 7330252      & 66.9880 & 7.2816           \\
+                 & &  & 8  & 7330252      & 68.4921 & 7.5508          \\
+                 & &    & 10  & 7330252     & 69.2782 & 7.9322          \\
+                 \midrule
+                \multirow{3}{*}{Fedformer}  &\multirow{3}{*}{6} & \multirow{3}{*}{96}     & 4  & 16520454      &58.3564  & 18.5534           \\
+                 & &    & 8  & 16867254      &59.3064 & 18.8975           \\
+                  & &    & 10  & 17040654      &60.4832  & 19.1533           \\
+                \bottomrule
+            \end{tabular}}
+        \caption{On flexible prediction}
+        \label{computation_skip}
+    \end{subtable}
+%\end{table}
+\end{wraptable}
+
+
+
+
+
+
+
+
+
+% \begin{wraptable}{r}{0.55\textwidth}
+% %\begin{table}[h]
+%     \footnotesize
+%     \caption{Evaluation of model complexity in regular and flexible prediction tasks. 'Numb. of Param.' refers to the number of learnable parameters in the model, 'Inference' indicates the average time taken to make predictions for a batch of data, and 'Training' denotes the average time taken to train the model one epoch.}
+%     \label{computation_efficiency}
+%     \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+%     % 调整大小，设置subtable后面的参数
+%     \begin{subtable}{0.47\textwidth}
+%         \centering
+%         \resizebox{1\textwidth}{!}{
+%         \begin{tabular}
+%             {c|cc|cccc}  
+%             \hline
+%             \multirow{2}{*}{Model}    & \multicolumn{2}{c|}{Configs}     & \multirow{2}{*}{\tabincell{c}{Numb. of\\ Param.}}        & \multirow{2}{*}{\tabincell{c}{Inference \\(ms/batch)}}      & \multirow{2}{*}{\tabincell{c}{Training \\(s/epoch)}}            \\ 
+%             \cline{2-3}
+%             & Seq  & Pred\\
+%             \hline
+%             D2Vformer
+%             & 96     & 96 	 & 9808          & 6.5484           & 1.4642     \\
+%             PatchTST  
+%             & 96     & 96 	 & 275586          & 4.9147          & 1.8033      \\
+%             DLinear 
+%             & 96     & 96 	 & 19012         & 3.4087         & 0.6772    \\
+%             Autoformer  
+%             & 96     & 96 	 & 214174        & 46.2351          & 7.0566      \\
+%             Fedformer 
+%             & 96     & 96 	 & 266976        & 75.2431        & 14.4778  \\
+%             \hline
+%         \end{tabular}}
+%         \caption{On regular prediction}
+%         \label{computation_mul}
+%     \end{subtable}\\
+%     \begin{subtable}{0.47\textwidth}
+%         \centering
+%         \resizebox{1.1\textwidth}{!}{
+%             \begin{tabular}
+%                 {c|ccc|ccc} 
+%                 \hline
+%                 \multirow{2}{*}{Model}   & \multicolumn{3}{c|}{Configs}     & \multirow{2}{*}{\tabincell{c}{Numb. of\\ Param.}}        & \multirow{2}{*}{\tabincell{c}{Inference \\(ms/batch)}}      & \multirow{2}{*}{\tabincell{c}{Training \\(s/epoch)}}        \\ 
+%                 \cline{2-4}
+%                 &Gap & Seq  & $\text{Pred}^*$\\
+%                 \hline
+%                 \multirow{3}{*}{D2Vformer}   &\multirow{3}{*}{6} & \multirow{3}{*}{96}     & 4 & 9808       & 5.3618 & 1.5405               \\
+%                 & & &8 & -       & 5.6139 & -              \\
+%                 & &  &10 & -       & 5.7944 & -               \\
+%                 \midrule
+%                 \multirow{3}{*}{PatchTST}  &\multirow{3}{*}{6} & \multirow{3}{*}{96}     & 4  & 157226      & 7.7549  & 2.0092              \\
+%                  & &   &8  & 162606      & 7.9587  & 2.0282               \\
+%                   & &    &10  & 165296      & 8.0597 & 2.0490               \\
+%                   \midrule
+%                 \multirow{3}{*}{DLinear}  &\multirow{3}{*}{6} & \multirow{3}{*}{96}     & 4  & 1940      & 3.9014 & 0.7974          \\
+%                  & &   & 8  & 2716      & 4.1271 & 0.8026          \\
+%                   & &   & 10  & 3104      & 4.4951 & 0.8277          \\
+%                   \midrule
+%                 \multirow{3}{*}{Autoformer}  &\multirow{3}{*}{6} & \multirow{3}{*}{96}    & 4  & 214174      & 40.7940 & 6.9273           \\
+%                  & &  & 8  & 214174      & 41.4016 & 7.0260          \\
+%                  & &    & 10  & 214174      & 45.8029 & 7.7196          \\
+%                  \midrule
+%                 \multirow{3}{*}{Fedformer}  &\multirow{3}{*}{6} & \multirow{3}{*}{96}     & 4  & 245976      &43.6602  & 12.7306           \\
+%                  & &    & 8  & 247176      &46.3519 & 13.1047           \\
+%                   & &    & 10  & 247776      &48.7218  & 13.2098           \\
+%                 \hline
+%             \end{tabular}}
+%         \caption{On flexible prediction}
+%         \label{computation_skip}
+%     \end{subtable}
+% %\end{table}
+% \end{wraptable}
+

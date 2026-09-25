@@ -1,0 +1,36 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Checkpoints and models
+*.pt
+*.pth
+*.ckpt
+checkpoints/
+D2Vformer_results/
+
+# Archives
+*.zip
+*.tar.gz
+
+# Scratch and temporary scripts
+scratch/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE / System files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/

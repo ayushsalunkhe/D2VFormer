@@ -1,0 +1,13 @@
+dataset,seed,model_name,temperature_mode,training_horizon,eval_horizon,test_mse,test_mae,mean_tau,param_count,checksum
+ETTh1,42,TCD2Vformer_fixed,fixed,48,48,0.70256,0.51118,1.0,44021,62ac79ecd74ab85f9c3addebc991b377738fe7da371a00ba8063872393a1aced
+ETTh1,42,TCD2Vformer_fixed,fixed,48,192,0.70077,0.52289,1.0,44021,62ac79ecd74ab85f9c3addebc991b377738fe7da371a00ba8063872393a1aced
+ETTh1,42,TCD2Vformer_fixed,fixed,48,720,0.86743,0.62756,1.0,44021,62ac79ecd74ab85f9c3addebc991b377738fe7da371a00ba8063872393a1aced
+ETTh1,42,TCD2Vformer_learned_global,learned_global,48,48,0.70263,0.51121,0.991,44022,8eb96a498af03be57beaea0ff41f7d622c259d8b7e82ff75a06dfaf3d23b4d78
+ETTh1,42,TCD2Vformer_learned_global,learned_global,48,192,0.70092,0.52296,0.991,44022,8eb96a498af03be57beaea0ff41f7d622c259d8b7e82ff75a06dfaf3d23b4d78
+ETTh1,42,TCD2Vformer_learned_global,learned_global,48,720,0.86755,0.62762,0.991,44022,8eb96a498af03be57beaea0ff41f7d622c259d8b7e82ff75a06dfaf3d23b4d78
+ETTh1,42,TCD2Vformer_temporal_context,temporal_context,48,48,0.70492,0.51599,0.9912,44326,30c948b66725f90c9dd2f8755cea715a900150c5547b97e38023cf2d9183fa23
+ETTh1,42,TCD2Vformer_temporal_context,temporal_context,48,192,0.69696,0.52536,0.9912,44326,30c948b66725f90c9dd2f8755cea715a900150c5547b97e38023cf2d9183fa23
+ETTh1,42,TCD2Vformer_temporal_context,temporal_context,48,720,0.8654,0.63098,0.9912,44326,30c948b66725f90c9dd2f8755cea715a900150c5547b97e38023cf2d9183fa23
+ETTh1,42,TCD2Vformer_query_conditioned,query_conditioned,48,48,0.70492,0.51599,0.9912,44326,3470300466c95fff2d510f46671eeeeb8d67ef8b5743b45b33ff81d79c12c6d2
+ETTh1,42,TCD2Vformer_query_conditioned,query_conditioned,48,192,0.69696,0.52536,0.9912,44326,3470300466c95fff2d510f46671eeeeb8d67ef8b5743b45b33ff81d79c12c6d2
+ETTh1,42,TCD2Vformer_query_conditioned,query_conditioned,48,720,0.86541,0.63099,0.9912,44326,3470300466c95fff2d510f46671eeeeb8d67ef8b5743b45b33ff81d79c12c6d2

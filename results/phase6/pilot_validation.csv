@@ -1,0 +1,5 @@
+dataset,seed,temperature_mode,initial_temperature,best_epoch,val_loss,train_time_sec,ckpt_path
+ETTh1,42,fixed,1.0,2,0.65175,18.15,results/phase6/checkpoints\tcd2v_ETTh1_fixed_tau1.0_seed42.pt
+ETTh1,42,learned_global,1.0,2,0.65179,20.4,results/phase6/checkpoints\tcd2v_ETTh1_learned_global_seed42.pt
+ETTh1,42,temporal_context,1.0,1,0.64982,26.67,results/phase6/checkpoints\tcd2v_ETTh1_temporal_context_seed42.pt
+ETTh1,42,query_conditioned,1.0,1,0.64982,21.12,results/phase6/checkpoints\tcd2v_ETTh1_query_conditioned_seed42.pt

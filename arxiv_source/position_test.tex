@@ -1,0 +1,41 @@
+% \begin{wraptable}{r}{0.6\textwidth}
+\begin{table}[tb]
+\centering
+\footnotesize
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\caption{Performance of time position embedding methods. 
+%A lower MSE or MAE indicates a better prediction.
+%The best results are highlighted in \textbf{bold} and the second best results are highlighted with a \underline{underline}. 
+%The numbers on the left of the table are the prediction length.
+}
+\label{D2V_position}
+\resizebox{0.55\textwidth}{!}{
+\begin{tabular}
+{p{13mm}p{9mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}} 
+\toprule
+\multirow{2}{*}{Model}       & \multirow{2}{*}{\tabincell{c}{Pred.\\Length}}   & \multicolumn{2}{c}{D2V}         & \multicolumn{2}{c}{T2V}      & \multicolumn{2}{c}{Primal Position}             \\ 
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} 
+                              &  & MAE             & MSE             & MAE             & MSE             & MAE             & MSE                  \\    
+                               \midrule
+
+
+%
+\multirow{2}{*}{Exchange}   & 96     & \textbf{0.2949} 	 & \textbf{0.1404}          & 0.3183      & 0.1657         & \underline{0.3033}    & \underline{0.1493}            \\
+& 336     & \textbf{0.4919} 	 & \textbf{0.3826}          & \underline{0.6831}      &\underline{0.6748}         & {0.9205}    & {1.5402}            \\
+\midrule
+\multirow{2}{*}{ETTh1}  & 96     & \underline{0.4598} 	 & \underline{0.4387}          & 0.5349     & 0.5220          & \textbf{0.4573}    & \textbf{0.4292}            \\
+& 336     & \textbf{0.6128}	 & \textbf{0.6742}         & 0.6210    & 0.7323        & \underline{0.6132}  & \underline{0.7101}            \\
+\midrule
+\multirow{2}{*}{ETTm1}  & 96     & \textbf{0.3965} 	 & \textbf{0.3529}          & 0.4756    & 0.4407      & \underline{0.4160}    & \underline{0.3706 }            \\
+& 336     & \textbf{0.5076} 	 & \textbf{0.5196}          & 0.5267    & 0.5608      & \underline{0.5158}    & \underline{0.5569}            \\
+% \midrule
+
+
+% \multirow{2}{*}{Traffic}&96&\textbf{0.4343}&\textbf{0.5084}&\underline{0.4383}&\underline{0.5378}&0.4730	&0.5717\\
+% &336&\textbf{0.3926} &\textbf{0.5244} &{0.3982}&{0.5783}&\underline{0.3934}	&\underline{0.5444}\\
+                             \bottomrule
+
+\end{tabular}
+}
+% \end{wraptable}
+\end{table}

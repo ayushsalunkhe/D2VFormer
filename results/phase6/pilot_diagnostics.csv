@@ -1,0 +1,13 @@
+dataset,seed,model_name,temperature_mode,eval_horizon,H_norm,N_eff,max_attention,mean_tau,std_tau,min_tau,max_tau
+ETTh1,42,TCD2Vformer_fixed,fixed,48,0.98399,90.1118,0.0189,1.0,0.0,1.0,1.0
+ETTh1,42,TCD2Vformer_fixed,fixed,192,0.98724,91.212,0.0177,1.0,0.0,1.0,1.0
+ETTh1,42,TCD2Vformer_fixed,fixed,720,0.98592,90.7379,0.01822,1.0,0.0,1.0,1.0
+ETTh1,42,TCD2Vformer_learned_global,learned_global,48,0.98374,90.0292,0.01899,0.991,0.0,0.991,0.991
+ETTh1,42,TCD2Vformer_learned_global,learned_global,192,0.98704,91.1435,0.01778,0.991,0.0,0.991,0.991
+ETTh1,42,TCD2Vformer_learned_global,learned_global,720,0.9857,90.6636,0.01831,0.991,0.0,0.991,0.991
+ETTh1,42,TCD2Vformer_temporal_context,temporal_context,48,0.9845,90.2526,0.01869,0.9912,0.0004,0.99,0.9923
+ETTh1,42,TCD2Vformer_temporal_context,temporal_context,192,0.98767,91.3358,0.01752,0.9912,0.0004,0.99,0.9923
+ETTh1,42,TCD2Vformer_temporal_context,temporal_context,720,0.98642,90.8813,0.01801,0.9912,0.0005,0.99,0.9923
+ETTh1,42,TCD2Vformer_query_conditioned,query_conditioned,48,0.9845,90.2538,0.01869,0.9912,0.0004,0.9894,0.993
+ETTh1,42,TCD2Vformer_query_conditioned,query_conditioned,192,0.98767,91.3363,0.01752,0.9912,0.0004,0.9894,0.993
+ETTh1,42,TCD2Vformer_query_conditioned,query_conditioned,720,0.98642,90.8819,0.01801,0.9912,0.0004,0.9892,0.9932

@@ -22,6 +22,7 @@ class D2Vformer(nn.Module):
 
         # Encoder
         self.all_linear = nn.Linear(self.seq_len, self.d_model)
+        self.trend_linear = nn.Linear(self.seq_len, self.d_model)
         self.season_linear = nn.Linear(self.seq_len, self.d_model)
         self.trend_linear_decoder = nn.Linear(self.d_model, self.pred_len)
 

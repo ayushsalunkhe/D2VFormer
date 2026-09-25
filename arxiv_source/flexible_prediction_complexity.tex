@@ -1,0 +1,97 @@
+\begin{table}[h]
+    \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+    \footnotesize
+    \caption{Model complexity evaluation in prediction tasks with varying prediction lengths and interval lengths. 'Numb. of Param.' refers to the number of learnable parameters in the model, 'Inference' indicates the average time the model takes to make predictions for a batch of data, and 'Training' denotes the average time taken to train one epoch of the model.}
+\label{tab:flexible_prediction_complexity_interval_based_prediction}
+    \begin{subtable}{0.47\textwidth}
+        \centering
+        \resizebox{1\textwidth}{!}{
+            \begin{tabular}{ccllll}
+            \toprule
+            \multirow{2}{*}{Model}      & \multicolumn{2}{c}{Configs}    & \multirow{2}{*}{\tabincell{c}{Numb. of\\ Param.}}           & \multirow{2}{*}{\tabincell{c}{Training \\(s/epoch)}} & \multirow{2}{*}{\tabincell{c}{Inference \\(ms/batch)}}  \\ \cmidrule{2-3}
+                                        & \multicolumn{1}{l}{Seq} & $\text{Pred}^*$ & \multicolumn{1}{c}{}                       & \multicolumn{1}{c}{}                       & \multicolumn{1}{c}{}                           \\
+                                        
+                                        \midrule
+            \multirow{4}{*}{D2Vformer}  & \multirow{4}{*}{96}   & 96   & 146038                                     & 2.4686                                   & 7.4941                                       \\
+            &     & 48   & -                                          & -                                          & 7.1410                                       \\
+                                        &                         & 72   & -                                          & -                                          & 7.2870                                       \\
+                                                              
+                                        &                         & 108  & -                                          & -                                          & 7.5000                                         \\
+                                        \midrule
+            \multirow{4}{*}{PatchTST}   & \multirow{4}{*}{96}   & 96   & 6310336                                    & 6.1478                                   & 5.9440                                       \\
+            & & 48   & 5589586                                    & 6.0946                                   & 5.7612                                       \\
+                                        &                         & 72   & 6036490                                    & 6.0840                                   & 5.8713                                       \\
+                                                               
+                                        &                         & 108  & 6856846                                    & 6.2033                                   & 6.1053                                       \\
+                                        \midrule
+            \multirow{4}{*}{DLinear}    & \multirow{4}{*}{96}  & 96   & 19012                                      & 0.6962                                   & 3.6424                                        \\
+            & & 48   & 9312                                       & 0.6652                                   & 3.2410                                       \\
+                                        &                         & 72   & 13968                                      & 0.6712                                   & 3.4232                                       \\
+                                                               
+                                        &                         & 108  & 20952                                      & 0.7209                                   & 4.5437                                       \\
+                                        \midrule
+            \multirow{4}{*}{Fedformer}  & \multirow{4}{*}{96}  & 96   & 22589454                                   & 29.7278                                   & 79.4551                                       \\ 
+            &   & 48   & 19815054                                   & 27.8697                                   & 74.3881                                       \\
+                                        &                         & 72   & 21895854                                   & 28.2480                                   & 77.2284                                       \\
+                                                                
+                                        &                         & 108  & 22589454                                   & 30.5217                                   & 85.7943                                        \\
+                                        \midrule
+            \multirow{4}{*}{Autoformer} & \multirow{4}{*}{96}   & 96   & 7330252                                    & 13.3049                                   & 78.6800                                        \\
+            &  & 48   & 7330252                                    & 11.4382                                   & 70.6933                                       \\
+                                        &                         & 72   & 7330252                                    & 12.3086                                   & 75.0954                                       \\
+                                                                 
+                                        &                         & 108  & 7330252                                    & 15.3784                          &         108.6011 \\
+                                        \bottomrule
+            \end{tabular}}
+    \caption{Prediction with varying prediction lengths}
+    \label{tab:flexible_prediction_complexity_different_lengths}
+    \end{subtable}
+    \begin{subtable}{0.51\textwidth}
+        \centering
+        \resizebox{1\textwidth}{!}{
+            \begin{tabular}{cccllll}
+            \toprule
+            \multirow{2}{*}{Model}      & \multicolumn{3}{c}{Configs}                              & \multirow{2}{*}{\tabincell{c}{Numb. of\\ Param.}}              & \multirow{2}{*}{\tabincell{c}{Training \\(s/epoch)}}  & \multirow{2}{*}{\tabincell{c}{Inference \\(ms/batch)}}\\
+            \cmidrule(lr){2-4}
+                                        & \multicolumn{1}{l}{Seq} & \multicolumn{1}{l}{Pred} & Gap & \multicolumn{1}{c}{}                       & \multicolumn{1}{c}{}                       & \multicolumn{1}{c}{}                           \\
+                                        \midrule
+            \multirow{4}{*}{D2Vformer}  & \multirow{4}{*}{96}     & \multirow{4}{*}{96}      & 2   & 146038                                     & 2.3630                                   & 7.4871                                       \\
+                                        &                         &                          & 4   & -                                          & -                                          & 7.4879                                       \\
+                                        &                         &                          & 6   & -                                          & -                                          & 7.4834                                       \\
+                                        &                         &                          & 8   & -                                          & -                                          & 7.4953                                       \\
+                                        \midrule
+            \multirow{4}{*}{PatchTST}   & \multirow{4}{*}{96}     & \multirow{4}{*}{96}      & 2   & 6607156                                    & 6.1527                                   & 5.9710                                       \\
+                                        &                         &                          & 4   & 6656118                                    & 6.1835                                   & 6.0462                                       \\
+                                        &                         &                          & 6   & 6705080                                    & 6.1993                                  & 6.0491                                       \\
+                                        &                         &                          & 8   & 6754042                                    & 6.2028                                   & 6.1051                                       \\
+                                        \midrule
+            \multirow{4}{*}{DLinear}    & \multirow{4}{*}{96}     & \multirow{4}{*}{96}      & 2   & 19022                                      & 0.7025                                   & 3.8092                                       \\
+                                        &                         &                          & 4   & 19400                                      & 0.7059                                  & 4.0271                                       \\
+                                        &                         &                          & 6   & 19788                                      & 0.7107                                   & 4.1021                                       \\
+                                        &                         &                          & 8   & 20176                                      & 0.7199                                   & 4.5381                                       \\
+                                        \midrule
+            \multirow{4}{*}{Fedformer}  & \multirow{4}{*}{96}     & \multirow{4}{*}{96}      & 2   & 22589454                                   & 29.7664                                   & 82.8762                                       \\
+                                        &                         &                          & 4   & 22589454                                   & 29.8867                                   & 84.7731                                       \\
+                                        &                         &                          & 6   & 22589454                                   & 30.0998                                   & 85.0564                                       \\
+                                        &                         &                          & 8   & 22589454                                   & 30.5013                                   & 85.7214                                       \\
+                                        \midrule
+            \multirow{4}{*}{Autoformer} & \multirow{4}{*}{96}     & \multirow{4}{*}{96}      & 2   & 7330252                                    & 13.4812                                  & 78.9544                                       \\
+                                        &                         &                          & 4   & 7330252                                    & 13.8899                                   & 85.7951                                       \\
+                                        &                         &                          & 6   & 7330252                                    & 14.5899                                   & 92.7951                                       \\
+                                        &                         &                          & 8   & 7330252                                    & 15.0245                                   & 108.1761 \\
+                                        \bottomrule
+            \end{tabular}}
+        \caption{Prediction with varying interval lengths}
+
+    \end{subtable}
+
+\end{table}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,92 @@
+{
+  "project": "TC-D2Vformer (Temperature-Controlled D2Vformer)",
+  "base_paper": "arXiv:2409.11024 / IEEE TNNLS",
+  "evaluation_scope": {
+    "datasets": [
+      "ETTh1",
+      "Exchange",
+      "ETTh2",
+      "ETTm1"
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "lookback": 96,
+    "training_horizon": 48,
+    "test_horizons": [
+      24,
+      48,
+      96,
+      192,
+      336,
+      720
+    ],
+    "candidate_temperatures": [
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "selection_metric": "min_validation_mse_O48"
+  },
+  "model_architecture": {
+    "class_name": "TCD2Vformer",
+    "c_in": 7,
+    "d_model": 128,
+    "d_ff": 256,
+    "k_freq": 16,
+    "dropout": 0.05,
+    "trainable_parameters": 44021,
+    "horizon_dependent_parameters": 0
+  },
+  "selected_temperatures": {
+    "ETTh1": {
+      "seed_42": 4.0,
+      "seed_43": 2.0,
+      "seed_44": 4.0
+    },
+    "Exchange": {
+      "seed_42": 0.5,
+      "seed_43": 4.0,
+      "seed_44": 4.0
+    },
+    "ETTh2": {
+      "seed_42": 1.0,
+      "seed_43": 2.0,
+      "seed_44": 4.0
+    },
+    "ETTm1": {
+      "seed_42": 0.5,
+      "seed_43": 0.5,
+      "seed_44": 2.0
+    }
+  },
+  "dataset_summaries": {
+    "ETTh1": {
+      "mean_selected_mse": 0.90861,
+      "mean_baseline_mse": 0.91474,
+      "mean_improvement_pct": 0.67,
+      "long_horizon_improvement_pct": 1.13
+    },
+    "Exchange": {
+      "mean_selected_mse": 0.40082,
+      "mean_baseline_mse": 0.40556,
+      "mean_improvement_pct": 1.17,
+      "long_horizon_improvement_pct": 1.35
+    },
+    "ETTh2": {
+      "mean_selected_mse": 0.3002,
+      "mean_baseline_mse": 0.30307,
+      "mean_improvement_pct": 0.95,
+      "long_horizon_improvement_pct": 0.8
+    },
+    "ETTm1": {
+      "mean_selected_mse": 0.87243,
+      "mean_baseline_mse": 0.87632,
+      "mean_improvement_pct": 0.44,
+      "long_horizon_improvement_pct": -0.66
+    }
+  }
+}

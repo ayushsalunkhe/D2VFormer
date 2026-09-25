@@ -1,0 +1,13 @@
+dataset,seed,selected_mode,selection_metric,val_loss_selected,val_loss_fixed_baseline,val_improvement_pct,margin_to_second,tie_rule,test_mse_selected_mean,test_mse_fixed_mean,test_improvement_pct
+ETTh1,42,fixed,min_validation_mse_at_O48,0.563427,0.563427,0.0,0.002396,N/A (Clear winner),0.917643,0.917643,0.0
+ETTh1,43,learned_global,min_validation_mse_at_O48,0.56649,0.566555,0.0115,6.5e-05,N/A (Clear winner),0.926725,0.922373,-0.47
+ETTh1,44,fixed,min_validation_mse_at_O48,0.559792,0.559792,0.0,0.002298,N/A (Clear winner),0.925413,0.925413,0.0
+ETTh2,42,temporal_context,min_validation_mse_at_O48,0.273356,0.276413,1.106,0.0,"First encountered in pre-registered order: [temporal_context, query_conditioned, learned_global, fixed]",0.299412,0.303563,1.37
+ETTh2,43,query_conditioned,min_validation_mse_at_O48,0.274759,0.275173,0.1505,2e-06,"First encountered in pre-registered order: [temporal_context, query_conditioned, learned_global, fixed]",0.296468,0.306215,3.18
+ETTh2,44,fixed,min_validation_mse_at_O48,0.275026,0.275026,0.0,2.5e-05,N/A (Clear winner),0.29811,0.29811,0.0
+ETTm1,42,query_conditioned,min_validation_mse_at_O48,0.44259,0.449867,1.6176,0.003928,N/A (Clear winner),0.902473,0.87486,-3.16
+ETTm1,43,learned_global,min_validation_mse_at_O48,0.45402,0.456356,0.5119,0.002336,N/A (Clear winner),0.871173,0.870558,-0.07
+ETTm1,44,query_conditioned,min_validation_mse_at_O48,0.451594,0.460415,1.9159,0.000596,N/A (Clear winner),0.916478,0.849848,-7.84
+exchange,42,query_conditioned,min_validation_mse_at_O48,0.319839,0.323427,1.1094,6e-06,"First encountered in pre-registered order: [temporal_context, query_conditioned, learned_global, fixed]",0.407262,0.40836,0.27
+exchange,43,learned_global,min_validation_mse_at_O48,0.311934,0.311965,0.0099,3.1e-05,N/A (Clear winner),0.400968,0.400927,-0.01
+exchange,44,query_conditioned,min_validation_mse_at_O48,0.308856,0.30956,0.2274,2e-06,"First encountered in pre-registered order: [temporal_context, query_conditioned, learned_global, fixed]",0.403398,0.401308,-0.52

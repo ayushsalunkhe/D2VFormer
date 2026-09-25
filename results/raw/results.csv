@@ -1,0 +1,145 @@
+dataset,model,regime,seed,train_horizon,eval_horizon,mse,mae,attention_entropy,normalized_attention_entropy,parameter_count,training_time_sec,inference_time_sec,checksum_verified
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),42,48.0,24,0.82704,0.62761,4.432,0.971,44021,68.2,1.058,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),42,48.0,48,0.84399,0.63965,4.4381,0.9723,44021,68.2,1.328,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),42,48.0,96,0.8662,0.65725,4.4417,0.9731,44021,68.2,2.086,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),42,48.0,192,0.90938,0.67879,4.4427,0.9733,44021,68.2,3.541,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),42,48.0,336,0.93643,0.6935,4.4437,0.9736,44021,68.2,5.439,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),42,48.0,720,1.07413,0.76008,4.4433,0.9735,44021,68.2,9.613,True
+ETTh1,DLinear,Horizon-Specific Retrained,42,24.0,24,0.347,0.38324,,,4656,6.08,0.137,True
+ETTh1,DLinear,Horizon-Specific Retrained,42,48.0,48,0.39468,0.41056,,,9312,5.62,0.134,True
+ETTh1,DLinear,Horizon-Specific Retrained,42,96.0,96,0.44893,0.44675,,,18624,6.23,0.142,True
+ETTh1,DLinear,Horizon-Specific Retrained,42,192.0,192,0.49955,0.4823,,,37248,5.74,0.149,True
+ETTh1,DLinear,Horizon-Specific Retrained,42,336.0,336,0.5401,0.51471,,,65184,6.56,0.163,True
+ETTh1,DLinear,Horizon-Specific Retrained,42,720.0,720,0.66031,0.59791,,,139680,4.76,0.188,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,42,24.0,24,1.0343,0.70147,,,91186,18.33,0.258,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,42,48.0,48,0.97438,0.69247,,,100858,17.82,0.382,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,42,96.0,96,0.98229,0.70457,,,127114,18.25,0.286,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,42,192.0,192,1.11478,0.76381,,,207274,18.71,0.429,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,42,336.0,336,1.27159,0.82272,,,396634,23.49,0.519,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,42,720.0,720,1.1676,0.80014,,,1307098,27.88,0.57,True
+ETTh1,Persistence,Non-Learning Control,42,,24,1.52444,0.78864,,,0,0.0,0.115,True
+ETTh1,Persistence,Non-Learning Control,42,,48,1.57884,0.81484,,,0,0.0,0.113,True
+ETTh1,Persistence,Non-Learning Control,42,,96,1.64984,0.84638,,,0,0.0,0.119,True
+ETTh1,Persistence,Non-Learning Control,42,,192,1.71876,0.87865,,,0,0.0,0.121,True
+ETTh1,Persistence,Non-Learning Control,42,,336,1.75592,0.89857,,,0,0.0,0.131,True
+ETTh1,Persistence,Non-Learning Control,42,,720,1.90353,0.95938,,,0,0.0,0.143,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),43,48.0,24,0.82129,0.62638,4.4566,0.9764,44021,68.36,1.069,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),43,48.0,48,0.84072,0.63891,4.4608,0.9773,44021,68.36,1.354,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),43,48.0,96,0.86565,0.6553,4.4638,0.978,44021,68.36,2.09,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),43,48.0,192,0.90869,0.67708,4.4644,0.9781,44021,68.36,3.495,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),43,48.0,336,0.93321,0.69048,4.4657,0.9784,44021,68.36,5.5,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),43,48.0,720,1.07194,0.75755,4.4635,0.9779,44021,68.36,9.71,True
+ETTh1,DLinear,Horizon-Specific Retrained,43,24.0,24,0.34748,0.38315,,,4656,6.36,0.144,True
+ETTh1,DLinear,Horizon-Specific Retrained,43,48.0,48,0.39478,0.41125,,,9312,6.02,0.202,True
+ETTh1,DLinear,Horizon-Specific Retrained,43,96.0,96,0.44947,0.44698,,,18624,6.31,0.15,True
+ETTh1,DLinear,Horizon-Specific Retrained,43,192.0,192,0.50042,0.48593,,,37248,6.41,0.223,True
+ETTh1,DLinear,Horizon-Specific Retrained,43,336.0,336,0.54008,0.51691,,,65184,6.34,0.179,True
+ETTh1,DLinear,Horizon-Specific Retrained,43,720.0,720,0.65703,0.59384,,,139680,7.37,0.19,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,43,24.0,24,1.01437,0.70478,,,91186,17.11,0.265,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,43,48.0,48,0.9672,0.69172,,,100858,18.1,0.281,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,43,96.0,96,1.01931,0.71253,,,127114,17.0,0.28,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,43,192.0,192,1.16421,0.77963,,,207274,18.95,0.353,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,43,336.0,336,1.27908,0.82354,,,396634,23.52,0.42,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,43,720.0,720,1.2455,0.8272,,,1307098,23.27,0.642,True
+ETTh1,Persistence,Non-Learning Control,43,,24,1.52444,0.78864,,,0,0.0,0.117,True
+ETTh1,Persistence,Non-Learning Control,43,,48,1.57884,0.81484,,,0,0.0,0.117,True
+ETTh1,Persistence,Non-Learning Control,43,,96,1.64984,0.84638,,,0,0.0,0.119,True
+ETTh1,Persistence,Non-Learning Control,43,,192,1.71876,0.87865,,,0,0.0,0.125,True
+ETTh1,Persistence,Non-Learning Control,43,,336,1.75592,0.89857,,,0,0.0,0.133,True
+ETTh1,Persistence,Non-Learning Control,43,,720,1.90353,0.95938,,,0,0.0,0.142,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),44,48.0,24,0.82894,0.62079,4.3794,0.9595,44021,68.43,0.994,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),44,48.0,48,0.85293,0.6344,4.3854,0.9608,44021,68.43,1.372,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),44,48.0,96,0.8875,0.65552,4.3868,0.9611,44021,68.43,2.156,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),44,48.0,192,0.93385,0.67804,4.3891,0.9616,44021,68.43,3.51,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),44,48.0,336,0.95959,0.69269,4.3895,0.9617,44021,68.43,5.431,True
+ETTh1,PureD2Vformer,Zero-Shot (trained on 48),44,48.0,720,1.10388,0.76173,4.3867,0.9611,44021,68.43,9.772,True
+ETTh1,DLinear,Horizon-Specific Retrained,44,24.0,24,0.34644,0.38249,,,4656,6.98,0.144,True
+ETTh1,DLinear,Horizon-Specific Retrained,44,48.0,48,0.3972,0.41264,,,9312,6.11,0.148,True
+ETTh1,DLinear,Horizon-Specific Retrained,44,96.0,96,0.44844,0.44634,,,18624,7.04,0.14,True
+ETTh1,DLinear,Horizon-Specific Retrained,44,192.0,192,0.50216,0.48877,,,37248,6.44,0.156,True
+ETTh1,DLinear,Horizon-Specific Retrained,44,336.0,336,0.54188,0.5169,,,65184,6.91,0.182,True
+ETTh1,DLinear,Horizon-Specific Retrained,44,720.0,720,0.65547,0.59272,,,139680,6.71,0.27,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,44,24.0,24,1.02641,0.70527,,,91186,17.39,0.272,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,44,48.0,48,0.93357,0.67281,,,100858,13.19,0.275,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,44,96.0,96,0.96171,0.69698,,,127114,17.51,0.378,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,44,192.0,192,1.02785,0.73474,,,207274,18.37,0.35,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,44,336.0,336,1.01069,0.71881,,,396634,17.71,0.413,True
+ETTh1,Repository-D2Vformer,Horizon-Specific Retrained,44,720.0,720,1.16696,0.79216,,,1307098,28.08,0.557,True
+ETTh1,Persistence,Non-Learning Control,44,,24,1.52444,0.78864,,,0,0.0,0.104,True
+ETTh1,Persistence,Non-Learning Control,44,,48,1.57884,0.81484,,,0,0.0,0.104,True
+ETTh1,Persistence,Non-Learning Control,44,,96,1.64984,0.84638,,,0,0.0,0.117,True
+ETTh1,Persistence,Non-Learning Control,44,,192,1.71876,0.87865,,,0,0.0,0.113,True
+ETTh1,Persistence,Non-Learning Control,44,,336,1.75592,0.89857,,,0,0.0,0.129,True
+ETTh1,Persistence,Non-Learning Control,44,,720,1.90353,0.95938,,,0,0.0,0.137,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),42,48.0,24,0.1056,0.23458,3.7845,0.8291,44408,25.82,0.418,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),42,48.0,48,0.12917,0.26233,3.7859,0.8294,44408,25.82,0.567,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),42,48.0,96,0.18266,0.31411,3.7918,0.8307,44408,25.82,0.859,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),42,48.0,192,0.29397,0.4034,3.7795,0.8281,44408,25.82,1.377,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),42,48.0,336,0.48144,0.52083,3.8153,0.8359,44408,25.82,2.001,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),42,48.0,720,1.21661,0.85178,3.8121,0.8352,44408,25.82,2.585,True
+exchange,DLinear,Horizon-Specific Retrained,42,24.0,24,0.03227,0.12012,,,4656,2.6,0.058,True
+exchange,DLinear,Horizon-Specific Retrained,42,48.0,48,0.05548,0.16257,,,9312,2.53,0.058,True
+exchange,DLinear,Horizon-Specific Retrained,42,96.0,96,0.104,0.23263,,,18624,2.63,0.104,True
+exchange,DLinear,Horizon-Specific Retrained,42,192.0,192,0.21604,0.34321,,,37248,3.02,0.072,True
+exchange,DLinear,Horizon-Specific Retrained,42,336.0,336,0.4188,0.47538,,,65184,2.5,0.06,True
+exchange,DLinear,Horizon-Specific Retrained,42,720.0,720,1.6323,0.92627,,,139680,1.21,0.053,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,42,24.0,24,0.06884,0.19231,,,91608,7.78,0.113,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,42,48.0,48,0.08679,0.21439,,,101280,6.93,0.121,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,42,96.0,96,0.1439,0.27657,,,127536,4.98,0.124,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,42,192.0,192,0.23559,0.35728,,,207696,3.98,0.143,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,42,336.0,336,0.55654,0.55722,,,397056,5.21,0.185,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,42,720.0,720,1.31747,0.86456,,,1307520,7.82,0.162,True
+exchange,Persistence,Non-Learning Control,42,,24,0.03183,0.11562,,,0,0.0,0.046,True
+exchange,Persistence,Non-Learning Control,42,,48,0.05479,0.15866,,,0,0.0,0.044,True
+exchange,Persistence,Non-Learning Control,42,,96,0.10098,0.22143,,,0,0.0,0.047,True
+exchange,Persistence,Non-Learning Control,42,,192,0.20133,0.32222,,,0,0.0,0.046,True
+exchange,Persistence,Non-Learning Control,42,,336,0.37634,0.44591,,,0,0.0,0.046,True
+exchange,Persistence,Non-Learning Control,42,,720,1.04758,0.77708,,,0,0.0,0.041,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),43,48.0,24,0.10578,0.23726,4.3851,0.9607,44408,14.75,0.431,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),43,48.0,48,0.13018,0.26434,4.3868,0.9611,44408,14.75,0.588,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),43,48.0,96,0.18141,0.31316,4.3933,0.9625,44408,14.75,0.881,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),43,48.0,192,0.2954,0.4054,4.3965,0.9632,44408,14.75,1.385,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),43,48.0,336,0.48856,0.52345,4.408,0.9657,44408,14.75,1.976,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),43,48.0,720,1.23952,0.86147,4.4079,0.9657,44408,14.75,2.596,True
+exchange,DLinear,Horizon-Specific Retrained,43,24.0,24,0.03277,0.1209,,,4656,2.48,0.06,True
+exchange,DLinear,Horizon-Specific Retrained,43,48.0,48,0.05481,0.16172,,,9312,2.9,0.086,True
+exchange,DLinear,Horizon-Specific Retrained,43,96.0,96,0.10242,0.22945,,,18624,3.16,0.065,True
+exchange,DLinear,Horizon-Specific Retrained,43,192.0,192,0.21352,0.3388,,,37248,2.58,0.061,True
+exchange,DLinear,Horizon-Specific Retrained,43,336.0,336,0.43516,0.48422,,,65184,2.18,0.07,True
+exchange,DLinear,Horizon-Specific Retrained,43,720.0,720,1.61193,0.92003,,,139680,1.23,0.053,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,43,24.0,24,0.07247,0.19881,,,91608,7.75,0.123,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,43,48.0,48,0.08637,0.21447,,,101280,6.21,0.191,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,43,96.0,96,0.15378,0.28719,,,127536,4.1,0.121,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,43,192.0,192,0.26711,0.38214,,,207696,4.0,0.15,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,43,336.0,336,0.45731,0.50354,,,397056,5.54,0.195,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,43,720.0,720,1.1773,0.83006,,,1307520,7.83,0.162,True
+exchange,Persistence,Non-Learning Control,43,,24,0.03183,0.11562,,,0,0.0,0.051,True
+exchange,Persistence,Non-Learning Control,43,,48,0.05479,0.15866,,,0,0.0,0.05,True
+exchange,Persistence,Non-Learning Control,43,,96,0.10098,0.22143,,,0,0.0,0.052,True
+exchange,Persistence,Non-Learning Control,43,,192,0.20133,0.32222,,,0,0.0,0.065,True
+exchange,Persistence,Non-Learning Control,43,,336,0.37634,0.44591,,,0,0.0,0.051,True
+exchange,Persistence,Non-Learning Control,43,,720,1.04758,0.77708,,,0,0.0,0.044,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),44,48.0,24,0.10432,0.2364,4.4554,0.9761,44408,15.0,0.442,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),44,48.0,48,0.12915,0.26392,4.4564,0.9764,44408,15.0,0.589,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),44,48.0,96,0.1809,0.31247,4.4583,0.9768,44408,15.0,0.869,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),44,48.0,192,0.29648,0.40518,4.4618,0.9775,44408,15.0,1.368,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),44,48.0,336,0.49312,0.52622,4.469,0.9791,44408,15.0,1.973,True
+exchange,PureD2Vformer,Zero-Shot (trained on 48),44,48.0,720,1.2459,0.86387,4.4675,0.9788,44408,15.0,2.597,True
+exchange,DLinear,Horizon-Specific Retrained,44,24.0,24,0.03268,0.12151,,,4656,2.68,0.058,True
+exchange,DLinear,Horizon-Specific Retrained,44,48.0,48,0.05555,0.16361,,,9312,3.18,0.065,True
+exchange,DLinear,Horizon-Specific Retrained,44,96.0,96,0.10162,0.22709,,,18624,2.53,0.061,True
+exchange,DLinear,Horizon-Specific Retrained,44,192.0,192,0.22458,0.34916,,,37248,2.61,0.064,True
+exchange,DLinear,Horizon-Specific Retrained,44,336.0,336,0.46516,0.49745,,,65184,2.76,0.066,True
+exchange,DLinear,Horizon-Specific Retrained,44,720.0,720,1.4661,0.88003,,,139680,1.24,0.057,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,44,24.0,24,0.08436,0.21234,,,91608,7.95,0.114,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,44,48.0,48,0.09716,0.22861,,,101280,7.87,0.119,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,44,96.0,96,0.22656,0.33335,,,127536,5.33,0.12,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,44,192.0,192,0.27488,0.38972,,,207696,4.26,0.187,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,44,336.0,336,0.42743,0.48598,,,397056,5.17,0.163,True
+exchange,Repository-D2Vformer,Horizon-Specific Retrained,44,720.0,720,1.12782,0.81059,,,1307520,9.9,0.161,True
+exchange,Persistence,Non-Learning Control,44,,24,0.03183,0.11562,,,0,0.0,0.046,True
+exchange,Persistence,Non-Learning Control,44,,48,0.05479,0.15866,,,0,0.0,0.047,True
+exchange,Persistence,Non-Learning Control,44,,96,0.10098,0.22143,,,0,0.0,0.046,True
+exchange,Persistence,Non-Learning Control,44,,192,0.20133,0.32222,,,0,0.0,0.047,True
+exchange,Persistence,Non-Learning Control,44,,336,0.37634,0.44591,,,0,0.0,0.048,True
+exchange,Persistence,Non-Learning Control,44,,720,1.04758,0.77708,,,0,0.0,0.048,True

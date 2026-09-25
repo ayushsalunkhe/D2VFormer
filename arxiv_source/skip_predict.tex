@@ -1,0 +1,90 @@
+{\small
+\begin{table}[tb]
+\centering
+\footnotesize
+\caption{The results of flexible prediction. 
+%The best results are highlighted in \textbf{bold} and the second best results are highlighted with an \underline{underline}. 
+%'Gap' indicates the length of time interval between the input and predicted sequences.
+}
+\label{skip_exp}
+\resizebox{0.95\textwidth}{!}{
+\begin{tabular}{p{10mm}p{6mm}p{6mm}p{6mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}p{8mm}}
+ 
+\toprule
+\multirow{2}{*}{Model}       & \multicolumn{3}{c}{Configs}  & \multicolumn{2}{c}{D2Vformer}         & \multicolumn{2}{c}{PatchTST}      & \multicolumn{2}{c}{DLinear}   & \multicolumn{2}{c}{Fedformer}        & \multicolumn{2}{c}{Autoformer}   \\ 
+\cmidrule(lr){2-4}
+\cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10} \cmidrule(lr){11-12}  \cmidrule(lr){13-14}
+                              & Seq & Gap & $\text{Pred}^*$ & MAE             & MSE             & MAE             & MSE             & MAE             & MSE             & MAE             & MSE               & MAE             & MSE           \\    
+                               \midrule
+%
+\multirow{3}{*}{ILI} 
+&36 &4 &2 &\textbf{0.4882}  &\textbf{0.5913} &\underline{0.5081} &\underline{0.6687} &0.5630   &0.7667&0.6863 &	1.0934    &0.8375  &1.4528\\
+
+&36 &4 &4 &\textbf{0.5704}  &\textbf{0.7939}&\underline{0.5849} &\underline{0.8155} &0.6634   &0.9840&0.7633 &	1.3078    &1.0013  &1.8697 \\
+
+ &36 &4 &8 &0.7933  &1.4370&\textbf{0.6690}
+&\textbf{1.1007} &0.7829   &\underline{1.2243} &\underline{0.7741} &	1.3439 
+  &0.9219  &1.6797 \\
+
+\midrule
+\multirow{3}{*}{ILI} 
+&36 &6 &2 &\textbf{0.6064}  &\textbf{0.8539} &\underline{0.6375} &\underline{0.9280} &0.8340   &1.3704 &0.8212 &	1.4519   &1.0613  &2.1226  \\
+
+&36 &6 &4 &\textbf{0.6649} &\textbf{1.0015} &\underline{0.6938} &\underline{1.1164} &0.8231  &1.3354 &0.8343 	&1.5232  &0.9732  &1.8404 \\
+
+&36 &6 &8 &0.8810 &1.6633 &\textbf{0.7051} &\textbf{1.1699} &0.8694  &\underline{1.4156} &\underline{0.8593} &1.5569  &0.9795  &1.9084 \\
+
+
+\midrule
+\multirow{3}{*}{ILI} 
+&36 &8 &2 &\textbf{0.7238}  &\textbf{1.1830} &\underline{0.7354} &\underline{1.2210} &0.8755   &1.4756 &0.8747 &	1.6337   &0.9963  &1.8991 \\
+
+&36 &8 &4 &\textbf{0.7277}  &\textbf{1.1608} &\underline{0.7472} &\underline{1.3183} &0.8862   &1.4640 &0.8342 &	1.5068   &0.9570  &1.7790 \\
+
+&36 &8 &8 &\underline{0.8331} &\underline{1.5262} &\textbf{0.7572} &\textbf{1.2718} &0.9111   &1.5630 &0.9199 &1.7066  &1.1434  &2.4403 \\
+
+
+\midrule
+
+
+\multirow{3}{*}{Exchange} 
+&96  &6&4 &\textbf{0.0714}   &\textbf{0.0113} &\underline{0.0717}&0.0117 &0.0718 
+   &\underline{0.0114} &0.1312 &	0.0336  &0.1466   &0.0412 \\
+
+&96&6 &8 & \textbf{0.0785}&\textbf{0.0135}&\underline{0.0788}&{0.0140}&0.0793 &\underline{0.0136}&0.1329 &	0.0342  &0.1613 &0.0487 
+\\
+
+&96 &6 &10& \textbf{0.0818}&\textbf{0.0147}&0.0822&\underline{0.0151}&\underline{0.0820}&\textbf{0.0147}&0.1371 &	0.0364 & 0.1488 &0.0418 
+\\
+\midrule
+\multirow{3}{*}{Exchange} 
+&96  &8&4 &\textbf{0.0785}   &\textbf{0.0136} &0.0790 &0.0140 
+ &\underline{0.0788} 
+   &\underline{0.0137} &0.1357 &0.0359 &0.1615   &0.0490\\
+
+&96&8 &8 & \textbf{0.0854}&\textbf{0.0157}&0.0860 
+&0.0162 &\underline{0.0857} &\underline{0.0158}&0.1393 &0.0375 &0.1526  &0.0438  
+\\
+
+&96 &8 &10& \textbf{0.0886}&\textbf{0.0165}&0.0893 &0.0172&\underline{0.0888}&\underline{0.0168}&0.1401 &0.0377 &0.1502 &0.0430
+\\
+
+\midrule
+\multirow{3}{*}{Exchange} 
+&96  &10&4 &\textbf{0.0858}&\textbf{0.0157}&0.0864&0.0162&\underline{0.0862}&\underline{0.0158}&0.1384 &0.0368 &0.1679 &0.0524\\
+
+&96&10 &8& \textbf{0.0921}&\underline{0.0179}&0.0928&0.0183&\underline{0.0923}&\textbf{0.0178}&0.1426 &0.0389 &0.1536&0.0450
+\\
+
+&96 &10 &10&\textbf{0.0949}&\textbf{0.0186} &0.0959&0.0194&\underline{0.0953}&\underline{0.0188}&0.1450 &0.0396  &0.1581 &0.0459 \\
+
+
+
+
+                             \bottomrule
+
+\end{tabular}
+}
+\end{table}
+}
+
